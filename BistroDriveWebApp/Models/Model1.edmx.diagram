@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e204c76470bf4e79af21fe953f5c6f10" Name="Diagram1">
+        <EntityTypeShape EntityType="DataBaseModel.AspNetRole" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.AspNetUser" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.ChatMessage" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Dish" Width="1.5" PointX="6" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.DishReview" Width="1.5" PointX="8.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.DishType" Width="1.5" PointX="3.75" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Order" Width="1.5" PointX="8" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.OrderContactMethod" Width="1.5" PointX="5.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.OrderDelivery" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.OrderPaymentMethod" Width="1.5" PointX="5.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.OrderProduct" Width="1.5" PointX="11.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.OrderStatu" Width="1.5" PointX="5.75" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Review" Width="1.5" PointX="3" PointY="24.75" IsExpanded="true" />
+        <AssociationConnector Association="DataBaseModel.FK_ChatMessage_IdReciver" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_ChatMessage_IdSender" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Dish_IdUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_DishReview_IdOwner" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Order_IdCook" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Review_IdOwner" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Review_IdUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Dish_IdType" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_DishReview_IdDish" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_OrderProduct_IdDish" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Order_IdContactMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Order_IdDelivery" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Order_IdPaymentMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Order_IdStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_OrderProduct_IdOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

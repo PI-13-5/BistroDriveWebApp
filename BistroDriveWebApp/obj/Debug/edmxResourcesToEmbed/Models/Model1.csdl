@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ChatMessages" Relationship="Self.FK_ChatMessage_IdReciver" FromRole="AspNetRoles" ToRole="ChatMessage" />
+    <NavigationProperty Name="ChatMessages1" Relationship="Self.FK_ChatMessage_IdSender" FromRole="AspNetRoles" ToRole="ChatMessage" />
+    <NavigationProperty Name="Dishes" Relationship="Self.FK_Dish_IdUser" FromRole="AspNetRoles" ToRole="Dish" />
+    <NavigationProperty Name="DishReviews" Relationship="Self.FK_DishReview_IdOwner" FromRole="AspNetRoles" ToRole="DishReview" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_IdCook" FromRole="AspNetRoles" ToRole="Order" />
+    <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_IdOwner" FromRole="AspNetRoles" ToRole="Review" />
+    <NavigationProperty Name="Reviews1" Relationship="Self.FK_Review_IdUser" FromRole="AspNetRoles" ToRole="Review" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar_Url" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="LastOnlineTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="ChatMessage">
+    <Key>
+      <PropertyRef Name="Id_Message" />
+    </Key>
+    <Property Name="Id_Message" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Sender" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_Reciver" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AspNetRole" Relationship="Self.FK_ChatMessage_IdReciver" FromRole="ChatMessage" ToRole="AspNetRoles" />
+    <NavigationProperty Name="AspNetRole1" Relationship="Self.FK_ChatMessage_IdSender" FromRole="ChatMessage" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Dish">
+    <Key>
+      <PropertyRef Name="Id_Dish" />
+    </Key>
+    <Property Name="Id_Dish" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="PriceWithIngridient" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Id_Type" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AspNetRole" Relationship="Self.FK_Dish_IdUser" FromRole="Dish" ToRole="AspNetRoles" />
+    <NavigationProperty Name="DishType" Relationship="Self.FK_Dish_IdType" FromRole="Dish" ToRole="DishType" />
+    <NavigationProperty Name="DishReviews" Relationship="Self.FK_DishReview_IdDish" FromRole="Dish" ToRole="DishReview" />
+    <NavigationProperty Name="OrderProducts" Relationship="Self.FK_OrderProduct_IdDish" FromRole="Dish" ToRole="OrderProduct" />
+  </EntityType>
+  <EntityType Name="DishReview">
+    <Key>
+      <PropertyRef Name="Id_Review" />
+    </Key>
+    <Property Name="Id_Review" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Owner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_Dish" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Mark" Type="Int32" />
+    <NavigationProperty Name="AspNetRole" Relationship="Self.FK_DishReview_IdOwner" FromRole="DishReview" ToRole="AspNetRoles" />
+    <NavigationProperty Name="Dish" Relationship="Self.FK_DishReview_IdDish" FromRole="DishReview" ToRole="Dish" />
+  </EntityType>
+  <EntityType Name="DishType">
+    <Key>
+      <PropertyRef Name="Id_DishType" />
+    </Key>
+    <Property Name="Id_DishType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Descritpion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image_URL" Type="String" MaxLength="128" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Dishes" Relationship="Self.FK_Dish_IdType" FromRole="DishType" ToRole="Dish" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id_Order" />
+    </Key>
+    <Property Name="Id_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Cook" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_Customer" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_Status" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FinishTime" Type="DateTime" Precision="3" />
+    <Property Name="DeadLine" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Id_PaymentMethod" Type="Int32" Nullable="false" />
+    <Property Name="Id_ContactMethod" Type="Int32" Nullable="false" />
+    <Property Name="Id_Delivery" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AspNetRole" Relationship="Self.FK_Order_IdCook" FromRole="Order" ToRole="AspNetRoles" />
+    <NavigationProperty Name="OrderContactMethod" Relationship="Self.FK_Order_IdContactMethod" FromRole="Order" ToRole="OrderContactMethod" />
+    <NavigationProperty Name="OrderDelivery" Relationship="Self.FK_Order_IdDelivery" FromRole="Order" ToRole="OrderDelivery" />
+    <NavigationProperty Name="OrderPaymentMethod" Relationship="Self.FK_Order_IdPaymentMethod" FromRole="Order" ToRole="OrderPaymentMethod" />
+    <NavigationProperty Name="OrderStatu" Relationship="Self.FK_Order_IdStatus" FromRole="Order" ToRole="OrderStatus" />
+    <NavigationProperty Name="OrderProducts" Relationship="Self.FK_OrderProduct_IdOrder" FromRole="Order" ToRole="OrderProduct" />
+  </EntityType>
+  <EntityType Name="OrderContactMethod">
+    <Key>
+      <PropertyRef Name="Id_ContactMethod" />
+    </Key>
+    <Property Name="Id_ContactMethod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_IdContactMethod" FromRole="OrderContactMethod" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="OrderDelivery">
+    <Key>
+      <PropertyRef Name="Id_Delivery" />
+    </Key>
+    <Property Name="Id_Delivery" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_IdDelivery" FromRole="OrderDelivery" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="OrderPaymentMethod">
+    <Key>
+      <PropertyRef Name="Id_PaymentMethod" />
+    </Key>
+    <Property Name="Id_PaymentMethod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_IdPaymentMethod" FromRole="OrderPaymentMethod" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="OrderProduct">
+    <Key>
+      <PropertyRef Name="Id_Product" />
+    </Key>
+    <Property Name="Id_Product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Dish" Type="Int32" Nullable="false" />
+    <Property Name="Id_Order" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="PriceWithIngridients" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Dish" Relationship="Self.FK_OrderProduct_IdDish" FromRole="OrderProduct" ToRole="Dish" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrderProduct_IdOrder" FromRole="OrderProduct" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="OrderStatu">
+    <Key>
+      <PropertyRef Name="Id_Status" />
+    </Key>
+    <Property Name="Id_Status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_IdStatus" FromRole="OrderStatus" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="Id_UserReview" />
+    </Key>
+    <Property Name="Id_UserReview" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_Owner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Mark" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="AspNetRole" Relationship="Self.FK_Review_IdOwner" FromRole="Review" ToRole="AspNetRoles" />
+    <NavigationProperty Name="AspNetRole1" Relationship="Self.FK_Review_IdUser" FromRole="Review" ToRole="AspNetRoles" />
+  </EntityType>
+  <Association Name="FK_ChatMessage_IdReciver">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="1" />
+    <End Role="ChatMessage" Type="Self.ChatMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ChatMessage">
+        <PropertyRef Name="Id_Reciver" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatMessage_IdSender">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ChatMessage" Type="Self.ChatMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ChatMessage">
+        <PropertyRef Name="Id_Sender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dish_IdUser">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="1" />
+    <End Role="Dish" Type="Self.Dish" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dish">
+        <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DishReview_IdOwner">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DishReview" Type="Self.DishReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DishReview">
+        <PropertyRef Name="Id_Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_IdCook">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Id_Cook" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_IdOwner">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="1" />
+    <End Role="Review" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="Id_Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_IdUser">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Review" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dish_IdType">
+    <End Role="DishType" Type="Self.DishType" Multiplicity="1" />
+    <End Role="Dish" Type="Self.Dish" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DishType">
+        <PropertyRef Name="Id_DishType" />
+      </Principal>
+      <Dependent Role="Dish">
+        <PropertyRef Name="Id_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DishReview_IdDish">
+    <End Role="Dish" Type="Self.Dish" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DishReview" Type="Self.DishReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dish">
+        <PropertyRef Name="Id_Dish" />
+      </Principal>
+      <Dependent Role="DishReview">
+        <PropertyRef Name="Id_Dish" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderProduct_IdDish">
+    <End Role="Dish" Type="Self.Dish" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dish">
+        <PropertyRef Name="Id_Dish" />
+      </Principal>
+      <Dependent Role="OrderProduct">
+        <PropertyRef Name="Id_Dish" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_IdContactMethod">
+    <End Role="OrderContactMethod" Type="Self.OrderContactMethod" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderContactMethod">
+        <PropertyRef Name="Id_ContactMethod" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Id_ContactMethod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_IdDelivery">
+    <End Role="OrderDelivery" Type="Self.OrderDelivery" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderDelivery">
+        <PropertyRef Name="Id_Delivery" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Id_Delivery" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_IdPaymentMethod">
+    <End Role="OrderPaymentMethod" Type="Self.OrderPaymentMethod" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderPaymentMethod">
+        <PropertyRef Name="Id_PaymentMethod" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Id_PaymentMethod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_IdStatus">
+    <End Role="OrderStatus" Type="Self.OrderStatu" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderStatus">
+        <PropertyRef Name="Id_Status" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Id_Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderProduct_IdOrder">
+    <End Role="Order" Type="Self.Order" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id_Order" />
+      </Principal>
+      <Dependent Role="OrderProduct">
+        <PropertyRef Name="Id_Order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="DataBaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="ChatMessages" EntityType="Self.ChatMessage" />
+    <EntitySet Name="Dishes" EntityType="Self.Dish" />
+    <EntitySet Name="DishReviews" EntityType="Self.DishReview" />
+    <EntitySet Name="DishTypes" EntityType="Self.DishType" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="OrderContactMethods" EntityType="Self.OrderContactMethod" />
+    <EntitySet Name="OrderDeliveries" EntityType="Self.OrderDelivery" />
+    <EntitySet Name="OrderPaymentMethods" EntityType="Self.OrderPaymentMethod" />
+    <EntitySet Name="OrderProducts" EntityType="Self.OrderProduct" />
+    <EntitySet Name="OrderStatus" EntityType="Self.OrderStatu" />
+    <EntitySet Name="Reviews" EntityType="Self.Review" />
+    <AssociationSet Name="FK_ChatMessage_IdReciver" Association="Self.FK_ChatMessage_IdReciver">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="ChatMessage" EntitySet="ChatMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatMessage_IdSender" Association="Self.FK_ChatMessage_IdSender">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="ChatMessage" EntitySet="ChatMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dish_IdUser" Association="Self.FK_Dish_IdUser">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="Dish" EntitySet="Dishes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DishReview_IdOwner" Association="Self.FK_DishReview_IdOwner">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="DishReview" EntitySet="DishReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_IdCook" Association="Self.FK_Order_IdCook">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_IdOwner" Association="Self.FK_Review_IdOwner">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_IdUser" Association="Self.FK_Review_IdUser">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dish_IdType" Association="Self.FK_Dish_IdType">
+      <End Role="DishType" EntitySet="DishTypes" />
+      <End Role="Dish" EntitySet="Dishes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DishReview_IdDish" Association="Self.FK_DishReview_IdDish">
+      <End Role="Dish" EntitySet="Dishes" />
+      <End Role="DishReview" EntitySet="DishReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderProduct_IdDish" Association="Self.FK_OrderProduct_IdDish">
+      <End Role="Dish" EntitySet="Dishes" />
+      <End Role="OrderProduct" EntitySet="OrderProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_IdContactMethod" Association="Self.FK_Order_IdContactMethod">
+      <End Role="OrderContactMethod" EntitySet="OrderContactMethods" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_IdDelivery" Association="Self.FK_Order_IdDelivery">
+      <End Role="OrderDelivery" EntitySet="OrderDeliveries" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_IdPaymentMethod" Association="Self.FK_Order_IdPaymentMethod">
+      <End Role="OrderPaymentMethod" EntitySet="OrderPaymentMethods" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_IdStatus" Association="Self.FK_Order_IdStatus">
+      <End Role="OrderStatus" EntitySet="OrderStatus" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderProduct_IdOrder" Association="Self.FK_OrderProduct_IdOrder">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderProduct" EntitySet="OrderProducts" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

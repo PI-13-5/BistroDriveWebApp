@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="MyDbContextConnectionString-Web.config Connection String" description="MyDbContextConnectionString Connection String used in web.config by the application to access the database." defaultValue="server=eu-cdbr-azure-west-c.cloudapp.net;UserId=b85f59df71ba08;password=e4d64bd3;database=BistroDrive;CharSet=utf8;Persist Security Info=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Projects\\BistroDrive\\BistroDriveWebApp\\BistroDriveWebApp\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MyDbContextConnectionString']/@connectionString" />
+  </parameter>
+  <parameter name="BistroDriveWebApp.Models.DataBaseEntities-Web.config Connection String" description="BistroDriveWebApp.Models.DataBaseEntities Connection String used in web.config by the application to access the database." defaultValue="BistroDriveWebApp.Models.DataBaseEntities_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Projects\\BistroDrive\\BistroDriveWebApp\\BistroDriveWebApp\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BistroDriveWebApp.Models.DataBaseEntities']/@connectionString" />
+  </parameter>
+</parameters>
