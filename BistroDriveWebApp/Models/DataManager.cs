@@ -7,10 +7,10 @@ namespace BistroDriveWebApp.Models
 {
     static class DataManager
     {
-        static DataBaseEntities _context;
+        static BistroDriveEntities _context;
         public static void Init()
         {
-            _context = new DataBaseEntities();
+            _context = new BistroDriveEntities();
         }
 
         static UserRepository _user;

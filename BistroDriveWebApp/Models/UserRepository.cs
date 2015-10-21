@@ -7,20 +7,20 @@ namespace BistroDriveWebApp.Models
 {
     public class UserRepository
     {
-        DataBaseEntities context;
-        public UserRepository(DataBaseEntities _context)
+        BistroDriveEntities context;
+        public UserRepository(BistroDriveEntities _context)
         {
             this.context = _context;
         }
 
-        public AspNetUser GetUserById(string id)
+        public aspnetuser GetUserById(string id)
         {
-            return context.AspNetUsers.SingleOrDefault(u => u.Id == id);
+            return context.aspnetusers.SingleOrDefault(u => u.Id == id);
         }
 
-        public IEnumerable<AspNetUser> GetUsers()
+        public IEnumerable<aspnetuser> GetUsers()
         {
-            return context.AspNetUsers.ToList();
+            return context.aspnetusers.ToList();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace BistroDriveWebApp.Controllers
     {
         public ActionResult Index()
         {
-            //ViewBag.Users = DataManager.User.GetUsers();
+            ViewBag.Users = DataManager.User.GetUsers();
             return View();
         }
 

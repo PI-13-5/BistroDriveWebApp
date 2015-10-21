@@ -13,10 +13,10 @@ namespace BistroDriveWebApp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DataBaseEntities : DbContext
+    public partial class BistroDriveEntities : DbContext
     {
-        public DataBaseEntities()
-            : base("name=DataBaseEntities")
+        public BistroDriveEntities()
+            : base("name=BistroDriveEntities")
         {
         }
     
@@ -25,20 +25,20 @@ namespace BistroDriveWebApp.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<ChatMessage> ChatMessages { get; set; }
-        public virtual DbSet<Dish> Dishes { get; set; }
-        public virtual DbSet<DishReview> DishReviews { get; set; }
-        public virtual DbSet<DishType> DishTypes { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<OrderContactMethod> OrderContactMethods { get; set; }
-        public virtual DbSet<OrderDelivery> OrderDeliveries { get; set; }
-        public virtual DbSet<OrderPaymentMethod> OrderPaymentMethods { get; set; }
-        public virtual DbSet<OrderProduct> OrderProducts { get; set; }
-        public virtual DbSet<OrderStatu> OrderStatus { get; set; }
-        public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<aspnetrole> aspnetroles { get; set; }
+        public virtual DbSet<aspnetuserclaim> aspnetuserclaims { get; set; }
+        public virtual DbSet<aspnetuserlogin> aspnetuserlogins { get; set; }
+        public virtual DbSet<aspnetuser> aspnetusers { get; set; }
+        public virtual DbSet<chatmessage> chatmessages { get; set; }
+        public virtual DbSet<dish> dishes { get; set; }
+        public virtual DbSet<dishreview> dishreviews { get; set; }
+        public virtual DbSet<dishtype> dishtypes { get; set; }
+        public virtual DbSet<order> orders { get; set; }
+        public virtual DbSet<ordercontactmethod> ordercontactmethods { get; set; }
+        public virtual DbSet<orderdelivery> orderdeliveries { get; set; }
+        public virtual DbSet<orderpaymentmethod> orderpaymentmethods { get; set; }
+        public virtual DbSet<orderproduct> orderproducts { get; set; }
+        public virtual DbSet<orderstatu> orderstatus { get; set; }
+        public virtual DbSet<review> reviews { get; set; }
     }
 }

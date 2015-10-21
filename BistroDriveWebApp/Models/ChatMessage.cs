@@ -12,7 +12,7 @@ namespace BistroDriveWebApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ChatMessage
+    public partial class chatmessage
     {
         public int Id_Message { get; set; }
         public string Id_Sender { get; set; }
@@ -20,7 +20,7 @@ namespace BistroDriveWebApp.Models
         public string Message { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
     
-        public virtual AspNetRole AspNetRole { get; set; }
-        public virtual AspNetRole AspNetRole1 { get; set; }
+        public virtual aspnetrole aspnetrole { get; set; }
+        public virtual aspnetrole aspnetrole1 { get; set; }
     }
 }

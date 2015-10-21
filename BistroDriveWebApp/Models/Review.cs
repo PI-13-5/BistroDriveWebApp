@@ -12,7 +12,7 @@ namespace BistroDriveWebApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Review
+    public partial class review
     {
         public int Id_UserReview { get; set; }
         public string Id_User { get; set; }
@@ -20,7 +20,7 @@ namespace BistroDriveWebApp.Models
         public string Text { get; set; }
         public string Mark { get; set; }
     
-        public virtual AspNetRole AspNetRole { get; set; }
-        public virtual AspNetRole AspNetRole1 { get; set; }
+        public virtual aspnetrole aspnetrole { get; set; }
+        public virtual aspnetrole aspnetrole1 { get; set; }
     }
 }

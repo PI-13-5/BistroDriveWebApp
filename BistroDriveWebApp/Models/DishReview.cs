@@ -12,7 +12,7 @@ namespace BistroDriveWebApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DishReview
+    public partial class dishreview
     {
         public int Id_Review { get; set; }
         public string Id_Owner { get; set; }
@@ -20,7 +20,7 @@ namespace BistroDriveWebApp.Models
         public string Description { get; set; }
         public Nullable<int> Mark { get; set; }
     
-        public virtual AspNetRole AspNetRole { get; set; }
-        public virtual Dish Dish { get; set; }
+        public virtual aspnetrole aspnetrole { get; set; }
+        public virtual dish dish { get; set; }
     }
 }

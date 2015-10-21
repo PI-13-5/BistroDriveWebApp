@@ -12,12 +12,12 @@ namespace BistroDriveWebApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DishType
+    public partial class dishtype
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DishType()
+        public dishtype()
         {
-            this.Dishes = new HashSet<Dish>();
+            this.dishes = new HashSet<dish>();
         }
     
         public int Id_DishType { get; set; }
@@ -26,6 +26,6 @@ namespace BistroDriveWebApp.Models
         public string Image_URL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dish> Dishes { get; set; }
+        public virtual ICollection<dish> dishes { get; set; }
     }
 }

@@ -12,12 +12,12 @@ namespace BistroDriveWebApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDelivery
+    public partial class orderdelivery
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public OrderDelivery()
+        public orderdelivery()
         {
-            this.Orders = new HashSet<Order>();
+            this.orders = new HashSet<order>();
         }
     
         public int Id_Delivery { get; set; }
@@ -25,6 +25,6 @@ namespace BistroDriveWebApp.Models
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<order> orders { get; set; }
     }
 }

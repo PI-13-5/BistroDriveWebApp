@@ -12,7 +12,7 @@ namespace BistroDriveWebApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderProduct
+    public partial class orderproduct
     {
         public int Id_Product { get; set; }
         public int Id_Dish { get; set; }
@@ -20,7 +20,7 @@ namespace BistroDriveWebApp.Models
         public decimal Price { get; set; }
         public Nullable<decimal> PriceWithIngridients { get; set; }
     
-        public virtual Dish Dish { get; set; }
-        public virtual Order Order { get; set; }
+        public virtual dish dish { get; set; }
+        public virtual order order { get; set; }
     }
 }

@@ -205,29 +205,29 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AspNetRole.cs">
+    <Compile Include="Models\aspnetrole.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetUser.cs">
+    <Compile Include="Models\aspnetuser.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetUserClaim.cs">
+    <Compile Include="Models\aspnetuserclaim.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetUserLogin.cs">
+    <Compile Include="Models\aspnetuserlogin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ChatMessage.cs">
+    <Compile Include="Models\chatmessage.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DataManager.cs" />
-    <Compile Include="Models\Dish.cs">
+    <Compile Include="Models\dish.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DishReview.cs">
+    <Compile Include="Models\dishreview.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DishType.cs">
+    <Compile Include="Models\dishtype.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -247,25 +247,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Order.cs">
+    <Compile Include="Models\order.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderContactMethod.cs">
+    <Compile Include="Models\ordercontactmethod.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderDelivery.cs">
+    <Compile Include="Models\orderdelivery.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderPaymentMethod.cs">
+    <Compile Include="Models\orderpaymentmethod.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderProduct.cs">
+    <Compile Include="Models\orderproduct.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderStatu.cs">
+    <Compile Include="Models\orderstatu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Review.cs">
+    <Compile Include="Models\review.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserRepository.cs" />

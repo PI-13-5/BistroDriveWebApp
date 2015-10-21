@@ -12,13 +12,13 @@ namespace BistroDriveWebApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Dish
+    public partial class dish
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Dish()
+        public dish()
         {
-            this.DishReviews = new HashSet<DishReview>();
-            this.OrderProducts = new HashSet<OrderProduct>();
+            this.dishreviews = new HashSet<dishreview>();
+            this.orderproducts = new HashSet<orderproduct>();
         }
     
         public int Id_Dish { get; set; }
@@ -29,11 +29,11 @@ namespace BistroDriveWebApp.Models
         public string ImageUrl { get; set; }
         public int Id_Type { get; set; }
     
-        public virtual AspNetRole AspNetRole { get; set; }
-        public virtual DishType DishType { get; set; }
+        public virtual aspnetrole aspnetrole { get; set; }
+        public virtual dishtype dishtype { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DishReview> DishReviews { get; set; }
+        public virtual ICollection<dishreview> dishreviews { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
+        public virtual ICollection<orderproduct> orderproducts { get; set; }
     }
 }
