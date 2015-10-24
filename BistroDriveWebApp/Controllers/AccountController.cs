@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BistroDriveWebApp.Models;
+using System.Web.Security;
 
 namespace BistroDriveWebApp.Controllers
 {
@@ -17,6 +18,7 @@ namespace BistroDriveWebApp.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
 
         public AccountController()
         {
@@ -72,10 +74,18 @@ namespace BistroDriveWebApp.Controllers
             {
                 return View(model);
             }
-
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            // если вход по юзернейму не выполнен, ищем по Email
+            if (result == SignInStatus.Failure) 
+            {
+                var user = await UserManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
+                }
+            }
             switch (result)
             {
                 case SignInStatus.Success:
@@ -151,7 +161,7 @@ namespace BistroDriveWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Surname = model.Surname, FristName = model.FirstName  };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -481,5 +491,12 @@ namespace BistroDriveWebApp.Controllers
             }
         }
         #endregion
+
+        [AllowAnonymous]
+        public JsonResult IsUserNameAvailable(string username)
+        {
+            var result = DataManager.User.GetUserByName(username) == null;
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

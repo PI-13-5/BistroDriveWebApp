@@ -43,6 +43,8 @@
           <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
           <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FristName" ColumnName="FristName" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Avatar_Url" ColumnName="Avatar_Url" />
           <ScalarProperty Name="LastOnlineTime" ColumnName="LastOnlineTime" />
@@ -166,6 +168,15 @@
           <ScalarProperty Name="Id_Owner" ColumnName="Id_Owner" />
           <ScalarProperty Name="Text" ColumnName="Text" />
           <ScalarProperty Name="Mark" ColumnName="Mark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userdescriptions">
+      <EntityTypeMapping TypeName="BistroDriveModel.userdescription">
+        <MappingFragment StoreEntitySet="userdescription">
+          <ScalarProperty Name="Id_Description" ColumnName="Id_Description" />
+          <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

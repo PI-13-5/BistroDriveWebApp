@@ -51,12 +51,15 @@
     <Property Name="LockoutEndDateUtc" Type="DateTime" />
     <Property Name="LockoutEnabled" Type="SByte" Nullable="false" />
     <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FristName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Address" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
     <Property Name="Avatar_Url" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
     <Property Name="LastOnlineTime" Type="DateTime" />
     <NavigationProperty Name="aspnetuserclaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="aspnetusers" ToRole="aspnetuserclaims" />
     <NavigationProperty Name="aspnetuserlogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="aspnetusers" ToRole="aspnetuserlogins" />
+    <NavigationProperty Name="userdescriptions" Relationship="Self.description_userid_to_aspnetuser_userid" FromRole="aspnetusers" ToRole="userdescription" />
     <NavigationProperty Name="aspnetroles" Relationship="Self.aspnetuserroles" FromRole="aspnetusers" ToRole="aspnetroles" />
   </EntityType>
   <EntityType Name="chatmessage">
@@ -191,6 +194,15 @@
     <NavigationProperty Name="aspnetrole" Relationship="Self.FK_Review_IdOwner" FromRole="review" ToRole="aspnetroles" />
     <NavigationProperty Name="aspnetrole1" Relationship="Self.FK_Review_IdUser" FromRole="review" ToRole="aspnetroles" />
   </EntityType>
+  <EntityType Name="userdescription">
+    <Key>
+      <PropertyRef Name="Id_Description" />
+    </Key>
+    <Property Name="Id_Description" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_User" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="aspnetuser" Relationship="Self.description_userid_to_aspnetuser_userid" FromRole="userdescription" ToRole="aspnetusers" />
+  </EntityType>
   <Association Name="FK_ChatMessage_IdReciver">
     <End Role="aspnetroles" Type="Self.aspnetrole" Multiplicity="1" />
     <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
@@ -308,6 +320,20 @@
       </Principal>
       <Dependent Role="aspnetuserlogins">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="description_userid_to_aspnetuser_userid">
+    <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="userdescription" Type="Self.userdescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="userdescription">
+        <PropertyRef Name="Id_User" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -433,6 +459,7 @@
     <EntitySet Name="orderproducts" EntityType="Self.orderproduct" />
     <EntitySet Name="orderstatus" EntityType="Self.orderstatu" />
     <EntitySet Name="reviews" EntityType="Self.review" />
+    <EntitySet Name="userdescriptions" EntityType="Self.userdescription" />
     <AssociationSet Name="FK_ChatMessage_IdReciver" Association="Self.FK_ChatMessage_IdReciver">
       <End Role="aspnetroles" EntitySet="aspnetroles" />
       <End Role="chatmessage" EntitySet="chatmessages" />
@@ -468,6 +495,10 @@
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="aspnetuserlogins" EntitySet="aspnetuserlogins" />
+    </AssociationSet>
+    <AssociationSet Name="description_userid_to_aspnetuser_userid" Association="Self.description_userid_to_aspnetuser_userid">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="userdescription" EntitySet="userdescriptions" />
     </AssociationSet>
     <AssociationSet Name="FK_Dish_IdType" Association="Self.FK_Dish_IdType">
       <End Role="dishtype" EntitySet="dishtypes" />

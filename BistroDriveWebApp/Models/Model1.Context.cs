@@ -40,5 +40,6 @@ namespace BistroDriveWebApp.Models
         public virtual DbSet<orderproduct> orderproducts { get; set; }
         public virtual DbSet<orderstatu> orderstatus { get; set; }
         public virtual DbSet<review> reviews { get; set; }
+        public virtual DbSet<userdescription> userdescriptions { get; set; }
     }
 }

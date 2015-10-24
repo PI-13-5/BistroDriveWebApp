@@ -19,6 +19,7 @@ namespace BistroDriveWebApp.Models
         {
             this.aspnetuserclaims = new HashSet<aspnetuserclaim>();
             this.aspnetuserlogins = new HashSet<aspnetuserlogin>();
+            this.userdescriptions = new HashSet<userdescription>();
             this.aspnetroles = new HashSet<aspnetrole>();
         }
     
@@ -34,6 +35,8 @@ namespace BistroDriveWebApp.Models
         public sbyte LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
+        public string FristName { get; set; }
+        public string Surname { get; set; }
         public string Address { get; set; }
         public string Avatar_Url { get; set; }
         public Nullable<System.DateTime> LastOnlineTime { get; set; }
@@ -42,6 +45,8 @@ namespace BistroDriveWebApp.Models
         public virtual ICollection<aspnetuserclaim> aspnetuserclaims { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<aspnetuserlogin> aspnetuserlogins { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<userdescription> userdescriptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<aspnetrole> aspnetroles { get; set; }
     }

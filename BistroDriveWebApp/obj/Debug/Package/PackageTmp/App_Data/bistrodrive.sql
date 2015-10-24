@@ -68,7 +68,7 @@ CREATE TABLE `aspnetusers` (
   `AccessFailedCount` int(11) NOT NULL,
   `UserName` varchar(256) DEFAULT NULL,
   `Address` varchar(256) DEFAULT NULL,
-  `Avatar_Url` varchar(128) DEFAULT NULL,
+  `Avatar_Url` varchar(256) DEFAULT NULL,
   `LastOnlineTime` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

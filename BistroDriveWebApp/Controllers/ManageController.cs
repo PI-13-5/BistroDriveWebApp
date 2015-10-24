@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BistroDriveWebApp.Models;
+using System.IO;
 
 namespace BistroDriveWebApp.Controllers
 {
@@ -52,10 +53,13 @@ namespace BistroDriveWebApp.Controllers
 
         //
         // GET: /Manage/Index
+        [HttpGet]
         public async Task<ActionResult> Index(ManageMessageId? message)
-        {
+        {   
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                message ==  ManageMessageId.ProfileEditSuccess? "Your profile has been updated."
+                : message == ManageMessageId.AvatarUpdated ? "Your avatar has been changed."
+                : message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."
@@ -64,15 +68,62 @@ namespace BistroDriveWebApp.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
-            var model = new IndexViewModel
+            var user = DataManager.User.GetUserById(userId);
+            var description = DataManager.User.GetUserDescription(userId);
+            var model = new ProfileSettingsViewModel
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                UserName = user.UserName,
+                Address = user.Address,
+                Email = user.Email,
+                FirstName = user.FristName,
+                Avatar_Url = user.Avatar_Url,
+                Surname = user.Surname,
+                Telphone = user.PhoneNumber,
+                Description = description
             };
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(ProfileSettingsViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            string userId = User.Identity.GetUserId();
+            DataManager.User.UpdateUser(userId, model);
+            return RedirectToAction("index", new { message = ManageMessageId.ProfileEditSuccess });
+        }
+
+        [HttpPost]
+        public ActionResult UpdateAvatar(HttpPostedFileBase file)
+        {
+            ManageMessageId? message;
+            if (file != null && file.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = User.Identity.GetUserId() + Path.GetFileName(file.FileName);
+                // store the file inside ~/App_Data/uploads folder
+                var path = Path.Combine(Server.MapPath("~/Uploads/avatars"), fileName);
+                file.SaveAs(path);
+                string id = User.Identity.GetUserId();
+                // удаление старого аватара с сервера
+                string old = DataManager.User.GetUserAvatar(id);
+                path = Path.Combine(Server.MapPath(old));
+                FileInfo fi = new FileInfo(path);
+                fi.Delete();
+                // обновление нового аватара
+                DataManager.User.UpdateUserAvatar(id, "/Uploads/avatars/" + fileName);
+                message = ManageMessageId.AvatarUpdated;
+            }
+            else
+            {
+                message = ManageMessageId.Error;
+            }
+            // redirect back to the index action to show the form once again
+            return RedirectToAction("Index", new { Message = message });
         }
 
         //
@@ -373,6 +424,8 @@ namespace BistroDriveWebApp.Controllers
 
         public enum ManageMessageId
         {
+            ProfileEditSuccess,
+            AvatarUpdated,
             AddPhoneSuccess,
             ChangePasswordSuccess,
             SetTwoFactorSuccess,

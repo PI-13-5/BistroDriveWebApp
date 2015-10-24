@@ -49,7 +49,9 @@
     <Property Name="LockoutEndDateUtc" Type="datetime" Precision="0" />
     <Property Name="LockoutEnabled" Type="tinyint" Nullable="false" />
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
-    <Property Name="UserName" Type="varchar" MaxLength="256" />
+    <Property Name="UserName" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="FristName" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="128" Nullable="false" />
     <Property Name="Address" Type="varchar" MaxLength="256" />
     <Property Name="Avatar_Url" Type="varchar" MaxLength="128" />
     <Property Name="LastOnlineTime" Type="datetime" Precision="0" />
@@ -163,6 +165,28 @@
     <Property Name="Text" Type="longtext" />
     <Property Name="Mark" Type="char" MaxLength="10" />
   </EntityType>
+  <EntityType Name="userdescription">
+    <Key>
+      <PropertyRef Name="Id_Description" />
+    </Key>
+    <Property Name="Id_Description" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_User" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Description" Type="text" />
+  </EntityType>
+  <Association Name="description_userid_to_aspnetuser_userid">
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="userdescription" Type="Self.userdescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="userdescription">
+        <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ChatMessage_IdReciver">
     <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1" />
     <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
@@ -414,22 +438,27 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="BistroDriveModelStoreContainer">
-    <EntitySet Name="aspnetroles" EntityType="Self.aspnetroles" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="aspnetuserclaims" EntityType="Self.aspnetuserclaims" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="aspnetuserlogins" EntityType="Self.aspnetuserlogins" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="aspnetuserroles" EntityType="Self.aspnetuserroles" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="aspnetusers" EntityType="Self.aspnetusers" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="chatmessage" EntityType="Self.chatmessage" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="dish" EntityType="Self.dish" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="dishreview" EntityType="Self.dishreview" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="dishtype" EntityType="Self.dishtype" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="order" EntityType="Self.order" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="ordercontactmethod" EntityType="Self.ordercontactmethod" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="orderdelivery" EntityType="Self.orderdelivery" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="orderpaymentmethod" EntityType="Self.orderpaymentmethod" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="orderproduct" EntityType="Self.orderproduct" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="orderstatus" EntityType="Self.orderstatus" Schema="bistrodrive" store:Type="Tables" />
-    <EntitySet Name="review" EntityType="Self.review" Schema="bistrodrive" store:Type="Tables" />
+    <EntitySet Name="aspnetroles" EntityType="Self.aspnetroles" Schema="users" store:Type="Tables" />
+    <EntitySet Name="aspnetuserclaims" EntityType="Self.aspnetuserclaims" Schema="users" store:Type="Tables" />
+    <EntitySet Name="aspnetuserlogins" EntityType="Self.aspnetuserlogins" Schema="users" store:Type="Tables" />
+    <EntitySet Name="aspnetuserroles" EntityType="Self.aspnetuserroles" Schema="users" store:Type="Tables" />
+    <EntitySet Name="aspnetusers" EntityType="Self.aspnetusers" Schema="users" store:Type="Tables" />
+    <EntitySet Name="chatmessage" EntityType="Self.chatmessage" Schema="users" store:Type="Tables" />
+    <EntitySet Name="dish" EntityType="Self.dish" Schema="users" store:Type="Tables" />
+    <EntitySet Name="dishreview" EntityType="Self.dishreview" Schema="users" store:Type="Tables" />
+    <EntitySet Name="dishtype" EntityType="Self.dishtype" Schema="users" store:Type="Tables" />
+    <EntitySet Name="order" EntityType="Self.order" Schema="users" store:Type="Tables" />
+    <EntitySet Name="ordercontactmethod" EntityType="Self.ordercontactmethod" Schema="users" store:Type="Tables" />
+    <EntitySet Name="orderdelivery" EntityType="Self.orderdelivery" Schema="users" store:Type="Tables" />
+    <EntitySet Name="orderpaymentmethod" EntityType="Self.orderpaymentmethod" Schema="users" store:Type="Tables" />
+    <EntitySet Name="orderproduct" EntityType="Self.orderproduct" Schema="users" store:Type="Tables" />
+    <EntitySet Name="orderstatus" EntityType="Self.orderstatus" Schema="users" store:Type="Tables" />
+    <EntitySet Name="review" EntityType="Self.review" Schema="users" store:Type="Tables" />
+    <EntitySet Name="userdescription" EntityType="Self.userdescription" Schema="users" store:Type="Tables" />
+    <AssociationSet Name="description_userid_to_aspnetuser_userid" Association="Self.description_userid_to_aspnetuser_userid">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="userdescription" EntitySet="userdescription" />
+    </AssociationSet>
     <AssociationSet Name="FK_ChatMessage_IdReciver" Association="Self.FK_ChatMessage_IdReciver">
       <End Role="aspnetroles" EntitySet="aspnetroles" />
       <End Role="chatmessage" EntitySet="chatmessage" />
