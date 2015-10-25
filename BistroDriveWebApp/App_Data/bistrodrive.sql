@@ -1,5 +1,20 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : local
+Source Server Version : 50525
+Source Host           : localhost:3306
+Source Database       : users
+
+Target Server Type    : MYSQL
+Target Server Version : 50525
+File Encoding         : 65001
+
+Date: 2015-10-25 02:34:17
+*/
+
 SET FOREIGN_KEY_CHECKS=0;
--- http://www.sqlines.com/online
+
 -- ----------------------------
 -- Table structure for aspnetroles
 -- ----------------------------
@@ -66,11 +81,14 @@ CREATE TABLE `aspnetusers` (
   `LockoutEndDateUtc` datetime DEFAULT NULL,
   `LockoutEnabled` tinyint(4) NOT NULL,
   `AccessFailedCount` int(11) NOT NULL,
-  `UserName` varchar(256) DEFAULT NULL,
+  `UserName` varchar(128) NOT NULL,
+  `FristName` varchar(128) NOT NULL,
+  `Surname` varchar(128) NOT NULL,
   `Address` varchar(256) DEFAULT NULL,
-  `Avatar_Url` varchar(256) DEFAULT NULL,
+  `Avatar_Url` varchar(128) DEFAULT NULL,
   `LastOnlineTime` datetime DEFAULT NULL,
-  PRIMARY KEY (`Id`)
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `UserName` (`UserName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -86,8 +104,8 @@ CREATE TABLE `chatmessage` (
   PRIMARY KEY (`Id_Message`),
   KEY `FK_ChatMessage_IdSender` (`Id_Sender`),
   KEY `FK_ChatMessage_IdReciver` (`Id_Reciver`),
-  CONSTRAINT `FK_ChatMessage_IdSender` FOREIGN KEY (`Id_Sender`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_ChatMessage_IdReciver` FOREIGN KEY (`Id_Reciver`) REFERENCES `aspnetroles` (`Id`)
+  CONSTRAINT `FK_ChatMessage_IdReciver` FOREIGN KEY (`Id_Reciver`) REFERENCES `aspnetroles` (`Id`),
+  CONSTRAINT `FK_ChatMessage_IdSender` FOREIGN KEY (`Id_Sender`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -105,8 +123,8 @@ CREATE TABLE `dish` (
   PRIMARY KEY (`Id_Dish`),
   KEY `FK_Dish_IdUser` (`Id_User`),
   KEY `FK_Dish_IdType` (`Id_Type`),
-  CONSTRAINT `FK_Dish_IdUser` FOREIGN KEY (`Id_User`) REFERENCES `aspnetroles` (`Id`),
-  CONSTRAINT `FK_Dish_IdType` FOREIGN KEY (`Id_Type`) REFERENCES `dishtype` (`Id_DishType`)
+  CONSTRAINT `FK_Dish_IdType` FOREIGN KEY (`Id_Type`) REFERENCES `dishtype` (`Id_DishType`),
+  CONSTRAINT `FK_Dish_IdUser` FOREIGN KEY (`Id_User`) REFERENCES `aspnetroles` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -122,8 +140,8 @@ CREATE TABLE `dishreview` (
   PRIMARY KEY (`Id_Review`),
   KEY `FK_DishReview_IdOwner` (`Id_Owner`),
   KEY `FK_DishReview_IdDish` (`Id_Dish`),
-  CONSTRAINT `FK_DishReview_IdOwner` FOREIGN KEY (`Id_Owner`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_DishReview_IdDish` FOREIGN KEY (`Id_Dish`) REFERENCES `dish` (`Id_Dish`) ON DELETE CASCADE
+  CONSTRAINT `FK_DishReview_IdDish` FOREIGN KEY (`Id_Dish`) REFERENCES `dish` (`Id_Dish`) ON DELETE CASCADE,
+  CONSTRAINT `FK_DishReview_IdOwner` FOREIGN KEY (`Id_Owner`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -159,11 +177,11 @@ CREATE TABLE `order` (
   KEY `FK_Order_IdContactMethod` (`Id_ContactMethod`),
   KEY `FK_Order_IdDelivery` (`Id_Delivery`),
   KEY `FK_Order_IdPaymentMethod` (`Id_PaymentMethod`),
-  CONSTRAINT `FK_Order_IdCook` FOREIGN KEY (`Id_Cook`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Order_IdStatus` FOREIGN KEY (`Id_Status`) REFERENCES `orderstatus` (`Id_Status`),
   CONSTRAINT `FK_Order_IdContactMethod` FOREIGN KEY (`Id_ContactMethod`) REFERENCES `ordercontactmethod` (`Id_ContactMethod`),
+  CONSTRAINT `FK_Order_IdCook` FOREIGN KEY (`Id_Cook`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE,
   CONSTRAINT `FK_Order_IdDelivery` FOREIGN KEY (`Id_Delivery`) REFERENCES `orderdelivery` (`Id_Delivery`),
-  CONSTRAINT `FK_Order_IdPaymentMethod` FOREIGN KEY (`Id_PaymentMethod`) REFERENCES `orderpaymentmethod` (`Id_PaymentMethod`)
+  CONSTRAINT `FK_Order_IdPaymentMethod` FOREIGN KEY (`Id_PaymentMethod`) REFERENCES `orderpaymentmethod` (`Id_PaymentMethod`),
+  CONSTRAINT `FK_Order_IdStatus` FOREIGN KEY (`Id_Status`) REFERENCES `orderstatus` (`Id_Status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -241,6 +259,19 @@ CREATE TABLE `review` (
   PRIMARY KEY (`Id_UserReview`),
   KEY `FK_Review_IdUser` (`Id_User`),
   KEY `FK_Review_IdOwner` (`Id_Owner`),
-  CONSTRAINT `FK_Review_IdUser` FOREIGN KEY (`Id_User`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Review_IdOwner` FOREIGN KEY (`Id_Owner`) REFERENCES `aspnetroles` (`Id`)
+  CONSTRAINT `FK_Review_IdOwner` FOREIGN KEY (`Id_Owner`) REFERENCES `aspnetroles` (`Id`),
+  CONSTRAINT `FK_Review_IdUser` FOREIGN KEY (`Id_User`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for userdescription
+-- ----------------------------
+DROP TABLE IF EXISTS `userdescription`;
+CREATE TABLE `userdescription` (
+  `Id_Description` int(4) NOT NULL AUTO_INCREMENT,
+  `Id_User` varchar(128) NOT NULL,
+  `Description` text,
+  PRIMARY KEY (`Id_Description`),
+  KEY `description_userid_to_aspnetuser_userid` (`Id_User`),
+  CONSTRAINT `description_userid_to_aspnetuser_userid` FOREIGN KEY (`Id_User`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
