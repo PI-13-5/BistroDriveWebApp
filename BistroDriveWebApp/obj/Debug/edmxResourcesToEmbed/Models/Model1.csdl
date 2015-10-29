@@ -61,6 +61,7 @@
     <NavigationProperty Name="aspnetuserlogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="aspnetusers" ToRole="aspnetuserlogins" />
     <NavigationProperty Name="userdescriptions" Relationship="Self.description_userid_to_aspnetuser_userid" FromRole="aspnetusers" ToRole="userdescription" />
     <NavigationProperty Name="aspnetroles" Relationship="Self.aspnetuserroles" FromRole="aspnetusers" ToRole="aspnetroles" />
+    <NavigationProperty Name="dishes" Relationship="BistroDriveModel.FK_Dish_IdUser_aspnetusers_Id" FromRole="aspnetuser" ToRole="dish" />
   </EntityType>
   <EntityType Name="chatmessage">
     <Key>
@@ -89,6 +90,9 @@
     <NavigationProperty Name="dishtype" Relationship="Self.FK_Dish_IdType" FromRole="dish" ToRole="dishtype" />
     <NavigationProperty Name="dishreviews" Relationship="Self.FK_DishReview_IdDish" FromRole="dish" ToRole="dishreview" />
     <NavigationProperty Name="orderproducts" Relationship="Self.FK_OrderProduct_IdDish" FromRole="dish" ToRole="orderproduct" />
+    <Property Name="Ingridient" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="aspnetuser" Relationship="BistroDriveModel.FK_Dish_IdUser_aspnetusers_Id" FromRole="dish" ToRole="aspnetuser" />
   </EntityType>
   <EntityType Name="dishreview">
     <Key>
@@ -536,5 +540,23 @@
       <End Role="aspnetroles" EntitySet="aspnetroles" />
       <End Role="aspnetusers" EntitySet="aspnetusers" />
     </AssociationSet>
+    <AssociationSet Name="FK_Dish_IdUser_aspnetusers_Id" Association="BistroDriveModel.FK_Dish_IdUser_aspnetusers_Id">
+      <End Role="aspnetuser" EntitySet="aspnetusers" />
+      <End Role="dish" EntitySet="dishes" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_Dish_IdUser_aspnetusers_Id">
+    <End Type="BistroDriveModel.aspnetuser" Role="aspnetuser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BistroDriveModel.dish" Role="dish" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetuser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dish">
+        <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

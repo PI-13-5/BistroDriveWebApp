@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DataBaseModelStoreContainer" CdmEntityContainer="DataBaseEntities4">
-    <EntitySetMapping Name="AspNetRoles">
-      <EntityTypeMapping TypeName="DataBaseModel.AspNetRole">
-        <MappingFragment StoreEntitySet="AspNetRoles">
+  <EntityContainerMapping StorageEntityContainer="BistroDriveModelStoreContainer" CdmEntityContainer="BistroDriveEntities">
+    <EntitySetMapping Name="aspnetroles">
+      <EntityTypeMapping TypeName="BistroDriveModel.aspnetrole">
+        <MappingFragment StoreEntitySet="aspnetroles">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AspNetUserClaims">
-      <EntityTypeMapping TypeName="DataBaseModel.AspNetUserClaim">
-        <MappingFragment StoreEntitySet="AspNetUserClaims">
+    <EntitySetMapping Name="aspnetuserclaims">
+      <EntityTypeMapping TypeName="BistroDriveModel.aspnetuserclaim">
+        <MappingFragment StoreEntitySet="aspnetuserclaims">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
@@ -19,18 +19,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AspNetUserLogins">
-      <EntityTypeMapping TypeName="DataBaseModel.AspNetUserLogin">
-        <MappingFragment StoreEntitySet="AspNetUserLogins">
+    <EntitySetMapping Name="aspnetuserlogins">
+      <EntityTypeMapping TypeName="BistroDriveModel.aspnetuserlogin">
+        <MappingFragment StoreEntitySet="aspnetuserlogins">
           <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
           <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AspNetUsers">
-      <EntityTypeMapping TypeName="DataBaseModel.AspNetUser">
-        <MappingFragment StoreEntitySet="AspNetUsers">
+    <EntitySetMapping Name="aspnetusers">
+      <EntityTypeMapping TypeName="BistroDriveModel.aspnetuser">
+        <MappingFragment StoreEntitySet="aspnetusers">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
@@ -43,15 +43,17 @@
           <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
           <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FristName" ColumnName="FristName" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Avatar_Url" ColumnName="Avatar_Url" />
           <ScalarProperty Name="LastOnlineTime" ColumnName="LastOnlineTime" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ChatMessages">
-      <EntityTypeMapping TypeName="DataBaseModel.ChatMessage">
-        <MappingFragment StoreEntitySet="ChatMessage">
+    <EntitySetMapping Name="chatmessages">
+      <EntityTypeMapping TypeName="BistroDriveModel.chatmessage">
+        <MappingFragment StoreEntitySet="chatmessage">
           <ScalarProperty Name="Id_Message" ColumnName="Id_Message" />
           <ScalarProperty Name="Id_Sender" ColumnName="Id_Sender" />
           <ScalarProperty Name="Id_Reciver" ColumnName="Id_Reciver" />
@@ -60,9 +62,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Dishes">
-      <EntityTypeMapping TypeName="DataBaseModel.Dish">
-        <MappingFragment StoreEntitySet="Dish">
+    <EntitySetMapping Name="dishes">
+      <EntityTypeMapping TypeName="BistroDriveModel.dish">
+        <MappingFragment StoreEntitySet="dish">
           <ScalarProperty Name="Id_Dish" ColumnName="Id_Dish" />
           <ScalarProperty Name="Id_User" ColumnName="Id_User" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -73,9 +75,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DishReviews">
-      <EntityTypeMapping TypeName="DataBaseModel.DishReview">
-        <MappingFragment StoreEntitySet="DishReview">
+    <EntitySetMapping Name="dishreviews">
+      <EntityTypeMapping TypeName="BistroDriveModel.dishreview">
+        <MappingFragment StoreEntitySet="dishreview">
           <ScalarProperty Name="Id_Review" ColumnName="Id_Review" />
           <ScalarProperty Name="Id_Owner" ColumnName="Id_Owner" />
           <ScalarProperty Name="Id_Dish" ColumnName="Id_Dish" />
@@ -84,9 +86,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DishTypes">
-      <EntityTypeMapping TypeName="DataBaseModel.DishType">
-        <MappingFragment StoreEntitySet="DishType">
+    <EntitySetMapping Name="dishtypes">
+      <EntityTypeMapping TypeName="BistroDriveModel.dishtype">
+        <MappingFragment StoreEntitySet="dishtype">
           <ScalarProperty Name="Id_DishType" ColumnName="Id_DishType" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Descritpion" ColumnName="Descritpion" />
@@ -94,9 +96,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Orders">
-      <EntityTypeMapping TypeName="DataBaseModel.Order">
-        <MappingFragment StoreEntitySet="Order">
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="BistroDriveModel.order">
+        <MappingFragment StoreEntitySet="order">
           <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
           <ScalarProperty Name="Id_Cook" ColumnName="Id_Cook" />
           <ScalarProperty Name="Id_Customer" ColumnName="Id_Customer" />
@@ -110,27 +112,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OrderContactMethods">
-      <EntityTypeMapping TypeName="DataBaseModel.OrderContactMethod">
-        <MappingFragment StoreEntitySet="OrderContactMethod">
+    <EntitySetMapping Name="ordercontactmethods">
+      <EntityTypeMapping TypeName="BistroDriveModel.ordercontactmethod">
+        <MappingFragment StoreEntitySet="ordercontactmethod">
           <ScalarProperty Name="Id_ContactMethod" ColumnName="Id_ContactMethod" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OrderDeliveries">
-      <EntityTypeMapping TypeName="DataBaseModel.OrderDelivery">
-        <MappingFragment StoreEntitySet="OrderDelivery">
+    <EntitySetMapping Name="orderdeliveries">
+      <EntityTypeMapping TypeName="BistroDriveModel.orderdelivery">
+        <MappingFragment StoreEntitySet="orderdelivery">
           <ScalarProperty Name="Id_Delivery" ColumnName="Id_Delivery" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OrderPaymentMethods">
-      <EntityTypeMapping TypeName="DataBaseModel.OrderPaymentMethod">
-        <MappingFragment StoreEntitySet="OrderPaymentMethod">
+    <EntitySetMapping Name="orderpaymentmethods">
+      <EntityTypeMapping TypeName="BistroDriveModel.orderpaymentmethod">
+        <MappingFragment StoreEntitySet="orderpaymentmethod">
           <ScalarProperty Name="Id_PaymentMethod" ColumnName="Id_PaymentMethod" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -138,9 +140,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OrderProducts">
-      <EntityTypeMapping TypeName="DataBaseModel.OrderProduct">
-        <MappingFragment StoreEntitySet="OrderProduct">
+    <EntitySetMapping Name="orderproducts">
+      <EntityTypeMapping TypeName="BistroDriveModel.orderproduct">
+        <MappingFragment StoreEntitySet="orderproduct">
           <ScalarProperty Name="Id_Product" ColumnName="Id_Product" />
           <ScalarProperty Name="Id_Dish" ColumnName="Id_Dish" />
           <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
@@ -149,18 +151,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OrderStatus">
-      <EntityTypeMapping TypeName="DataBaseModel.OrderStatu">
-        <MappingFragment StoreEntitySet="OrderStatus">
+    <EntitySetMapping Name="orderstatus">
+      <EntityTypeMapping TypeName="BistroDriveModel.orderstatu">
+        <MappingFragment StoreEntitySet="orderstatus">
           <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Reviews">
-      <EntityTypeMapping TypeName="DataBaseModel.Review">
-        <MappingFragment StoreEntitySet="Review">
+    <EntitySetMapping Name="reviews">
+      <EntityTypeMapping TypeName="BistroDriveModel.review">
+        <MappingFragment StoreEntitySet="review">
           <ScalarProperty Name="Id_UserReview" ColumnName="Id_UserReview" />
           <ScalarProperty Name="Id_User" ColumnName="Id_User" />
           <ScalarProperty Name="Id_Owner" ColumnName="Id_Owner" />
@@ -169,11 +171,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="AspNetUserRoles" TypeName="DataBaseModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-      <EndProperty Name="AspNetRoles">
+    <EntitySetMapping Name="userdescriptions">
+      <EntityTypeMapping TypeName="BistroDriveModel.userdescription">
+        <MappingFragment StoreEntitySet="userdescription">
+          <ScalarProperty Name="Id_Description" ColumnName="Id_Description" />
+          <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="aspnetuserroles" TypeName="BistroDriveModel.aspnetuserroles" StoreEntitySet="aspnetuserroles">
+      <EndProperty Name="aspnetroles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
-      <EndProperty Name="AspNetUsers">
+      <EndProperty Name="aspnetusers">
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>

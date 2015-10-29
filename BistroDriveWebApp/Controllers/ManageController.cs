@@ -54,7 +54,7 @@ namespace BistroDriveWebApp.Controllers
         //
         // GET: /Manage/Index
         [HttpGet]
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        public ActionResult Index(ManageMessageId? message)
         {   
             ViewBag.StatusMessage =
                 message ==  ManageMessageId.ProfileEditSuccess? "Your profile has been updated."

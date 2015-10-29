@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BistroDriveModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BistroDriveModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="aspnetroles">
           <Key>
             <PropertyRef Name="Id" />
@@ -77,7 +77,9 @@
           </Key>
           <Property Name="Id_Dish" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_User" Type="varchar" MaxLength="128" Nullable="false" />
-          <Property Name="Description" Type="longtext" />
+          <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Ingridient" Type="text" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="PriceWithIngridient" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="ImageUrl" Type="varchar" MaxLength="128" />
@@ -286,11 +288,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Dish_IdUser">
-          <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1" />
+        <Association Name="FK_Dish_IdUser_aspnetusers_Id">
+          <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="dish" Type="Self.dish" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="aspnetroles">
+            <Principal Role="aspnetusers">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="dish">
@@ -492,8 +496,8 @@
             <End Role="dishtype" EntitySet="dishtype" />
             <End Role="dish" EntitySet="dish" />
           </AssociationSet>
-          <AssociationSet Name="FK_Dish_IdUser" Association="Self.FK_Dish_IdUser">
-            <End Role="aspnetroles" EntitySet="aspnetroles" />
+          <AssociationSet Name="FK_Dish_IdUser_aspnetusers_Id" Association="Self.FK_Dish_IdUser_aspnetusers_Id">
+            <End Role="aspnetusers" EntitySet="aspnetusers" />
             <End Role="dish" EntitySet="dish" />
           </AssociationSet>
           <AssociationSet Name="FK_DishReview_IdDish" Association="Self.FK_DishReview_IdDish">
@@ -541,8 +545,7 @@
             <End Role="review" EntitySet="review" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BistroDriveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -607,6 +610,7 @@
           <NavigationProperty Name="aspnetuserlogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="aspnetusers" ToRole="aspnetuserlogins" />
           <NavigationProperty Name="userdescriptions" Relationship="Self.description_userid_to_aspnetuser_userid" FromRole="aspnetusers" ToRole="userdescription" />
           <NavigationProperty Name="aspnetroles" Relationship="Self.aspnetuserroles" FromRole="aspnetusers" ToRole="aspnetroles" />
+          <NavigationProperty Name="dishes" Relationship="BistroDriveModel.FK_Dish_IdUser_aspnetusers_Id" FromRole="aspnetuser" ToRole="dish" />
         </EntityType>
         <EntityType Name="chatmessage">
           <Key>
@@ -635,6 +639,9 @@
           <NavigationProperty Name="dishtype" Relationship="Self.FK_Dish_IdType" FromRole="dish" ToRole="dishtype" />
           <NavigationProperty Name="dishreviews" Relationship="Self.FK_DishReview_IdDish" FromRole="dish" ToRole="dishreview" />
           <NavigationProperty Name="orderproducts" Relationship="Self.FK_OrderProduct_IdDish" FromRole="dish" ToRole="orderproduct" />
+          <Property Name="Ingridient" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="aspnetuser" Relationship="BistroDriveModel.FK_Dish_IdUser_aspnetusers_Id" FromRole="dish" ToRole="aspnetuser" />
         </EntityType>
         <EntityType Name="dishreview">
           <Key>
@@ -1082,7 +1089,25 @@
             <End Role="aspnetroles" EntitySet="aspnetroles" />
             <End Role="aspnetusers" EntitySet="aspnetusers" />
           </AssociationSet>
+          <AssociationSet Name="FK_Dish_IdUser_aspnetusers_Id" Association="BistroDriveModel.FK_Dish_IdUser_aspnetusers_Id">
+            <End Role="aspnetuser" EntitySet="aspnetusers" />
+            <End Role="dish" EntitySet="dishes" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Dish_IdUser_aspnetusers_Id">
+          <End Type="BistroDriveModel.aspnetuser" Role="aspnetuser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BistroDriveModel.dish" Role="dish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnetuser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="dish">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1153,6 +1178,8 @@
           <EntitySetMapping Name="dishes">
             <EntityTypeMapping TypeName="BistroDriveModel.dish">
               <MappingFragment StoreEntitySet="dish">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Ingridient" ColumnName="Ingridient" />
                 <ScalarProperty Name="Id_Dish" ColumnName="Id_Dish" />
                 <ScalarProperty Name="Id_User" ColumnName="Id_User" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

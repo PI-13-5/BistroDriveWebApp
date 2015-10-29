@@ -226,6 +226,7 @@
     <Compile Include="Models\dish.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DishRepository.cs" />
     <Compile Include="Models\dishreview.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -267,6 +268,7 @@
     <Compile Include="Models\orderstatu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfileViewModels.cs" />
     <Compile Include="Models\review.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -311,6 +313,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\bistrodrive.pubxml" />
     <None Include="Properties\PublishProfiles\SmarterASP.pubxml" />
+    <None Include="Properties\PublishProfiles\SmartWD.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -361,6 +364,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\AddDish.cshtml" />
+    <Content Include="Views\Profile\_DishPartial.cshtml" />
+    <Content Include="Views\Profile\EditDish.cshtml" />
+    <Content Include="Views\Profile\Dish.cshtml" />
+    <Content Include="Views\Profile\DishInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -379,6 +387,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\avatars\" />
+    <Folder Include="Uploads\dish\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

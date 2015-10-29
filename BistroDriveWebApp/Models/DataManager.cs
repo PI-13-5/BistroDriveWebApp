@@ -25,5 +25,18 @@ namespace BistroDriveWebApp.Models
                 return _user;
             }
         }
+
+        static DishRepository _dish;
+        public static DishRepository Dish
+        {
+            get
+            {
+                if (_dish == null)
+                {
+                    _dish = new DishRepository(_context);
+                }
+                return _dish;
+            }
+        }
     }
 }

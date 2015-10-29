@@ -1,12 +1,37 @@
-﻿@{
-    ViewBag.Title = ViewBag.UserName+" ("+ViewBag.FristName+" "+ViewBag.Surname+")";
+﻿@using BistroDriveWebApp.Models
+@model ProfileViewModel
+@{
+    ViewBag.Title = @Html.DisplayFor(model=>model.UserName) + " ("
+    +@Html.DisplayFor(model=>model.Firstname) + " "
+    +@Html.DisplayFor(model=>model.Surname) + ")";
 }
 
 <h2>@ViewBag.Title</h2>
 
 <div>
     <div>
-        <div><image src="@ViewBag.AvatarUrl" width="200" height="200"/></div>
-        <p>@ViewBag.Description</p>
+        <div><image src="@Html.DisplayFor(model => model.Avatar_Url)" width="200" height="200" /></div>
+        <p>Rating:@Html.DisplayFor(model => model.Rating)</p> @*тут в цикле будем выводить звездочки *@
+        <p>@Html.DisplayFor(model => model.Description)</p>
+        <div>
+            <h3>@Html.ActionLink("User dish list", "Dish")</h3>
+            <br />
+            <div>
+                @foreach (var item in Model.DishList)
+                {
+                    <h4>@Html.ActionLink(item.Name, "dishinfo", new { id = item.Id_Dish })</h4>
+                    <p>@item.dishtype.Name</p>
+                    if (item.ImageUrl != "" && item.ImageUrl != null)
+                    {
+                        <a href="@Url.Action("dishinfo", new { id = item.Id_Dish })">
+                            <img src="@Html.DisplayFor(Model=>item.ImageUrl)" width="100" height="100" />
+                        </a>
+                    }
+                    <h5>Price: @item.Price</h5>
+                    <h5>Price with ingridients: @item.PriceWithIngridient</h5>
+                    <hr />
+                }
+            </div>
+        </div>
     </div>
 </div>

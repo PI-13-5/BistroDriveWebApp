@@ -7,23 +7,26 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword />
-    <_PublishTargetUrl>ftp://ftp.Smarterasp.net/site1</_PublishTargetUrl>
+    <_PublishTargetUrl>ftp://ftp.Smarterasp.net/bistrodrive</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
       <publishTime>10/17/2015 02:08:32</publishTime>
     </File>
+    <File Include="App_Data/bistrodrive.sql">
+      <publishTime>10/25/2015 02:34:17</publishTime>
+    </File>
     <File Include="App_Data/DataBase.mdf">
-      <publishTime>10/20/2015 15:27:07</publishTime>
+      <publishTime>10/22/2015 00:55:58</publishTime>
     </File>
     <File Include="App_Data/DataBase_log.ldf">
-      <publishTime>10/20/2015 15:27:07</publishTime>
+      <publishTime>10/22/2015 00:55:58</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>10/17/2015 02:08:22</publishTime>
     </File>
     <File Include="bin/BistroDriveWebApp.dll">
-      <publishTime>10/21/2015 22:21:41</publishTime>
+      <publishTime>10/25/2015 14:52:16</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>10/17/2015 02:08:23</publishTime>
@@ -113,7 +116,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:24</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
-      <publishTime>10/17/2015 02:08:25</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
       <publishTime>10/17/2015 02:08:25</publishTime>
@@ -140,10 +143,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:25</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.exe">
-      <publishTime>10/17/2015 02:08:25</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe">
-      <publishTime>10/17/2015 02:08:25</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
       <publishTime>10/17/2015 02:08:25</publishTime>
@@ -200,7 +203,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:16</publishTime>
     </File>
     <File Include="Models/Model1.edmx.diagram">
-      <publishTime>10/20/2015 11:55:05</publishTime>
+      <publishTime>10/24/2015 21:27:28</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>10/17/2015 02:08:32</publishTime>
@@ -266,7 +269,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:23</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
-      <publishTime>10/17/2015 02:08:23</publishTime>
+      <publishTime>10/24/2015 21:31:27</publishTime>
     </File>
     <File Include="Views/Account/ResetPassword.cshtml">
       <publishTime>10/17/2015 02:08:23</publishTime>
@@ -290,7 +293,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:16</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/21/2015 21:33:23</publishTime>
+      <publishTime>10/24/2015 16:20:16</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>10/17/2015 02:08:23</publishTime>
@@ -299,7 +302,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:23</publishTime>
     </File>
     <File Include="Views/Manage/Index.cshtml">
-      <publishTime>10/17/2015 02:08:23</publishTime>
+      <publishTime>10/25/2015 01:48:43</publishTime>
     </File>
     <File Include="Views/Manage/ManageLogins.cshtml">
       <publishTime>10/17/2015 02:08:23</publishTime>
@@ -309,6 +312,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
       <publishTime>10/17/2015 02:08:23</publishTime>
+    </File>
+    <File Include="Views/Profile/Index.cshtml">
+      <publishTime>10/25/2015 01:50:02</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>10/17/2015 02:08:23</publishTime>
@@ -320,7 +326,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:32</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>10/17/2015 02:08:23</publishTime>
+      <publishTime>10/24/2015 17:01:29</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>10/17/2015 02:08:16</publishTime>
@@ -329,7 +335,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:16</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/21/2015 22:21:48</publishTime>
+      <publishTime>10/25/2015 14:52:25</publishTime>
     </File>
   </ItemGroup>
 </Project>

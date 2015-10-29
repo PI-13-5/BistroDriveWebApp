@@ -72,7 +72,9 @@
     </Key>
     <Property Name="Id_Dish" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Id_User" Type="varchar" MaxLength="128" Nullable="false" />
-    <Property Name="Description" Type="longtext" />
+    <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Description" Type="text" />
+    <Property Name="Ingridient" Type="text" />
     <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="PriceWithIngridient" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="ImageUrl" Type="varchar" MaxLength="128" />
@@ -281,11 +283,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Dish_IdUser">
-    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1" />
+  <Association Name="FK_Dish_IdUser_aspnetusers_Id">
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="dish" Type="Self.dish" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="aspnetroles">
+      <Principal Role="aspnetusers">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="dish">
@@ -487,8 +491,8 @@
       <End Role="dishtype" EntitySet="dishtype" />
       <End Role="dish" EntitySet="dish" />
     </AssociationSet>
-    <AssociationSet Name="FK_Dish_IdUser" Association="Self.FK_Dish_IdUser">
-      <End Role="aspnetroles" EntitySet="aspnetroles" />
+    <AssociationSet Name="FK_Dish_IdUser_aspnetusers_Id" Association="Self.FK_Dish_IdUser_aspnetusers_Id">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="dish" EntitySet="dish" />
     </AssociationSet>
     <AssociationSet Name="FK_DishReview_IdDish" Association="Self.FK_DishReview_IdDish">

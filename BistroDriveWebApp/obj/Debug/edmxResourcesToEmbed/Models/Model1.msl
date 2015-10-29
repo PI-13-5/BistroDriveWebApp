@@ -65,6 +65,8 @@
     <EntitySetMapping Name="dishes">
       <EntityTypeMapping TypeName="BistroDriveModel.dish">
         <MappingFragment StoreEntitySet="dish">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Ingridient" ColumnName="Ingridient" />
           <ScalarProperty Name="Id_Dish" ColumnName="Id_Dish" />
           <ScalarProperty Name="Id_User" ColumnName="Id_User" />
           <ScalarProperty Name="Description" ColumnName="Description" />

@@ -40,6 +40,7 @@
         <AssociationConnector Association="BistroDriveModel.FK_Order_IdStatus" ManuallyRouted="false" />
         <AssociationConnector Association="BistroDriveModel.FK_OrderProduct_IdOrder" ManuallyRouted="false" />
         <AssociationConnector Association="BistroDriveModel.aspnetuserroles" ManuallyRouted="false" />
+        <AssociationConnector Association="BistroDriveModel.FK_Dish_IdUser_aspnetusers_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

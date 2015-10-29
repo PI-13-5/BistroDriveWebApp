@@ -28,6 +28,8 @@ namespace BistroDriveWebApp.Models
         public decimal PriceWithIngridient { get; set; }
         public string ImageUrl { get; set; }
         public int Id_Type { get; set; }
+        public string Ingridient { get; set; }
+        public string Name { get; set; }
     
         public virtual aspnetrole aspnetrole { get; set; }
         public virtual dishtype dishtype { get; set; }
@@ -35,5 +37,6 @@ namespace BistroDriveWebApp.Models
         public virtual ICollection<dishreview> dishreviews { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orderproduct> orderproducts { get; set; }
+        public virtual aspnetuser aspnetuser { get; set; }
     }
 }

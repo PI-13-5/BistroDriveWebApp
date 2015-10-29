@@ -21,6 +21,7 @@ namespace BistroDriveWebApp.Models
             this.aspnetuserlogins = new HashSet<aspnetuserlogin>();
             this.userdescriptions = new HashSet<userdescription>();
             this.aspnetroles = new HashSet<aspnetrole>();
+            this.dishes = new HashSet<dish>();
         }
     
         public string Id { get; set; }
@@ -49,5 +50,7 @@ namespace BistroDriveWebApp.Models
         public virtual ICollection<userdescription> userdescriptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<aspnetrole> aspnetroles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<dish> dishes { get; set; }
     }
 }
