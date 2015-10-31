@@ -38,5 +38,57 @@ namespace BistroDriveWebApp.Models
                 return _dish;
             }
         }
+
+        static OrderRepository _order;
+        public static OrderRepository Order
+        {
+            get
+            {
+                if (_order == null)
+                {
+                    _order = new OrderRepository(_context);
+                }
+                return _order;
+            }
+        }
+
+        static DeliveryMethodRepository _deliveryMethod;
+        public static DeliveryMethodRepository Delivery
+        {
+            get
+            {
+                if (_deliveryMethod == null)
+                {
+                    _deliveryMethod = new DeliveryMethodRepository(_context);
+                }
+                return _deliveryMethod;
+            }
+        }
+
+        static PaymentMethodRepository _paymentMethod;
+        public static PaymentMethodRepository PaymentMethod
+        {
+            get
+            {
+                if (_paymentMethod == null)
+                {
+                    _paymentMethod = new PaymentMethodRepository(_context);
+                }
+                return _paymentMethod;
+            }
+        }
+
+        static StatusRepository _status;
+        public static StatusRepository Status
+        {
+            get
+            {
+                if (_status == null)
+                {
+                    _status = new StatusRepository(_context);
+                }
+                return _status;
+            }
+        }
     }
 }

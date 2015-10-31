@@ -136,6 +136,11 @@
     <NavigationProperty Name="orderpaymentmethod" Relationship="Self.FK_Order_IdPaymentMethod" FromRole="order" ToRole="orderpaymentmethod" />
     <NavigationProperty Name="orderstatu" Relationship="Self.FK_Order_IdStatus" FromRole="order" ToRole="orderstatus" />
     <NavigationProperty Name="orderproducts" Relationship="Self.FK_OrderProduct_IdOrder" FromRole="order" ToRole="orderproduct" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="SecondName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="ordercontactmethod">
     <Key>

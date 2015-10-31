@@ -110,7 +110,7 @@
           </Key>
           <Property Name="Id_Order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Cook" Type="varchar" MaxLength="128" Nullable="false" />
-          <Property Name="Id_Customer" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Id_Customer" Type="varchar" MaxLength="128" />
           <Property Name="Id_Status" Type="int" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="FinishTime" Type="datetime" Precision="0" />
@@ -118,6 +118,11 @@
           <Property Name="Id_PaymentMethod" Type="int" Nullable="false" />
           <Property Name="Id_ContactMethod" Type="int" Nullable="false" />
           <Property Name="Id_Delivery" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="SecondName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="ordercontactmethod">
           <Key>
@@ -685,6 +690,11 @@
           <NavigationProperty Name="orderpaymentmethod" Relationship="Self.FK_Order_IdPaymentMethod" FromRole="order" ToRole="orderpaymentmethod" />
           <NavigationProperty Name="orderstatu" Relationship="Self.FK_Order_IdStatus" FromRole="order" ToRole="orderstatus" />
           <NavigationProperty Name="orderproducts" Relationship="Self.FK_OrderProduct_IdOrder" FromRole="order" ToRole="orderproduct" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="SecondName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ordercontactmethod">
           <Key>
@@ -1214,6 +1224,11 @@
           <EntitySetMapping Name="orders">
             <EntityTypeMapping TypeName="BistroDriveModel.order">
               <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
                 <ScalarProperty Name="Id_Cook" ColumnName="Id_Cook" />
                 <ScalarProperty Name="Id_Customer" ColumnName="Id_Customer" />

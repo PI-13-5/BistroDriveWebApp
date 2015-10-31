@@ -30,6 +30,11 @@ namespace BistroDriveWebApp.Models
         public int Id_PaymentMethod { get; set; }
         public int Id_ContactMethod { get; set; }
         public int Id_Delivery { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string SecondName { get; set; }
+        public string Address { get; set; }
     
         public virtual aspnetrole aspnetrole { get; set; }
         public virtual ordercontactmethod ordercontactmethod { get; set; }

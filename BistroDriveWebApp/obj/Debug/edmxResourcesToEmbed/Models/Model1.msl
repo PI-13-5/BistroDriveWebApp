@@ -101,6 +101,11 @@
     <EntitySetMapping Name="orders">
       <EntityTypeMapping TypeName="BistroDriveModel.order">
         <MappingFragment StoreEntitySet="order">
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
           <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
           <ScalarProperty Name="Id_Cook" ColumnName="Id_Cook" />
           <ScalarProperty Name="Id_Customer" ColumnName="Id_Customer" />
