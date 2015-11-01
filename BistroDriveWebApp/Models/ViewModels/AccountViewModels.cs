@@ -5,7 +5,7 @@ namespace BistroDriveWebApp.Models
 {
     public class ProfileSettingsViewModel
     {
-        [Display(Name = "User Name")]
+        [Display(Name = "Имя пользователя")]
         public string UserName { get; set; }
 
         [Display(Name = "Email")]
@@ -15,24 +15,24 @@ namespace BistroDriveWebApp.Models
 
         [Required]
         [StringLength(120, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
-        [Display(Name = "First Name")]
+        [Display(Name = "Имя")]
         public string FirstName { get; set; }
 
         [Required]
         [StringLength(120, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
-        [Display(Name = "Surname")]
+        [Display(Name = "Фамилия")]
         public string Surname { get; set; }
 
         [StringLength(24, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
-        [Display(Name = "Telphone")]
+        [Display(Name = "Телефон")]
         public string Telphone { get; set; }
 
         [StringLength(64, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
-        [Display(Name = "Address")]
+        [Display(Name = "Адрес")]
         public string Address { get; set; }
         
         [StringLength(1024, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 10)]
-        [Display(Name = "About me")]
+        [Display(Name = "Обо мне")]
         public string Description { get; set; }
     }
     public class ExternalLoginConfirmationViewModel
@@ -61,11 +61,11 @@ namespace BistroDriveWebApp.Models
         public string Provider { get; set; }
 
         [Required]
-        [Display(Name = "Code")]
+        [Display(Name = "Код")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Remember this browser?")]
+        [Display(Name = "Запомнить меня?")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -81,7 +81,7 @@ namespace BistroDriveWebApp.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email or Username")]
+        [Display(Name = "Email или Имя пользователя")]
         public string Email { get; set; }
 
         [Required]
@@ -89,16 +89,16 @@ namespace BistroDriveWebApp.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Запомнить меня?")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
         [Required]
-        [System.Web.Mvc.Remote("IsUserNameAvailable","Account",ErrorMessage ="UserName already in use")]
+        [System.Web.Mvc.Remote("IsUserNameAvailable","Account",ErrorMessage ="Данное имя пользователя уже используеться")]
         [StringLength(120, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
-        [Display(Name = "User Name")]
+        [Display(Name = "Имя пользователя")]
         public string UserName { get; set; }
 
         [Required]
@@ -109,22 +109,22 @@ namespace BistroDriveWebApp.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Повторите пароль")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
         [StringLength(120, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
-        [Display(Name = "First Name")]
+        [Display(Name = "Имя")]
         public string FirstName { get; set; }
 
         [Required]
         [StringLength(120, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
-        [Display(Name = "Surname")]
+        [Display(Name = "Фамилия")]
         public string Surname { get; set; }
     }
 
@@ -138,11 +138,11 @@ namespace BistroDriveWebApp.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Повторите пароль")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 

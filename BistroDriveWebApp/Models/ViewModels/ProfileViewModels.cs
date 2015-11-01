@@ -6,6 +6,14 @@ using System.Web;
 
 namespace BistroDriveWebApp.Models
 {
+    public class OrderListViewModel
+    {
+        public string UserName { set; get; }
+        public string Firstname { set; get; }
+        public string Surname { set; get; }
+        public IEnumerable<order> IncommingOrderList { set; get; }
+        public IEnumerable<order> OutcommingOrderList { set; get; }
+    }
     public class DishListViewModel
     {
         public string UserName { set; get; }
@@ -31,33 +39,33 @@ namespace BistroDriveWebApp.Models
 
         [Required]
         [StringLength(128, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [Display(Name = "Name")]
+        [Display(Name = "Имя")]
         public string Name { set; get; }
 
         [Required]
         [StringLength(1024, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
-        [Display(Name = "Description")]
+        [Display(Name = "Описание")]
         public string Description { set; get; }
 
         [Required]
         [StringLength(1024, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength =  3)]
-        [Display(Name = "Ingridients")]
+        [Display(Name = "Ингридиенты")]
         public string Ingridients { set; get; }
 
         [Required]
-        [Display(Name = "Price Without Ingridients")]
+        [Display(Name = "Цена")]
         [Range(0, (double)decimal.MaxValue, ErrorMessage = "Please enter valid price")]
         public decimal Price { set; get; }
 
-        [Display(Name = "Price With Ingridients")]
+        [Display(Name = "Цена с ингридиентами")]
         [Range(0, (double)decimal.MaxValue, ErrorMessage = "Please enter valid price")]
         public decimal PriceWithIngridients { set; get; }
 
-        [Display(Name = "Image")]
+        [Display(Name = "Фото")]
         public string Image_Url { set; get; }
 
         [Required]
-        [Display(Name = "Type")]
+        [Display(Name = "Тип")]
         public int Id_Type { set; get; }
     }
 }

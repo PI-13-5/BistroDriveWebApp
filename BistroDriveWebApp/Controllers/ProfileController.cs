@@ -14,12 +14,18 @@ namespace BistroDriveWebApp.Controllers
 {
     public class ProfileController : Controller
     {
+
         // GET: Profile
-        [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            var userId = User.Identity.GetUserId();
-            var user = DataManager.User.GetUserById(userId);
+            aspnetuser user = GetUser(id);
+            if(user == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+
+            string userId = user.Id;
+
             var description = DataManager.User.GetUserDescription(userId);
             IEnumerable<dish> dishList = DataManager.Dish.GetDishByUserId(userId, 5);
             var model = new ProfileViewModel
@@ -107,10 +113,12 @@ namespace BistroDriveWebApp.Controllers
         public ActionResult DishInfo(int id)
         {
             dish item = DataManager.Dish.GetDishById(id);
-            if(item == null)
+            if (item == null)
             {
                 return RedirectToAction("Index","home");
             }
+            aspnetuser user = DataManager.User.GetUserById(item.Id_User);
+            ViewBag.Username = user.UserName;
             return View(item);
         }
 
@@ -198,12 +206,15 @@ namespace BistroDriveWebApp.Controllers
             }
             return fileName;
         }
-
-        [Authorize]
-        public ActionResult Dish()
+        
+        public ActionResult Dish(string id)
         {
-            var userId = User.Identity.GetUserId();
-            var user = DataManager.User.GetUserById(userId);
+            aspnetuser user = GetUser(id);
+            if (user == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+            var userId = user.Id;
             var dishList = DataManager.Dish.GetDishByUserId(userId);
             DishListViewModel model = new DishListViewModel
             {
@@ -211,6 +222,41 @@ namespace BistroDriveWebApp.Controllers
                 Surname = user.Surname,
                 UserName = user.UserName,
                 DishList = dishList
+            };
+            return View(model);
+        }
+
+        /// <summary>
+        /// Получение запрашиваемого пользователя, если запрос несуществующий возвратит Null
+        /// </summary>
+        /// <param name="userName">Запрашиваемое имя пользователя</param>
+        /// <returns></returns>
+        private aspnetuser GetUser(string userName = null)
+        {
+            if (userName != null)
+            {
+                return DataManager.User.GetUserByName(userName);
+            }
+            else
+            {
+                string currentUserId = User.Identity.GetUserId();
+                return DataManager.User.GetUserById(currentUserId);
+            }
+        }
+
+        [Authorize]
+        public ActionResult Order()
+        {
+            var user = GetUser();
+            IEnumerable<order> iorders = DataManager.Order.GetOrdersByUserId(user.Id, true);
+            IEnumerable<order> oorders = DataManager.Order.GetOrdersByUserId(user.Id, false);
+            OrderListViewModel model = new OrderListViewModel
+            {
+                Firstname = user.FristName,
+                Surname = user.Surname,
+                UserName = user.UserName,
+                IncommingOrderList = iorders,
+                OutcommingOrderList = oorders
             };
             return View(model);
         }

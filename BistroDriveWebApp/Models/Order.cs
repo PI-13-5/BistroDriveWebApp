@@ -30,18 +30,22 @@ namespace BistroDriveWebApp.Models
         public int Id_PaymentMethod { get; set; }
         public int Id_ContactMethod { get; set; }
         public int Id_Delivery { get; set; }
+        public int id_IngridientsBuyer { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
-        public string SecondName { get; set; }
+        public string Surname { get; set; }
         public string Address { get; set; }
+        public string Comment { get; set; }
+        public decimal total { get; set; }
     
-        public virtual aspnetrole aspnetrole { get; set; }
+        public virtual aspnetuser aspnetuser { get; set; }
         public virtual ordercontactmethod ordercontactmethod { get; set; }
         public virtual orderdelivery orderdelivery { get; set; }
         public virtual orderpaymentmethod orderpaymentmethod { get; set; }
         public virtual orderstatu orderstatu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orderproduct> orderproducts { get; set; }
+        public virtual orderingridientbuyer orderingridientbuyer { get; set; }
     }
 }

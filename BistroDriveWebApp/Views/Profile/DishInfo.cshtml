@@ -2,6 +2,7 @@
 
 <div>
     <h4>@Html.DisplayFor(model => model.Name)</h4>
+    @Html.ActionLink("Back to List", "Dish", new { id = ViewBag.Username })
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -63,11 +64,17 @@
 
     </dl>
 </div>
+@if (User.Identity.Name != ViewBag.Username)
+{
+@Html.ActionLink("Buy", "MakeOrder", "order", new { id = Model.Id_Dish }, htmlAttributes: new { @class = "btn btn-success" })
+}
+
+@if (User.Identity.Name == ViewBag.Username)
+{
 <p>
     <div>
         @Html.ActionLink("Edit", "EditDish", new { id = Model.Id_Dish }) |
-        @Html.ActionLink("Delete", "DeleteDish", new { id = Model.Id_Dish }, new { onclick = "return confirm('Are you sure you wish to delete this dish?');" }) |
-        @Html.ActionLink("Back to List", "Dish", new { id = Model.Id_User })
+        @Html.ActionLink("Delete", "DeleteDish", new { id = Model.Id_Dish }, new { onclick = "return confirm('Are you sure you wish to delete this dish?');" })
     </div>
-
 </p>
+}

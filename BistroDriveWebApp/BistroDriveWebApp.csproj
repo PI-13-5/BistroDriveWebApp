@@ -207,7 +207,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\aspnetrole.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -223,21 +222,15 @@
     <Compile Include="Models\chatmessage.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Repositories\ContactMethodRepository.cs" />
-    <Compile Include="Models\DataManager.cs" />
-    <Compile Include="Models\Repositories\DeliveryMethodRepository.cs" />
     <Compile Include="Models\dish.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Repositories\DishRepository.cs" />
     <Compile Include="Models\dishreview.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\dishtype.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewModels\IdentityModels.cs" />
-    <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -262,26 +255,37 @@
     <Compile Include="Models\orderdelivery.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\orderingridientbuyer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\orderpaymentmethod.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\orderproduct.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Repositories\OrderRepository.cs" />
     <Compile Include="Models\orderstatu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewModels\OrderViewModels.cs" />
-    <Compile Include="Models\Repositories\PaymentMethodRepository.cs" />
-    <Compile Include="Models\ViewModels\ProfileViewModels.cs" />
+    <Compile Include="Models\Repositories\IngridientsBuyer.cs" />
     <Compile Include="Models\review.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Repositories\StatusRepository.cs" />
     <Compile Include="Models\userdescription.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\AccountViewModels.cs" />
+    <Compile Include="Models\Repositories\ContactMethodRepository.cs" />
+    <Compile Include="Models\DataManager.cs" />
+    <Compile Include="Models\Repositories\DeliveryMethodRepository.cs" />
+    <Compile Include="Models\Repositories\DishRepository.cs" />
+    <Compile Include="Models\ViewModels\IdentityModels.cs" />
+    <Compile Include="Models\ViewModels\ManageViewModels.cs" />
+    <Compile Include="Models\Repositories\OrderRepository.cs" />
+    <Compile Include="Models\ViewModels\OrderViewModels.cs" />
+    <Compile Include="Models\Repositories\PaymentMethodRepository.cs" />
+    <Compile Include="Models\ViewModels\ProfileViewModels.cs" />
+    <Compile Include="Models\Repositories\StatusRepository.cs" />
     <Compile Include="Models\Repositories\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -376,7 +380,9 @@
     <Content Include="Views\Profile\EditDish.cshtml" />
     <Content Include="Views\Profile\Dish.cshtml" />
     <Content Include="Views\Profile\DishInfo.cshtml" />
-    <Content Include="Views\Order\CreateOrder.cshtml" />
+    <Content Include="Views\Order\MakeOrder.cshtml" />
+    <Content Include="Views\Order\Success.cshtml" />
+    <Content Include="Views\Profile\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

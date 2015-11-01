@@ -12,9 +12,14 @@ namespace BistroDriveWebApp.Models
         {
             this.context = _context;
         }
-        public IEnumerable<orderdelivery> GetContactMethods()
+        public IEnumerable<orderdelivery> GetDeliveryMethods()
         {
             return context.orderdeliveries.ToList();
+        }
+
+        public orderdelivery GetDeliveryById(int id)
+        {
+            return context.orderdeliveries.FirstOrDefault(d => d.Id_Delivery == id);
         }
     }
 }

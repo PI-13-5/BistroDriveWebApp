@@ -17,5 +17,10 @@ namespace BistroDriveWebApp.Models
         {
             return context.orderstatus.ToList();
         }
+
+        public orderstatu GetOrderStatusById(int id)
+        {
+            return context.orderstatus.FirstOrDefault(o => o.Id_Status == id);
+        }
     }
 }

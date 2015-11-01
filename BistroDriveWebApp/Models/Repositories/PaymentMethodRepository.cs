@@ -17,5 +17,10 @@ namespace BistroDriveWebApp.Models
         {
             return context.orderpaymentmethods.ToList();
         }
+
+        public orderpaymentmethod GetPaymentMethodById(int id)
+        {
+            return context.orderpaymentmethods.FirstOrDefault(p => p.Id_PaymentMethod == id);
+        }
     }
 }

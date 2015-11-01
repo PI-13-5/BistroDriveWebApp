@@ -16,5 +16,10 @@ namespace BistroDriveWebApp.Models
         {
             return context.ordercontactmethods.ToList();
         }
+
+        public ordercontactmethod GetContactById(int id)
+        {
+            return context.ordercontactmethods.FirstOrDefault(c => c.Id_ContactMethod == id);
+        }
     }
 }

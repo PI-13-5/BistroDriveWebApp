@@ -90,5 +90,31 @@ namespace BistroDriveWebApp.Models
                 return _status;
             }
         }
+
+        static ContactMethodRepository _contact;
+        public static ContactMethodRepository Contact
+        {
+            get
+            {
+                if (_contact == null)
+                {
+                    _contact = new ContactMethodRepository(_context);
+                }
+                return _contact;
+            }
+        }
+
+        static IngridientsBuyerRepository _ingridientsBuyer;
+        public static IngridientsBuyerRepository IngridientsBuyer
+        {
+            get
+            {
+                if (_ingridientsBuyer == null)
+                {
+                    _ingridientsBuyer = new IngridientsBuyerRepository(_context);
+                }
+                return _ingridientsBuyer;
+            }
+        }
     }
 }

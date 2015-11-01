@@ -6,9 +6,12 @@
 }
 <h2>@ViewBag.Title dish List</h2>
 <p>
-    @Html.ActionLink("Create New", "AddDish") |
+@if (User.Identity.Name == Model.UserName)
+{
+    @Html.ActionLink("Create New", "AddDish") @:|
+}
 
-    @Html.ActionLink("Back to Profile", "index")
+    @Html.ActionLink("Back to Profile", "index", new { id = Model.UserName})
 </p>
 <div>
     @foreach (var item in Model.DishList)

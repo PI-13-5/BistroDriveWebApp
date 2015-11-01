@@ -14,7 +14,7 @@
         <p>Rating:@Html.DisplayFor(model => model.Rating)</p> @*тут в цикле будем выводить звездочки *@
         <p>@Html.DisplayFor(model => model.Description)</p>
         <div>
-            <h3>@Html.ActionLink("User dish list", "Dish")</h3>
+            <h3>@Html.ActionLink("User dish list", "Dish", new { id = Model.UserName })</h3>
             <br />
             <div>
                 @foreach (var item in Model.DishList)

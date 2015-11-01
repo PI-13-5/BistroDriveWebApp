@@ -19,9 +19,7 @@ namespace BistroDriveWebApp.Models
         {
             this.chatmessages = new HashSet<chatmessage>();
             this.chatmessages1 = new HashSet<chatmessage>();
-            this.dishes = new HashSet<dish>();
             this.dishreviews = new HashSet<dishreview>();
-            this.orders = new HashSet<order>();
             this.reviews = new HashSet<review>();
             this.reviews1 = new HashSet<review>();
             this.aspnetusers = new HashSet<aspnetuser>();
@@ -35,11 +33,7 @@ namespace BistroDriveWebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<chatmessage> chatmessages1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<dish> dishes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<dishreview> dishreviews { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<order> orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<review> reviews { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
