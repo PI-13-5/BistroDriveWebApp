@@ -279,6 +279,7 @@
     <Compile Include="Models\DataManager.cs" />
     <Compile Include="Models\Repositories\DeliveryMethodRepository.cs" />
     <Compile Include="Models\Repositories\DishRepository.cs" />
+    <Compile Include="Models\ViewModels\HomeViewModels.cs" />
     <Compile Include="Models\ViewModels\IdentityModels.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Repositories\OrderRepository.cs" />
@@ -383,6 +384,8 @@
     <Content Include="Views\Order\MakeOrder.cshtml" />
     <Content Include="Views\Order\Success.cshtml" />
     <Content Include="Views\Profile\Order.cshtml" />
+    <Content Include="Views\Profile\OrderInfo.cshtml" />
+    <Content Include="Views\Home\Offers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

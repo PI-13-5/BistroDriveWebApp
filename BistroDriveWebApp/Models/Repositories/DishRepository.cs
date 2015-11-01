@@ -82,5 +82,36 @@ namespace BistroDriveWebApp.Models
             context.dishes.Remove(d);
             context.SaveChanges();
         }
+
+        public IEnumerable<dish> GetDishList()
+        {
+            var types = context.dishtypes.ToArray();
+            var dishes = context.dishes.ToArray();
+            var user = context.aspnetusers.ToArray();
+            foreach(var item in dishes)
+            {
+                item.dishtype = types.FirstOrDefault(t=>t.Id_DishType == item.Id_Type);
+                item.aspnetuser = user.FirstOrDefault(u => u.Id == item.Id_User);
+            }
+            return dishes;
+        }
+
+        public int GetDishCount()
+        {
+            return context.dishes.Count();
+        }
+
+        public IEnumerable<dish> GetDishList(int page, int pageSize)
+        {
+            var types = context.dishtypes.ToArray();
+            var dishes = context.dishes.OrderByDescending(d=>d.Id_Dish).Skip(page*pageSize).Take(pageSize).ToArray();
+            var user = context.aspnetusers.ToArray();
+            foreach (var item in dishes)
+            {
+                item.dishtype = types.FirstOrDefault(t => t.Id_DishType == item.Id_Type);
+                item.aspnetuser = user.FirstOrDefault(u => u.Id == item.Id_User);
+            }
+            return dishes;
+        }
     }
 }

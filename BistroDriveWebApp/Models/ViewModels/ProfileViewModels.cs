@@ -6,6 +6,13 @@ using System.Web;
 
 namespace BistroDriveWebApp.Models
 {
+    public class OrderDitailViewModel
+    {
+        public order Order { set; get; }
+        public IEnumerable<orderproduct> ProductsList { set; get; }
+        public aspnetuser Customer { set; get; }
+    }
+
     public class OrderListViewModel
     {
         public string UserName { set; get; }

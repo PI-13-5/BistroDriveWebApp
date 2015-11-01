@@ -260,5 +260,68 @@ namespace BistroDriveWebApp.Controllers
             };
             return View(model);
         }
+
+        [Authorize]
+        public ActionResult OrderInfo(int id = -1)
+        {
+            var user = GetUser();
+            order o = DataManager.Order.GetOrderById(id);
+            if(o == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+            if(o.Id_Customer != user.Id && o.Id_Cook != user.Id)
+            {
+                return RedirectToAction("index", "home");
+            }
+            ViewBag.Statuses = DataManager.Status.GetOrderStatuses();
+            var customer = DataManager.User.GetUserById(o.Id_Customer);
+            var productList = DataManager.Order.GetOrderProducts(o.Id_Order);
+            OrderDitailViewModel model = new OrderDitailViewModel
+            {
+                Order = o,
+                Customer = customer,
+                ProductsList = productList
+            };
+            return View(model);
+        }
+
+        [Authorize]
+        public ActionResult SetOrderStatus(OrderDitailViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Order");
+            }
+
+            aspnetuser user = GetUser();
+            order o = DataManager.Order.GetOrderById(model.Order.Id_Order);
+            if(o.Id_Cook != user.Id && o.Id_Customer != user.Id)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            DataManager.Order.UpdateStatus(model.Order.Id_Order, model.Order.Id_Status);
+            return RedirectToAction("Order");
+        }
+
+        [Authorize]
+        public ActionResult CloseOrder(OrderDitailViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Order");
+            }
+
+            aspnetuser user = GetUser();
+            order o = DataManager.Order.GetOrderById(model.Order.Id_Order);
+            if (o.Id_Cook != user.Id && o.Id_Customer != user.Id)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            DataManager.Order.CloseOrder(model.Order.Id_Order);
+            return RedirectToAction("Order");
+        }
     }
 }

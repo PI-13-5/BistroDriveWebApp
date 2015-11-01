@@ -1,0 +1,53 @@
+﻿@model BistroDriveWebApp.Models.AllDishListViewModel
+@{
+    ViewBag.Title = "Список предложений";
+}
+<div>
+    <h1>Список предложений</h1>
+    <hr />
+    @foreach (var item in Model.DishList)
+    {
+        <div>
+            <div>@Html.ActionLink(item.Name, "dishinfo", "profile", new { id = item.Id_Dish }, null)</div>
+            <div>@Html.ActionLink(item.aspnetuser.UserName + " (" + item.aspnetuser.FristName + " " + item.aspnetuser.Surname + ")", "index", "profile", new { id = item.aspnetuser.UserName }, null)</div>
+            <div>
+                @if (item.ImageUrl != "" && item.ImageUrl != null)
+                {
+                    <a href="@Url.Action("DishInfo", "Profile", new { id = item.Id_Dish })">
+                        <img src="@Html.DisplayFor(Model => item.ImageUrl)" width="100" height="100" />
+                    </a>
+                }
+            </div>
+            <div>
+                <p>Цена: @item.Price</p>
+                <p>Цена с ингридиентами: @item.PriceWithIngridient</p>
+            </div>
+            <p>Опиание: @item.Description</p>
+        </div>
+        <hr />
+    }
+    @if (Model.PageCount > 0)
+    {
+    <div class="pagination">
+        @if (Model.Page != 0)
+        {
+        @Html.ActionLink("Первая", "offers", new { page = 0 }, htmlAttributes: new { @class = "btn btn-default" })
+        }
+        @for (int i = 0; i < Model.PageCount; i++)
+        {
+            if (i == Model.Page)
+            {
+                @: @(i + 1)
+            }
+            else
+            {
+                @Html.ActionLink((i + 1).ToString(), "offers", new { page = i }, htmlAttributes: new { @class = "btn btn-default" })@: 
+            }
+        }
+        @if (Model.Page != Model.PageCount - 1)
+        {
+        @Html.ActionLink("Последняя", "offers", new { page = Model.PageCount - 1 }, htmlAttributes: new { @class = "btn btn-default" })
+        }
+    </div>
+    }
+</div>

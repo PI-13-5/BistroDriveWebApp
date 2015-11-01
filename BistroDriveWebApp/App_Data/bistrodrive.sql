@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50525
 File Encoding         : 65001
 
-Date: 2015-11-01 05:20:52
+Date: 2015-11-01 17:31:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,6 +24,10 @@ CREATE TABLE `aspnetroles` (
   `Name` varchar(256) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of aspnetroles
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for aspnetuserclaims
@@ -40,6 +44,10 @@ CREATE TABLE `aspnetuserclaims` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of aspnetuserclaims
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for aspnetuserlogins
 -- ----------------------------
 DROP TABLE IF EXISTS `aspnetuserlogins`;
@@ -53,6 +61,10 @@ CREATE TABLE `aspnetuserlogins` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of aspnetuserlogins
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for aspnetuserroles
 -- ----------------------------
 DROP TABLE IF EXISTS `aspnetuserroles`;
@@ -64,6 +76,10 @@ CREATE TABLE `aspnetuserroles` (
   CONSTRAINT `FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE,
   CONSTRAINT `FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of aspnetuserroles
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for aspnetusers
@@ -92,6 +108,11 @@ CREATE TABLE `aspnetusers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of aspnetusers
+-- ----------------------------
+INSERT INTO `aspnetusers` VALUES ('772ce1c9-d3cf-4270-8063-6b8a02e99bb8', 'lexa1805@gmail.com', '0', 'AJ+Bn3MboeFtQbvRVyHcoAUOvUH7q/cDxG3gIaB8DXw39eVQXsNcUgHUXnTH7JEdrg==', '511e32b8-d144-4591-a197-970fe2ea04b1', '23123213123', '0', '0', null, '1', '0', 'Akrex', 'Алексей', 'Крючков', 'eqweqweq', '/Uploads/avatars/772ce1c9-d3cf-4270-8063-6b8a02e99bb8BistroDrive.sql', null);
+
+-- ----------------------------
 -- Table structure for chatmessage
 -- ----------------------------
 DROP TABLE IF EXISTS `chatmessage`;
@@ -107,6 +128,10 @@ CREATE TABLE `chatmessage` (
   CONSTRAINT `FK_ChatMessage_IdReciver` FOREIGN KEY (`Id_Reciver`) REFERENCES `aspnetroles` (`Id`),
   CONSTRAINT `FK_ChatMessage_IdSender` FOREIGN KEY (`Id_Sender`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of chatmessage
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for dish
@@ -130,6 +155,12 @@ CREATE TABLE `dish` (
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of dish
+-- ----------------------------
+INSERT INTO `dish` VALUES ('16', '772ce1c9-d3cf-4270-8063-6b8a02e99bb8', 'Лапша братишка', 'Очень вкусная лапша', 'Много лапши', '21.00', '40.00', '/Uploads/dish/3d9893a16e538eba3f52f5e3c791e8e6.jpeg', '1');
+INSERT INTO `dish` VALUES ('32', '772ce1c9-d3cf-4270-8063-6b8a02e99bb8', 'testtest1', 'testtesttesttest123', 'ewtwetwetwe', '213.32', '3213123.00', '/Uploads/dish/89684377c1706840355555da2e8d9028.png', '4');
+
+-- ----------------------------
 -- Table structure for dishreview
 -- ----------------------------
 DROP TABLE IF EXISTS `dishreview`;
@@ -147,6 +178,10 @@ CREATE TABLE `dishreview` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of dishreview
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for dishtype
 -- ----------------------------
 DROP TABLE IF EXISTS `dishtype`;
@@ -157,6 +192,17 @@ CREATE TABLE `dishtype` (
   `Image_URL` char(128) DEFAULT NULL,
   PRIMARY KEY (`Id_DishType`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of dishtype
+-- ----------------------------
+INSERT INTO `dishtype` VALUES ('1', 'Первое блюдо', null, null);
+INSERT INTO `dishtype` VALUES ('2', 'Второе блюбо', null, null);
+INSERT INTO `dishtype` VALUES ('3', 'Десерты', null, null);
+INSERT INTO `dishtype` VALUES ('4', 'Завтраки', null, null);
+INSERT INTO `dishtype` VALUES ('5', 'Напитки', null, null);
+INSERT INTO `dishtype` VALUES ('6', 'Китайская кухня', null, null);
+INSERT INTO `dishtype` VALUES ('7', 'Восточная кухня', null, null);
 
 -- ----------------------------
 -- Table structure for order
@@ -197,6 +243,12 @@ CREATE TABLE `order` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of order
+-- ----------------------------
+INSERT INTO `order` VALUES ('3', '772ce1c9-d3cf-4270-8063-6b8a02e99bb8', null, '3', '2015-11-01 04:41:45', '2015-11-01 16:25:26', '2015-11-01 06:41:12', '2', '2', '2', '2', '911911', 'petya@pp.ppa', 'Петя', 'Пететкевич', 'daleko daleko', 'rewrw', '15.00');
+INSERT INTO `order` VALUES ('4', '772ce1c9-d3cf-4270-8063-6b8a02e99bb8', null, '1', '2015-11-01 04:47:42', null, '2015-11-01 06:47:27', '1', '1', '1', '2', '911911', 'test@test.te', 'Алексей', 'asdasda', 'daleko daleko', null, '40.00');
+
+-- ----------------------------
 -- Table structure for ordercontactmethod
 -- ----------------------------
 DROP TABLE IF EXISTS `ordercontactmethod`;
@@ -206,6 +258,12 @@ CREATE TABLE `ordercontactmethod` (
   `Description` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`Id_ContactMethod`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ordercontactmethod
+-- ----------------------------
+INSERT INTO `ordercontactmethod` VALUES ('1', 'Телефон', null);
+INSERT INTO `ordercontactmethod` VALUES ('2', 'Email', null);
 
 -- ----------------------------
 -- Table structure for orderdelivery
@@ -219,6 +277,12 @@ CREATE TABLE `orderdelivery` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of orderdelivery
+-- ----------------------------
+INSERT INTO `orderdelivery` VALUES ('1', 'Самовывоз', null);
+INSERT INTO `orderdelivery` VALUES ('2', 'Доставка курьером', null);
+
+-- ----------------------------
 -- Table structure for orderingridientbuyer
 -- ----------------------------
 DROP TABLE IF EXISTS `orderingridientbuyer`;
@@ -227,6 +291,12 @@ CREATE TABLE `orderingridientbuyer` (
   `Name` varchar(128) NOT NULL,
   PRIMARY KEY (`Id_IngridientBuyer`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of orderingridientbuyer
+-- ----------------------------
+INSERT INTO `orderingridientbuyer` VALUES ('1', 'Повар');
+INSERT INTO `orderingridientbuyer` VALUES ('2', 'Покупатель');
 
 -- ----------------------------
 -- Table structure for orderpaymentmethod
@@ -239,6 +309,13 @@ CREATE TABLE `orderpaymentmethod` (
   `PaymentProvider` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`Id_PaymentMethod`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of orderpaymentmethod
+-- ----------------------------
+INSERT INTO `orderpaymentmethod` VALUES ('1', 'Наличный', null, null);
+INSERT INTO `orderpaymentmethod` VALUES ('2', 'Visa', null, null);
+INSERT INTO `orderpaymentmethod` VALUES ('3', 'Перевозчик', null, null);
 
 -- ----------------------------
 -- Table structure for orderproduct
@@ -258,6 +335,12 @@ CREATE TABLE `orderproduct` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of orderproduct
+-- ----------------------------
+INSERT INTO `orderproduct` VALUES ('2', '16', '3', '21.00', '40.00');
+INSERT INTO `orderproduct` VALUES ('3', '16', '4', '21.00', '40.00');
+
+-- ----------------------------
 -- Table structure for orderstatus
 -- ----------------------------
 DROP TABLE IF EXISTS `orderstatus`;
@@ -266,7 +349,15 @@ CREATE TABLE `orderstatus` (
   `Name` varchar(50) NOT NULL,
   `Description` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`Id_Status`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of orderstatus
+-- ----------------------------
+INSERT INTO `orderstatus` VALUES ('1', 'Новый', null);
+INSERT INTO `orderstatus` VALUES ('2', 'Отправлен', null);
+INSERT INTO `orderstatus` VALUES ('3', 'Выполнен', null);
+INSERT INTO `orderstatus` VALUES ('4', 'Завершена', null);
 
 -- ----------------------------
 -- Table structure for review
@@ -286,6 +377,10 @@ CREATE TABLE `review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of review
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for userdescription
 -- ----------------------------
 DROP TABLE IF EXISTS `userdescription`;
@@ -297,3 +392,8 @@ CREATE TABLE `userdescription` (
   KEY `description_userid_to_aspnetuser_userid` (`Id_User`),
   CONSTRAINT `description_userid_to_aspnetuser_userid` FOREIGN KEY (`Id_User`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of userdescription
+-- ----------------------------
+INSERT INTO `userdescription` VALUES ('1', '772ce1c9-d3cf-4270-8063-6b8a02e99bb8', null);
