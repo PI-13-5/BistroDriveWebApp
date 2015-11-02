@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿
 /* font-family: "RobotoSlabRegular"; */
 @font-face {
@@ -37,6 +38,17 @@
 .cf:after {
   content: "";
   display: table;
+=======
+﻿/*body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges 
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+>>>>>>> a1df6f8786d20f15720100939d67587bc9d11b6e
 }
 .cf:after {
   clear: both;
@@ -46,6 +58,7 @@
     text-align: center;
     margin-left:150px;
 
+<<<<<<< HEAD
 }
 .agree{
     float:left;
@@ -172,8 +185,273 @@ a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
 }
 .footer-logo {
     margin: 20px 0px 40px 30px;
-    max-width: 280px;
+=======
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+
+.dl-horizontal dt {
+    white-space: normal;
 }
+
+/* Set width on the form input elements since they're 100% wide by default 
+input,
+select,
+textarea {
+>>>>>>> a1df6f8786d20f15720100939d67587bc9d11b6e
+    max-width: 280px;
+}*/
+
+/* font-family: "RobotoSlabRegular"; */
+@font-face {
+    font-family: "RobotoSlabRegular";
+    src: url("../fonts/RobotoSlabRegular/RobotoSlabRegular.eot");
+    src: url("../fonts/RobotoSlabRegular/RobotoSlabRegular.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/RobotoSlabRegular/RobotoSlabRegular.woff") format("woff"),
+    url("../fonts/RobotoSlabRegular/RobotoSlabRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "RobotoSlabLight"; */
+@font-face {
+    font-family: "RobotoSlabLight";
+    src: url("../fonts/RobotoSlabLight/RobotoSlabLight.eot");
+    src: url("../fonts/RobotoSlabLight/RobotoSlabLight.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/RobotoSlabLight/RobotoSlabLight.woff") format("woff"),
+    url("../fonts/RobotoSlabLight/RobotoSlabLight.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "RobotoSlabBold"; */
+@font-face {
+    font-family: "RobotoSlabBold";
+    src: url("../fonts/RobotoSlabBold/RobotoSlabBold.eot");
+    src: url("../fonts/RobotoSlabBold/RobotoSlabBold.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/RobotoSlabBold/RobotoSlabBold.woff") format("woff"),
+    url("../fonts/RobotoSlabBold/RobotoSlabBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+.cf {
+  zoom: 1;
+}
+.cf:before,
+.cf:after {
+  content: "";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+
+.centered {
+    text-align: center;
+}
+body{
+	margin:0;
+	font-family: "RobotoSlabRegular";
+    font-size: 14px;
+    color: #464553;
+    background: #f5f6f7;
+}
+h1,h2,h3,h4,h5,h6{
+	margin:0;
+}
+p{
+	margin:0;
+}
+ul,label{
+	margin:0;
+	padding:0;
+}
+.row {
+    margin: 0;
+}
+.header, .footer {
+    background: #e3e4e6;
+}
+.header {
+    height: 195px;
+}
+.top-logo {
+    margin-top: 20px;
+}
+.navbar-toggle {
+    margin-top: -30px;
+}
+.navbar {
+    background: none;
+    border: none;
+}
+.navbar-default{
+    box-shadow: none;
+}
+.navbar-default .navbar-nav > li {
+    padding-left: 0px;
+}
+.navbar-default .navbar-nav > li > a.login-top-btn {
+    color: #20a8ff;
+}
+
+.navbar-default .navbar-nav > li > a.login-top-btn:hover {
+     background: #20a8ff;
+    color:#fff;
+}
+
+
+.top-menu {
+   float: right;
+   margin-top: 85px;
+   background: none;
+}
+.top-menu ul {
+}
+.top-menu li {
+    display: inline;
+    list-style: none;
+    font-size: 30px;
+    padding: 0px 15px;
+}
+.top-menu a {
+    color: #464553;
+    text-decoration: none;
+}
+a.login-top-btn {
+  color: #20a8ff; /* öâåò òåêñòà */
+  text-decoration: none; /* óáèðàòü ïîä÷¸ðêèâàíèå ó ññûëîê */
+  user-select: none; /* óáèðàòü âûäåëåíèå òåêñòà */
+  background: #e3e4e6; /* ôîí êíîïêè */
+  border: 3px solid #20a8ff;
+  border-radius: 8px;
+  padding: .1em 0.3em; /* îòñòóï îò òåêñòà */
+  outline: none; /* óáèðàòü êîíòóð â Mozilla */
+}
+a.login-top-btn:hover { background: #B6AFB0; } /* ïðè íàâåäåíèè êóðñîðà ìûøêè */
+a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
+
+
+.login-top-btn {
+    display: inline;
+}
+.image-title {
+    margin: 0px auto;
+    width:800px;
+    padding:50px 0px 20px 0px;
+}
+.form-login {
+    margin: 100px 0px;
+}
+.form-login .label-form {
+    font-size: 1.5em;
+}
+.form-login input {
+  /*	width: 800px*/;
+    height: 50px;
+	font-size: 13px;
+	padding: 6px 0 4px 10px;
+	border: 1px solid #464553;
+	background: #F6F6f6;
+	border-radius: 8px;
+    margin: 10px 0px 25px 0px;
+}
+.btn-submit {
+    font-size: 1.5em !important;
+    border: 3px solid #20a8ff !important;
+    width: 100%;
+}
+.btn-submit:hover {
+    background: #20a8ff;
+    color:#fff;
+}
+.footer {
+    height: 395px;
+}
+.footer-logo {
+    margin: 20px 0px 40px 30px;
+}
+.footer-menu {
+    margin-left: 45px;
+}
+.footer-menu li {
+    list-style: none;
+    font-size: 2em;
+    padding: 5px 0px;
+}
+.footer-menu a {
+    color: #5e5657; ;
+    text-decoration: none;
+}
+.footer-menu-2 {
+}
+
+.footer-menu-2 li {
+    list-style: none;
+    font-size: 2em;
+    padding: 5px 0px;
+}
+.footer-menu-2 a {
+    color: #5e5657;
+    text-decoration: none;
+}
+.copyright {
+    margin-top: 70px;
+    text-align: center;
+}
+
+/*LEGEND LOGO*/
+.login-form {
+    margin-top: 50px;
+    height: 50px;
+}
+.login-form legend {
+    font:700 13px/normal Montserrat, sans-serif;
+    text-transform:uppercase;
+    text-decoration:none;
+    text-shadow:none;
+    text-align:center;
+    display:inline-block;
+    border:2px solid transparent;
+    background:transparent;
+    border-radius:0;
+    -webkit-transition:all .2s;
+    -moz-transition:all .2s;
+    transition:all .2s;
+    padding:10px 20px;
+    width: 400px;
+    height: auto;
+ 
+}
+ 
+.login-form fieldset > span {
+    text-align:center;
+    width:100%;
+    position:relative;
+    display:block;
+    margin:70px 0;
+}
+ 
+.login-form fieldset > span:after {
+    content:' ';
+    position:absolute;
+    left:10%;
+    top:50%;
+    width:80%;
+    height:1px;
+    background:#bdc3c7;
+}
+ 
+.login-form fieldset > span legend {
+    font-size:15px;
+    text-align:center;
+    background:#fff;
+    z-index:10;
+    position:relative;
+    color:#bdc3c7;
+    border-color:#bdc3c7;
+    border-width:3px;
+    margin:0 auto;
+}
+<<<<<<< HEAD
 .footer-menu {
     margin-left: 45px;
 }
@@ -430,4 +708,9 @@ input[id="amount"] {
 .footer-menu {
     margin-left: 5px;
 }
+=======
+ 
+.login-form fieldset > span:first-child,.login-form legend {
+    margin-top:0;
+>>>>>>> a1df6f8786d20f15720100939d67587bc9d11b6e
 }
