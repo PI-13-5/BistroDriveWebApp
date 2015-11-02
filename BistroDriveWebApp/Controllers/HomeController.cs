@@ -9,7 +9,7 @@ namespace BistroDriveWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        const int PageSize = 20;
+        const int PageSize = 1;
         public ActionResult Index()
         {
             return View();
