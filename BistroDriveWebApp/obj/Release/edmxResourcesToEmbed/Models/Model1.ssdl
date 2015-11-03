@@ -1,0 +1,539 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BistroDriveModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="aspnetroles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnetuserclaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="longtext" />
+    <Property Name="ClaimValue" Type="longtext" />
+  </EntityType>
+  <EntityType Name="aspnetuserlogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnetuserroles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="varchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnetusers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="tinyint" Nullable="false" />
+    <Property Name="PasswordHash" Type="longtext" />
+    <Property Name="SecurityStamp" Type="longtext" />
+    <Property Name="PhoneNumber" Type="longtext" />
+    <Property Name="PhoneNumberConfirmed" Type="tinyint" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="tinyint" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" Precision="0" />
+    <Property Name="LockoutEnabled" Type="tinyint" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="FristName" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="256" />
+    <Property Name="Avatar_Url" Type="varchar" MaxLength="128" />
+    <Property Name="LastOnlineTime" Type="datetime" Precision="0" />
+  </EntityType>
+  <EntityType Name="chatmessage">
+    <Key>
+      <PropertyRef Name="Id_Message" />
+    </Key>
+    <Property Name="Id_Message" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Sender" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Id_Reciver" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Message" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Precision="0" />
+  </EntityType>
+  <EntityType Name="dish">
+    <Key>
+      <PropertyRef Name="Id_Dish" />
+    </Key>
+    <Property Name="Id_Dish" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_User" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Description" Type="longtext" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="PriceWithIngridient" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="128" />
+    <Property Name="Id_Type" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="dishreview">
+    <Key>
+      <PropertyRef Name="Id_Review" />
+    </Key>
+    <Property Name="Id_Review" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Owner" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Id_Dish" Type="int" Nullable="false" />
+    <Property Name="Description" Type="longtext" />
+    <Property Name="Mark" Type="int" />
+  </EntityType>
+  <EntityType Name="dishtype">
+    <Key>
+      <PropertyRef Name="Id_DishType" />
+    </Key>
+    <Property Name="Id_DishType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="char" MaxLength="128" Nullable="false" />
+    <Property Name="Descritpion" Type="longtext" />
+    <Property Name="Image_URL" Type="char" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="Id_Order" />
+    </Key>
+    <Property Name="Id_Order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Cook" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Id_Customer" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Id_Status" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="FinishTime" Type="datetime" Precision="0" />
+    <Property Name="DeadLine" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="Id_PaymentMethod" Type="int" Nullable="false" />
+    <Property Name="Id_ContactMethod" Type="int" Nullable="false" />
+    <Property Name="Id_Delivery" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ordercontactmethod">
+    <Key>
+      <PropertyRef Name="Id_ContactMethod" />
+    </Key>
+    <Property Name="Id_ContactMethod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="orderdelivery">
+    <Key>
+      <PropertyRef Name="Id_Delivery" />
+    </Key>
+    <Property Name="Id_Delivery" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="orderpaymentmethod">
+    <Key>
+      <PropertyRef Name="Id_PaymentMethod" />
+    </Key>
+    <Property Name="Id_PaymentMethod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="256" />
+    <Property Name="PaymentProvider" Type="varchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="orderproduct">
+    <Key>
+      <PropertyRef Name="Id_Product" />
+    </Key>
+    <Property Name="Id_Product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Dish" Type="int" Nullable="false" />
+    <Property Name="Id_Order" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="PriceWithIngridients" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="orderstatus">
+    <Key>
+      <PropertyRef Name="Id_Status" />
+    </Key>
+    <Property Name="Id_Status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="review">
+    <Key>
+      <PropertyRef Name="Id_UserReview" />
+    </Key>
+    <Property Name="Id_UserReview" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_User" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Id_Owner" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Text" Type="longtext" />
+    <Property Name="Mark" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="userdescription">
+    <Key>
+      <PropertyRef Name="Id_Description" />
+    </Key>
+    <Property Name="Id_Description" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_User" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Description" Type="text" />
+  </EntityType>
+  <Association Name="description_userid_to_aspnetuser_userid">
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="userdescription" Type="Self.userdescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="userdescription">
+        <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatMessage_IdReciver">
+    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1" />
+    <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetroles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="chatmessage">
+        <PropertyRef Name="Id_Reciver" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatMessage_IdSender">
+    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetroles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="chatmessage">
+        <PropertyRef Name="Id_Sender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="aspnetuserclaims" Type="Self.aspnetuserclaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="aspnetuserclaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="aspnetuserlogins" Type="Self.aspnetuserlogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="aspnetuserlogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="aspnetuserroles" Type="Self.aspnetuserroles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetroles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="aspnetuserroles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="aspnetuserroles" Type="Self.aspnetuserroles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="aspnetuserroles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dish_IdType">
+    <End Role="dishtype" Type="Self.dishtype" Multiplicity="1" />
+    <End Role="dish" Type="Self.dish" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dishtype">
+        <PropertyRef Name="Id_DishType" />
+      </Principal>
+      <Dependent Role="dish">
+        <PropertyRef Name="Id_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dish_IdUser">
+    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1" />
+    <End Role="dish" Type="Self.dish" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetroles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dish">
+        <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DishReview_IdDish">
+    <End Role="dish" Type="Self.dish" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="dishreview" Type="Self.dishreview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dish">
+        <PropertyRef Name="Id_Dish" />
+      </Principal>
+      <Dependent Role="dishreview">
+        <PropertyRef Name="Id_Dish" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DishReview_IdOwner">
+    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="dishreview" Type="Self.dishreview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetroles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dishreview">
+        <PropertyRef Name="Id_Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_IdContactMethod">
+    <End Role="ordercontactmethod" Type="Self.ordercontactmethod" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ordercontactmethod">
+        <PropertyRef Name="Id_ContactMethod" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="Id_ContactMethod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_IdCook">
+    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetroles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="Id_Cook" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_IdDelivery">
+    <End Role="orderdelivery" Type="Self.orderdelivery" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orderdelivery">
+        <PropertyRef Name="Id_Delivery" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="Id_Delivery" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_IdPaymentMethod">
+    <End Role="orderpaymentmethod" Type="Self.orderpaymentmethod" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orderpaymentmethod">
+        <PropertyRef Name="Id_PaymentMethod" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="Id_PaymentMethod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_IdStatus">
+    <End Role="orderstatus" Type="Self.orderstatus" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orderstatus">
+        <PropertyRef Name="Id_Status" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="Id_Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderProduct_IdDish">
+    <End Role="dish" Type="Self.dish" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="orderproduct" Type="Self.orderproduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dish">
+        <PropertyRef Name="Id_Dish" />
+      </Principal>
+      <Dependent Role="orderproduct">
+        <PropertyRef Name="Id_Dish" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderProduct_IdOrder">
+    <End Role="order" Type="Self.order" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="orderproduct" Type="Self.orderproduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="order">
+        <PropertyRef Name="Id_Order" />
+      </Principal>
+      <Dependent Role="orderproduct">
+        <PropertyRef Name="Id_Order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_IdOwner">
+    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1" />
+    <End Role="review" Type="Self.review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetroles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="review">
+        <PropertyRef Name="Id_Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_IdUser">
+    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="review" Type="Self.review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetroles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="review">
+        <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BistroDriveModelStoreContainer">
+    <EntitySet Name="aspnetroles" EntityType="Self.aspnetroles" Schema="users" store:Type="Tables" />
+    <EntitySet Name="aspnetuserclaims" EntityType="Self.aspnetuserclaims" Schema="users" store:Type="Tables" />
+    <EntitySet Name="aspnetuserlogins" EntityType="Self.aspnetuserlogins" Schema="users" store:Type="Tables" />
+    <EntitySet Name="aspnetuserroles" EntityType="Self.aspnetuserroles" Schema="users" store:Type="Tables" />
+    <EntitySet Name="aspnetusers" EntityType="Self.aspnetusers" Schema="users" store:Type="Tables" />
+    <EntitySet Name="chatmessage" EntityType="Self.chatmessage" Schema="users" store:Type="Tables" />
+    <EntitySet Name="dish" EntityType="Self.dish" Schema="users" store:Type="Tables" />
+    <EntitySet Name="dishreview" EntityType="Self.dishreview" Schema="users" store:Type="Tables" />
+    <EntitySet Name="dishtype" EntityType="Self.dishtype" Schema="users" store:Type="Tables" />
+    <EntitySet Name="order" EntityType="Self.order" Schema="users" store:Type="Tables" />
+    <EntitySet Name="ordercontactmethod" EntityType="Self.ordercontactmethod" Schema="users" store:Type="Tables" />
+    <EntitySet Name="orderdelivery" EntityType="Self.orderdelivery" Schema="users" store:Type="Tables" />
+    <EntitySet Name="orderpaymentmethod" EntityType="Self.orderpaymentmethod" Schema="users" store:Type="Tables" />
+    <EntitySet Name="orderproduct" EntityType="Self.orderproduct" Schema="users" store:Type="Tables" />
+    <EntitySet Name="orderstatus" EntityType="Self.orderstatus" Schema="users" store:Type="Tables" />
+    <EntitySet Name="review" EntityType="Self.review" Schema="users" store:Type="Tables" />
+    <EntitySet Name="userdescription" EntityType="Self.userdescription" Schema="users" store:Type="Tables" />
+    <AssociationSet Name="description_userid_to_aspnetuser_userid" Association="Self.description_userid_to_aspnetuser_userid">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="userdescription" EntitySet="userdescription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatMessage_IdReciver" Association="Self.FK_ChatMessage_IdReciver">
+      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="chatmessage" EntitySet="chatmessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatMessage_IdSender" Association="Self.FK_ChatMessage_IdSender">
+      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="chatmessage" EntitySet="chatmessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="aspnetuserclaims" EntitySet="aspnetuserclaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="aspnetuserlogins" EntitySet="aspnetuserlogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="aspnetuserroles" EntitySet="aspnetuserroles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="aspnetuserroles" EntitySet="aspnetuserroles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dish_IdType" Association="Self.FK_Dish_IdType">
+      <End Role="dishtype" EntitySet="dishtype" />
+      <End Role="dish" EntitySet="dish" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dish_IdUser" Association="Self.FK_Dish_IdUser">
+      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="dish" EntitySet="dish" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DishReview_IdDish" Association="Self.FK_DishReview_IdDish">
+      <End Role="dish" EntitySet="dish" />
+      <End Role="dishreview" EntitySet="dishreview" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DishReview_IdOwner" Association="Self.FK_DishReview_IdOwner">
+      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="dishreview" EntitySet="dishreview" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_IdContactMethod" Association="Self.FK_Order_IdContactMethod">
+      <End Role="ordercontactmethod" EntitySet="ordercontactmethod" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_IdCook" Association="Self.FK_Order_IdCook">
+      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_IdDelivery" Association="Self.FK_Order_IdDelivery">
+      <End Role="orderdelivery" EntitySet="orderdelivery" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_IdPaymentMethod" Association="Self.FK_Order_IdPaymentMethod">
+      <End Role="orderpaymentmethod" EntitySet="orderpaymentmethod" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_IdStatus" Association="Self.FK_Order_IdStatus">
+      <End Role="orderstatus" EntitySet="orderstatus" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderProduct_IdDish" Association="Self.FK_OrderProduct_IdDish">
+      <End Role="dish" EntitySet="dish" />
+      <End Role="orderproduct" EntitySet="orderproduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderProduct_IdOrder" Association="Self.FK_OrderProduct_IdOrder">
+      <End Role="order" EntitySet="order" />
+      <End Role="orderproduct" EntitySet="orderproduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_IdOwner" Association="Self.FK_Review_IdOwner">
+      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="review" EntitySet="review" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_IdUser" Association="Self.FK_Review_IdUser">
+      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="review" EntitySet="review" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

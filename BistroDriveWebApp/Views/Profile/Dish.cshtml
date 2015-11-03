@@ -1,0 +1,41 @@
+﻿@model BistroDriveWebApp.Models.DishListViewModel
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.UserName) + " ("
+    + @Html.DisplayFor(model => model.Firstname) + " "
+< a href = "~/Views/Profile/Dish.cshtml" > ~/ Views / Profile / Dish.cshtml </ a >
+     + @Html.DisplayFor(model => model.Surname) + ")";
+}
+<h2>@ViewBag.Title dish List</h2>
+<p>
+@if (User.Identity.Name == Model.UserName)
+{
+    @Html.ActionLink("Create New", "AddDish") @:|
+}
+
+    @Html.ActionLink("Back to Profile", "index", new { id = Model.UserName})
+</p>
+<div>
+    @foreach (var item in Model.DishList)
+    {
+        <div>
+            <h4>@Html.ActionLink(item.Name, "dishinfo", new { id = item.Id_Dish })</h4>
+                <div>@Html.DisplayFor(modelItem => item.dishtype.Name)</div>
+                @if (item.ImageUrl != "" && item.ImageUrl != null)
+                {
+                    <a href="@Url.Action("dishinfo", new { id = item.Id_Dish })">
+                        <img src="@Html.DisplayFor(Model=>item.ImageUrl)" width="200" height="200" />
+                    </a>
+                }
+                <div>Price:
+                    @Html.DisplayFor(modelItem => item.Price)
+                </div>
+                <div>
+                   Price with ingridients:
+                    @Html.DisplayFor(modelItem => item.PriceWithIngridient)
+                </div>
+                <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                <p>Ingridients: @Html.DisplayFor(modelItem => item.Ingridient)</p>
+            </div>
+            <hr />
+    }
+</div>

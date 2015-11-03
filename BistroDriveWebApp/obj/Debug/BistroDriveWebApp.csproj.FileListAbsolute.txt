@@ -79,3 +79,6 @@ D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\Microsoft.Owin.S
 D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\BistroDriveWebApp.csprojResolveAssemblyReference.cache
 D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\BistroDriveWebApp.dll
 D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\BistroDriveWebApp.pdb
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\MySql.Data.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\MySql.Data.Entity.EF6.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\MySql.Web.dll

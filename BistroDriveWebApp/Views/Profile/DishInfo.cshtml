@@ -1,0 +1,80 @@
+﻿@model BistroDriveWebApp.Models.dish
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+    @Html.ActionLink("Back to List", "Dish", new { id = ViewBag.Username })
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dishtype.Name)
+        </dd>
+        <dt>
+            Image
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model=>model.ImageUrl)" width="200" height="200" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriceWithIngridient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceWithIngridient)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ingridient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ingridient)
+        </dd>
+
+
+
+    </dl>
+</div>
+@if (User.Identity.Name != ViewBag.Username)
+{
+@Html.ActionLink("Заказать", "MakeOrder", "order", new { id = Model.Id_Dish }, htmlAttributes: new { @class = "btn btn-success" })
+}
+
+@if (User.Identity.Name == ViewBag.Username)
+{
+<p>
+    <div>
+        @Html.ActionLink("Edit", "EditDish", new { id = Model.Id_Dish }) |
+        @Html.ActionLink("Delete", "DeleteDish", new { id = Model.Id_Dish }, new { onclick = "return confirm('Are you sure you wish to delete this dish?');" })
+    </div>
+</p>
+}
