@@ -2,11 +2,13 @@
 
 <div>
     <h4>@Html.DisplayFor(model => model.Name)</h4>
-    @Html.ActionLink("Back to List", "Dish", new { id = ViewBag.Username })
+        @Html.ActionLink("Профиль пользователя", "Dish", new { id = ViewBag.Username }) |
+        @Html.ActionLink("Список предложений", "Offers","Home")
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @*Html.DisplayNameFor(model => model.Name)*@
+            Название
         </dt>
 
         <dd>
@@ -14,14 +16,14 @@
         </dd>
 
         <dt>
-            Type
+            Тип
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.dishtype.Name)
         </dd>
         <dt>
-            Image
+            Изображение
         </dt>
 
         <dd>
@@ -29,7 +31,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @*Html.DisplayNameFor(model => model.Description)*@
+            Описание
         </dt>
 
         <dd>
@@ -37,7 +40,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
+            @*Html.DisplayNameFor(model => model.Price)*@
+            Цена
         </dt>
 
         <dd>
@@ -45,7 +49,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PriceWithIngridient)
+            @*Html.DisplayNameFor(model => model.PriceWithIngridient)*@
+            Цена с ингридиент.
         </dt>
 
         <dd>
@@ -53,7 +58,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Ingridient)
+            @*Html.DisplayNameFor(model => model.Ingridient)*@
+            Ингридиенты
         </dt>
 
         <dd>
@@ -73,8 +79,8 @@
 {
 <p>
     <div>
-        @Html.ActionLink("Edit", "EditDish", new { id = Model.Id_Dish }) |
-        @Html.ActionLink("Delete", "DeleteDish", new { id = Model.Id_Dish }, new { onclick = "return confirm('Are you sure you wish to delete this dish?');" })
+        @Html.ActionLink("Редактировать", "EditDish", new { id = Model.Id_Dish }) |
+        @Html.ActionLink("Удалить", "DeleteDish", new { id = Model.Id_Dish }, new { onclick = "return confirm('Вы действительно хотите удалить это блюдо?');" })
     </div>
 </p>
 }

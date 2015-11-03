@@ -9,10 +9,10 @@
 <p>
 @if (User.Identity.Name == Model.UserName)
 {
-    @Html.ActionLink("Create New", "AddDish") @:|
+    @Html.ActionLink("Добавить блюдо", "AddDish") @:|
 }
 
-    @Html.ActionLink("Back to Profile", "index", new { id = Model.UserName})
+    @Html.ActionLink("Вернуться к профилю", "index", new { id = Model.UserName})
 </p>
 <div>
     @foreach (var item in Model.DishList)
