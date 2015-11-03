@@ -338,6 +338,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Uploads\avatars\default_avatar.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -403,7 +404,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Uploads\avatars\" />
     <Folder Include="Uploads\dish\" />
   </ItemGroup>
   <PropertyGroup>
