@@ -1,11 +1,11 @@
 ﻿@model BistroDriveWebApp.Models.ProfileSettingsViewModel
 @{
-    ViewBag.Title = "Your personal data";
+    ViewBag.Title = "Ваш профиль";
 }
 
 <h2>@ViewBag.Title.</h2>
 
-@Html.ActionLink("Change Password", "Changepassword")
+@Html.ActionLink("Сменить пароль", "Changepassword")
 <p class="text-success">@ViewBag.StatusMessage</p>
 
 <div><image src="@Html.DisplayFor(model => model.Avatar_Url)" width="200" height="200" /></div>
@@ -81,7 +81,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input type="submit" value="Сохранить" class="btn btn-default" />
         </div>
     </div>
 </div>
