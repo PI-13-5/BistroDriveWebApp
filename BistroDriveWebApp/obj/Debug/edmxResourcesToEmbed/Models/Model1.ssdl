@@ -190,6 +190,15 @@
     <Property Name="Id_User" Type="varchar" MaxLength="128" Nullable="false" />
     <Property Name="Description" Type="text" />
   </EntityType>
+  <EntityType Name="usertoken">
+    <Key>
+      <PropertyRef Name="Id_Token" />
+    </Key>
+    <Property Name="Id_Token" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_User" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Token" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="Expiration" Type="datetime" Precision="0" />
+  </EntityType>
   <Association Name="description_userid_to_aspnetuser_userid">
     <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -468,6 +477,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="usertoken_ibfk_1">
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="usertoken" Type="Self.usertoken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="usertoken">
+        <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="BistroDriveModelStoreContainer">
     <EntitySet Name="aspnetroles" EntityType="Self.aspnetroles" Schema="users" store:Type="Tables" />
     <EntitySet Name="aspnetuserclaims" EntityType="Self.aspnetuserclaims" Schema="users" store:Type="Tables" />
@@ -487,6 +510,7 @@
     <EntitySet Name="orderstatus" EntityType="Self.orderstatus" Schema="users" store:Type="Tables" />
     <EntitySet Name="review" EntityType="Self.review" Schema="users" store:Type="Tables" />
     <EntitySet Name="userdescription" EntityType="Self.userdescription" Schema="users" store:Type="Tables" />
+    <EntitySet Name="usertoken" EntityType="Self.usertoken" Schema="users" store:Type="Tables" />
     <AssociationSet Name="description_userid_to_aspnetuser_userid" Association="Self.description_userid_to_aspnetuser_userid">
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="userdescription" EntitySet="userdescription" />
@@ -570,6 +594,10 @@
     <AssociationSet Name="order_ibfk_1" Association="Self.order_ibfk_1">
       <End Role="orderingridientbuyer" EntitySet="orderingridientbuyer" />
       <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="usertoken_ibfk_1" Association="Self.usertoken_ibfk_1">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="usertoken" EntitySet="usertoken" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

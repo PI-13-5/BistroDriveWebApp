@@ -1,0 +1,127 @@
+﻿@model BistroDriveWebApp.Models.OrderDitailViewModel
+
+<div class="form-horizontal">
+    <h2>Информация о заказе</h2>
+
+    @Html.ActionLink("Назад", "Order")
+    <div>
+        <h4>Информация о поваре</h4>
+        @Html.ActionLink(Model.Order.aspnetuser.FristName+" "+Model.Order.aspnetuser.Surname,"index",new {id = Model.Order.aspnetuser.UserName })
+        <div>
+            Телефон
+            @Html.DisplayFor(model => model.Order.aspnetuser.PhoneNumber)
+            <br />
+            Email:
+            @Html.DisplayFor(model => model.Order.aspnetuser.Email)
+        </div>
+    </div>
+    <hr />
+    <div>
+        <h4>Информация о заказщике</h4>
+        @if (Model.Customer != null)
+        {
+            @Html.ActionLink(Model.Customer.FristName + " " + Model.Customer.Surname, "index", new { id = Model.Order.aspnetuser.UserName })
+        }
+        else
+        {
+            @Html.DisplayFor(model => model.Order.FirstName)@: 
+            @Html.DisplayFor(model => model.Order.Surname)
+        }
+        <div>
+            Телефон
+            @Html.DisplayFor(model => model.Order.Phone)
+            <br />
+            Email:
+            @Html.DisplayFor(model => model.Order.Email)
+        </div>
+    </div>
+    <hr />
+    <div>
+        <h4>Информация о заказе</h4>
+        <dl class="dl-horizontal">
+            <dt>Дата сдачи заказа</dt>
+            <dd>@Html.DisplayFor(model => model.Order.DeadLine)</dd>
+
+            <dt>Кто закупает ингридиенты</dt>
+            <dd>@Html.DisplayFor(model => model.Order.orderingridientbuyer.Name)</dd>
+
+            <dt>Оплата</dt>
+            <dd>@Html.DisplayFor(model => model.Order.orderpaymentmethod.Name)</dd>
+
+            <dt>Связь по</dt>
+            <dd>@Html.DisplayFor(model => model.Order.ordercontactmethod.Name)</dd>
+
+            <dt>Доставка</dt>
+            <dd>@Html.DisplayFor(model => model.Order.orderdelivery.Name)</dd>
+
+            <dt>Сделка закрыта</dt>
+            <dd>@if (Model.Order.FinishTime == null)
+            {
+                @:Нет
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.Order.FinishTime)
+            }</dd>
+
+            <dt>Коментарий</dt>
+            <dd>@Html.DisplayFor(model => model.Order.Comment)</dd>
+        </dl>
+    </div>
+    <hr />
+    <div>
+        <h4>Заказ:</h4>
+        @foreach (var item in Model.ProductsList)
+        {
+            <div>
+                @Html.ActionLink(item.dish.Name, "DishInfo", new { id = item.Id_Dish })
+                <br />
+                @if (item.dish.ImageUrl != "" && item.dish.ImageUrl != null)
+                {
+                    <a href="@Url.Action("DishInfo", new { id = item.Id_Dish })">
+                        <img src="@Html.DisplayFor(Model => item.dish.ImageUrl)" width="100" height="100" />
+                    </a>
+                }
+                <div>
+                    <p>
+                        Цена:
+                        @Html.DisplayFor(model => item.Price)
+                    </p>
+                    <p>
+                        Цена с ингридиентами:
+                        @Html.DisplayFor(model => item.PriceWithIngridients)
+                    </p>
+                </div>
+                <p>
+                    Описание:
+                    @Html.DisplayFor(model => item.dish.Description)
+                </p>
+            </div>
+        }
+    </div>
+</div>
+<hr />
+@if (Model.Order.FinishTime == null)
+{
+using (Html.BeginForm("SetOrderStatus", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model.Order.Id_Order)
+    <div class="form-horizontal">
+        <label class = "control-label col-md-2" >Сменить статус заказа</label>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Order.Id_Status, new SelectList(ViewBag.Statuses, "Id_Status", "Name"), new { htmlAttributes = new { @class = "form-control" } })
+
+            <input type="submit" value="Сменить" class="btn btn-info"/>
+        </div>
+    </div>
+}
+using (Html.BeginForm("CloseOrder", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model.Order.Id_Order)
+    <div class="form-horizontal">
+        <label>Завершить сделку</label>
+        <input type="submit" value="Завершить" class="btn btn-danger" />
+    </div>
+}
+<hr />
+}

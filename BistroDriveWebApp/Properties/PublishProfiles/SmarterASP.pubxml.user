@@ -14,19 +14,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:32</publishTime>
     </File>
     <File Include="App_Data/bistrodrive.sql">
-      <publishTime>10/25/2015 02:34:17</publishTime>
+      <publishTime>03/11/2015 12:38:25</publishTime>
     </File>
     <File Include="App_Data/DataBase.mdf">
-      <publishTime>10/22/2015 00:55:58</publishTime>
+      <publishTime>03/11/2015 12:38:25</publishTime>
     </File>
     <File Include="App_Data/DataBase_log.ldf">
-      <publishTime>10/22/2015 00:55:58</publishTime>
+      <publishTime>03/11/2015 12:38:25</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>10/17/2015 02:08:22</publishTime>
     </File>
     <File Include="bin/BistroDriveWebApp.dll">
-      <publishTime>10/25/2015 14:52:16</publishTime>
+      <publishTime>09/11/2015 03:47:41</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>10/17/2015 02:08:23</publishTime>
@@ -176,13 +176,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:22</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>10/17/2015 02:08:19</publishTime>
+      <publishTime>03/11/2015 12:38:25</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
       <publishTime>10/17/2015 02:08:19</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>10/17/2015 02:08:16</publishTime>
+      <publishTime>03/11/2015 12:38:25</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>10/17/2015 02:08:16</publishTime>
@@ -203,7 +203,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:16</publishTime>
     </File>
     <File Include="Models/Model1.edmx.diagram">
-      <publishTime>10/24/2015 21:27:28</publishTime>
+      <publishTime>08/11/2015 21:49:45</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>10/17/2015 02:08:32</publishTime>
@@ -245,10 +245,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:22</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>10/17/2015 02:08:22</publishTime>
+      <publishTime>03/11/2015 12:38:25</publishTime>
     </File>
     <File Include="Service References/Application Insights/ConnectedService.json">
       <publishTime>10/17/2015 02:08:34</publishTime>
+    </File>
+    <File Include="Uploads/avatars/default_avatar.jpg">
+      <publishTime>03/11/2015 13:33:29</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>10/17/2015 02:08:23</publishTime>
@@ -266,10 +269,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:23</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>10/17/2015 02:08:23</publishTime>
+      <publishTime>03/11/2015 18:53:48</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
-      <publishTime>10/24/2015 21:31:27</publishTime>
+      <publishTime>03/11/2015 18:53:48</publishTime>
     </File>
     <File Include="Views/Account/ResetPassword.cshtml">
       <publishTime>10/17/2015 02:08:23</publishTime>
@@ -293,16 +296,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:16</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/24/2015 16:20:16</publishTime>
+      <publishTime>03/11/2015 18:53:48</publishTime>
+    </File>
+    <File Include="Views/Home/Offers.cshtml">
+      <publishTime>03/11/2015 13:33:29</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>10/17/2015 02:08:23</publishTime>
     </File>
     <File Include="Views/Manage/ChangePassword.cshtml">
-      <publishTime>10/17/2015 02:08:23</publishTime>
+      <publishTime>03/11/2015 13:33:29</publishTime>
     </File>
     <File Include="Views/Manage/Index.cshtml">
-      <publishTime>10/25/2015 01:48:43</publishTime>
+      <publishTime>03/11/2015 13:33:29</publishTime>
     </File>
     <File Include="Views/Manage/ManageLogins.cshtml">
       <publishTime>10/17/2015 02:08:23</publishTime>
@@ -313,8 +319,35 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
       <publishTime>10/17/2015 02:08:23</publishTime>
     </File>
+    <File Include="Views/Order/MakeOrder.cshtml">
+      <publishTime>03/11/2015 12:38:26</publishTime>
+    </File>
+    <File Include="Views/Order/Success.cshtml">
+      <publishTime>03/11/2015 12:38:26</publishTime>
+    </File>
+    <File Include="Views/Profile/AddDish.cshtml">
+      <publishTime>03/11/2015 13:33:29</publishTime>
+    </File>
+    <File Include="Views/Profile/Dish.cshtml">
+      <publishTime>03/11/2015 14:00:55</publishTime>
+    </File>
+    <File Include="Views/Profile/DishInfo.cshtml">
+      <publishTime>03/11/2015 13:33:29</publishTime>
+    </File>
+    <File Include="Views/Profile/EditDish.cshtml">
+      <publishTime>03/11/2015 13:33:29</publishTime>
+    </File>
     <File Include="Views/Profile/Index.cshtml">
-      <publishTime>10/25/2015 01:50:02</publishTime>
+      <publishTime>03/11/2015 13:33:29</publishTime>
+    </File>
+    <File Include="Views/Profile/Order.cshtml">
+      <publishTime>03/11/2015 12:38:26</publishTime>
+    </File>
+    <File Include="Views/Profile/OrderInfo.cshtml">
+      <publishTime>03/11/2015 12:38:26</publishTime>
+    </File>
+    <File Include="Views/Profile/_DishPartial.cshtml">
+      <publishTime>03/11/2015 13:09:40</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>10/17/2015 02:08:23</publishTime>
@@ -323,10 +356,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:23</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/17/2015 02:08:32</publishTime>
+      <publishTime>03/11/2015 12:38:26</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>10/24/2015 17:01:29</publishTime>
+      <publishTime>03/11/2015 14:00:55</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>10/17/2015 02:08:16</publishTime>
@@ -335,7 +368,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 02:08:16</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/25/2015 14:52:25</publishTime>
+      <publishTime>09/11/2015 03:47:53</publishTime>
     </File>
   </ItemGroup>
 </Project>
