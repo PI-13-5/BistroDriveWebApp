@@ -204,6 +204,7 @@ namespace BistroDriveWebApp.Controllers
             UserSerealizerBody customer = new UserSerealizerBody
             {
                 Id = o.Id_Customer,
+                Email = o.Email,
                 Address = o.Address,
                 FirstName = o.FirstName,
                 Surname = o.Surname,
@@ -215,9 +216,9 @@ namespace BistroDriveWebApp.Controllers
             {
                 Comment = o.Comment,
                 Comunication = o.ordercontactmethod.Name,
-                Deadline = o.DeadLine,
+                Deadline = o.DeadLine == null? null : ConvertToUnixTime((DateTime)o.DeadLine).ToString(),
                 Delivery = o.orderdelivery.Name,
-                FinishTime = o.FinishTime,
+                FinishTime = o.FinishTime == null ? null : ConvertToUnixTime((DateTime)o.FinishTime).ToString(),
                 Payment = o.orderpaymentmethod.Name,
                 Status = o.orderstatu.Name,
                 Cook = cook,
@@ -227,6 +228,13 @@ namespace BistroDriveWebApp.Controllers
                 Customer = customer
             };
             return res;
+        }
+
+        public static long ConvertToUnixTime(DateTime datetime)
+        {
+            DateTime sTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+            return (long)(datetime - sTime).TotalSeconds;
         }
 
         private JsonRespondBody OffersMethod(JsonRequestBody json)
@@ -449,6 +457,7 @@ namespace BistroDriveWebApp.Controllers
             UserSerealizerBody result = new UserSerealizerBody
             {
                 Id = user.Id,
+                Email = user.Email,
                 Address = user.Address,
                 Description = description,
                 FirstName = user.FristName,
@@ -468,6 +477,7 @@ namespace BistroDriveWebApp.Controllers
             UserSerealizerBody result = new UserSerealizerBody
             {
                 Id = user.Id,
+                Email = user.Email,
                 Address = user.Address,
                 Description = description,
                 FirstName = user.FristName,
@@ -497,6 +507,7 @@ namespace BistroDriveWebApp.Controllers
     public class UserSerealizerBody
     {
         public string Id { set; get; }
+        public string Email { set; get; }
         public string Token { set; get; }
         public string Username { set; get; }
         public string FirstName { set; get; }
@@ -527,7 +538,7 @@ namespace BistroDriveWebApp.Controllers
     public class OrderSerializerBody
     {
         public int Id_Order { set; get; }
-        public DateTime Deadline { set; get; }
+        public string Deadline { set; get; }
         public string IngridientsBuyer { set; get; }
         public string Payment { set; get; }
         public string Comunication { set; get; }
@@ -535,7 +546,7 @@ namespace BistroDriveWebApp.Controllers
         public string Status { set; get; }
         public string Comment { set; get; }
         public decimal Total { set; get; }
-        public DateTime? FinishTime { set; get; } 
+        public string FinishTime { set; get; } 
         public UserSerealizerBody Cook { set; get; }
         public UserSerealizerBody Customer { set; get; }
         public IEnumerable<DishSerealizerBody> OrderList { set; get; }
