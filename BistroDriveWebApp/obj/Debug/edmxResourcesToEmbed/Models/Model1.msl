@@ -101,7 +101,6 @@
     <EntitySetMapping Name="orders">
       <EntityTypeMapping TypeName="BistroDriveModel.order">
         <MappingFragment StoreEntitySet="order">
-          <ScalarProperty Name="total" ColumnName="total" />
           <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
           <ScalarProperty Name="Id_Cook" ColumnName="Id_Cook" />
           <ScalarProperty Name="Id_Customer" ColumnName="Id_Customer" />
@@ -119,6 +118,7 @@
           <ScalarProperty Name="Surname" ColumnName="Surname" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="total" ColumnName="total" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -195,6 +195,16 @@
           <ScalarProperty Name="Id_Description" ColumnName="Id_Description" />
           <ScalarProperty Name="Id_User" ColumnName="Id_User" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usertokens">
+      <EntityTypeMapping TypeName="BistroDriveModel.usertoken">
+        <MappingFragment StoreEntitySet="usertoken">
+          <ScalarProperty Name="Id_Token" ColumnName="Id_Token" />
+          <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="Expiration" ColumnName="Expiration" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

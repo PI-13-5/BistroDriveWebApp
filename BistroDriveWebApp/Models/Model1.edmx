@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BistroDriveModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BistroDriveModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="aspnetroles">
           <Key>
             <PropertyRef Name="Id" />
@@ -194,6 +194,15 @@
           <Property Name="Id_Description" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_User" Type="varchar" MaxLength="128" Nullable="false" />
           <Property Name="Description" Type="text" />
+        </EntityType>
+        <EntityType Name="usertoken">
+          <Key>
+            <PropertyRef Name="Id_Token" />
+          </Key>
+          <Property Name="Id_Token" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_User" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Token" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="Expiration" Type="datetime" Precision="0" />
         </EntityType>
         <Association Name="description_userid_to_aspnetuser_userid">
           <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
@@ -473,6 +482,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="usertoken_ibfk_1">
+          <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="usertoken" Type="Self.usertoken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnetusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="usertoken">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BistroDriveModelStoreContainer">
           <EntitySet Name="aspnetroles" EntityType="Self.aspnetroles" Schema="users" store:Type="Tables" />
           <EntitySet Name="aspnetuserclaims" EntityType="Self.aspnetuserclaims" Schema="users" store:Type="Tables" />
@@ -492,6 +515,7 @@
           <EntitySet Name="orderstatus" EntityType="Self.orderstatus" Schema="users" store:Type="Tables" />
           <EntitySet Name="review" EntityType="Self.review" Schema="users" store:Type="Tables" />
           <EntitySet Name="userdescription" EntityType="Self.userdescription" Schema="users" store:Type="Tables" />
+          <EntitySet Name="usertoken" EntityType="Self.usertoken" Schema="users" store:Type="Tables" />
           <AssociationSet Name="description_userid_to_aspnetuser_userid" Association="Self.description_userid_to_aspnetuser_userid">
             <End Role="aspnetusers" EntitySet="aspnetusers" />
             <End Role="userdescription" EntitySet="userdescription" />
@@ -576,8 +600,13 @@
             <End Role="orderingridientbuyer" EntitySet="orderingridientbuyer" />
             <End Role="order" EntitySet="order" />
           </AssociationSet>
+          <AssociationSet Name="usertoken_ibfk_1" Association="Self.usertoken_ibfk_1">
+            <End Role="aspnetusers" EntitySet="aspnetusers" />
+            <End Role="usertoken" EntitySet="usertoken" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BistroDriveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -641,6 +670,7 @@
           <NavigationProperty Name="userdescriptions" Relationship="Self.description_userid_to_aspnetuser_userid" FromRole="aspnetusers" ToRole="userdescription" />
           <NavigationProperty Name="dishes" Relationship="Self.FK_Dish_IdUser_aspnetusers_Id" FromRole="aspnetusers" ToRole="dish" />
           <NavigationProperty Name="orders" Relationship="Self.FK_Order_IdCook" FromRole="aspnetusers" ToRole="order" />
+          <NavigationProperty Name="usertokens" Relationship="Self.usertoken_ibfk_1" FromRole="aspnetusers" ToRole="usertoken" />
           <NavigationProperty Name="aspnetroles" Relationship="Self.aspnetuserroles" FromRole="aspnetusers" ToRole="aspnetroles" />
         </EntityType>
         <EntityType Name="chatmessage">
@@ -716,6 +746,7 @@
           <Property Name="Surname" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="total" Type="Decimal" Nullable="false" />
           <NavigationProperty Name="aspnetuser" Relationship="Self.FK_Order_IdCook" FromRole="order" ToRole="aspnetusers" />
           <NavigationProperty Name="ordercontactmethod" Relationship="Self.FK_Order_IdContactMethod" FromRole="order" ToRole="ordercontactmethod" />
           <NavigationProperty Name="orderdelivery" Relationship="Self.FK_Order_IdDelivery" FromRole="order" ToRole="orderdelivery" />
@@ -723,7 +754,6 @@
           <NavigationProperty Name="orderstatu" Relationship="Self.FK_Order_IdStatus" FromRole="order" ToRole="orderstatus" />
           <NavigationProperty Name="orderproducts" Relationship="Self.FK_OrderProduct_IdOrder" FromRole="order" ToRole="orderproduct" />
           <NavigationProperty Name="orderingridientbuyer" Relationship="Self.order_ibfk_1" FromRole="order" ToRole="orderingridientbuyer" />
-          <Property Name="total" Type="Decimal" Nullable="false" />
         </EntityType>
         <EntityType Name="ordercontactmethod">
           <Key>
@@ -802,6 +832,16 @@
           <Property Name="Id_User" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="aspnetuser" Relationship="Self.description_userid_to_aspnetuser_userid" FromRole="userdescription" ToRole="aspnetusers" />
+        </EntityType>
+        <EntityType Name="usertoken">
+          <Key>
+            <PropertyRef Name="Id_Token" />
+          </Key>
+          <Property Name="Id_Token" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_User" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Token" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Expiration" Type="DateTime" />
+          <NavigationProperty Name="aspnetuser" Relationship="Self.usertoken_ibfk_1" FromRole="usertoken" ToRole="aspnetusers" />
         </EntityType>
         <Association Name="FK_ChatMessage_IdReciver">
           <End Role="aspnetroles" Type="Self.aspnetrole" Multiplicity="1" />
@@ -936,6 +976,20 @@
             </Principal>
             <Dependent Role="order">
               <PropertyRef Name="Id_Cook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usertoken_ibfk_1">
+          <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="usertoken" Type="Self.usertoken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnetusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="usertoken">
+              <PropertyRef Name="Id_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1075,6 +1129,7 @@
           <EntitySet Name="orderstatus" EntityType="Self.orderstatu" />
           <EntitySet Name="reviews" EntityType="Self.review" />
           <EntitySet Name="userdescriptions" EntityType="Self.userdescription" />
+          <EntitySet Name="usertokens" EntityType="Self.usertoken" />
           <AssociationSet Name="FK_ChatMessage_IdReciver" Association="Self.FK_ChatMessage_IdReciver">
             <End Role="aspnetroles" EntitySet="aspnetroles" />
             <End Role="chatmessage" EntitySet="chatmessages" />
@@ -1114,6 +1169,10 @@
           <AssociationSet Name="FK_Order_IdCook" Association="Self.FK_Order_IdCook">
             <End Role="aspnetusers" EntitySet="aspnetusers" />
             <End Role="order" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="usertoken_ibfk_1" Association="Self.usertoken_ibfk_1">
+            <End Role="aspnetusers" EntitySet="aspnetusers" />
+            <End Role="usertoken" EntitySet="usertokens" />
           </AssociationSet>
           <AssociationSet Name="FK_Dish_IdType" Association="Self.FK_Dish_IdType">
             <End Role="dishtype" EntitySet="dishtypes" />
@@ -1262,7 +1321,6 @@
           <EntitySetMapping Name="orders">
             <EntityTypeMapping TypeName="BistroDriveModel.order">
               <MappingFragment StoreEntitySet="order">
-                <ScalarProperty Name="total" ColumnName="total" />
                 <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
                 <ScalarProperty Name="Id_Cook" ColumnName="Id_Cook" />
                 <ScalarProperty Name="Id_Customer" ColumnName="Id_Customer" />
@@ -1280,6 +1338,7 @@
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="total" ColumnName="total" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1356,6 +1415,16 @@
                 <ScalarProperty Name="Id_Description" ColumnName="Id_Description" />
                 <ScalarProperty Name="Id_User" ColumnName="Id_User" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usertokens">
+            <EntityTypeMapping TypeName="BistroDriveModel.usertoken">
+              <MappingFragment StoreEntitySet="usertoken">
+                <ScalarProperty Name="Id_Token" ColumnName="Id_Token" />
+                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="Expiration" ColumnName="Expiration" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
