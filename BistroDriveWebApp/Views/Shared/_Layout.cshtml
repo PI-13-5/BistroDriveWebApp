@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - BistroDrive</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
-    <script type="text/javascript">
+    @Scripts.Render("~/bundles/jquery")
+     @*@Scripts.Render("~/bundles/modernizr")*@
+        <script type="text/javascript">
         var appInsights=window.appInsights||function(config){
             function s(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},r=document,f=window,e="script",o=r.createElement(e),i,u;for(o.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",r.getElementsByTagName(e)[0].parentNode.appendChild(o),t.cookie=r.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)s("track"+i.pop());return config.disableExceptionTracking||(i="onerror",s("_"+i),u=f[i],f[i]=function(config,r,f,e,o){var s=u&&u(config,r,f,e,o);return s!==!0&&t["_"+i](config,r,f,e,o),s}),t
         }({
@@ -17,7 +17,7 @@
         window.appInsights=appInsights;
         appInsights.trackPageView();
     </script>
-</head>
+    </head>
 <body>
     <div class="container">
         @*  @Html.ActionLink("BistroDrive", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
@@ -95,25 +95,24 @@
                 </div>
             </footer>
         </div>
-    </div>
-
     <script>
-      $(function() {
-        $( "#slider-range" ).slider({
-          range: true,
-          min: 0,
-          max: 500,
-          values: [ 10, 300 ],
-          slide: function( event, ui ) {
-            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-          }
+        $(function() {
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: [10, 300],
+                slide: function (event, ui) {
+                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                }
+            });
+            $("#amount").val("$" + $("#slider-range").slider("values", 0) +" - $" + $("#slider-range").slider("values", 1));
         });
-        $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-          " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-      });
     </script>
-                @Scripts.Render("~/bundles/jquery")
-                @Scripts.Render("~/bundles/bootstrap")
-                @RenderSection("scripts", required: false)
+  
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+               
 </body>
 </html>
