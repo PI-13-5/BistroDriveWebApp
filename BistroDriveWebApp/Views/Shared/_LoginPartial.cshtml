@@ -8,21 +8,25 @@
 
 
 
-               
-                <ul class="dropdown">
-               <li>
-                    <img class ="img-circle" src="@DataManager.User.GetUserById(User.Identity.GetUserId()).Avatar_Url" width="80" height="80" />
-                    @Html.ActionLink(User.Identity.GetUserName(), "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Профиль" })
-                </li>
-                <li>
-                    <em class="icon-user"></em>@Html.ActionLink("Заказы", "Order", "Profile", routeValues: null, htmlAttributes: new { title = "Заказы " })
-                </li>
-                <li>
-                    <em class="icon-user"></em>@Html.ActionLink("Настройки", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Настройки" })
-                </li>
-                <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
-            </ul>
-        
+
+            <div class="dropdown">
+    <span class="" type="button" data-toggle="dropdown">
+        <img class="img-circle" src="@DataManager.User.GetUserById(User.Identity.GetUserId()).Avatar_Url" width="80" height="80" />
+        <span class="caret"></span>
+    </span>
+    <ul class="dropdown-menu">
+    <li>
+           @Html.ActionLink("Профиль", "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Профиль" })
+    </li>
+    <li>
+        @Html.ActionLink("Заказы", "Order", "Profile", routeValues: null, htmlAttributes: new { title = "Заказы " })
+    </li>
+    <li>
+        @Html.ActionLink("Настройки", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Настройки" })
+    </li>
+    <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
+    </ul>
+    </div>
     }
 }
 else

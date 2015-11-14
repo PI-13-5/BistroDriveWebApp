@@ -435,3 +435,6 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner { border: 
         margin-left: 5px;
     }
 }
+.dropdown-menu li {
+    font-size:20px;
+}

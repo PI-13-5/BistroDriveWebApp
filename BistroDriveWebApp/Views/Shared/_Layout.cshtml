@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-offset-1 col-md-7">
                 <div class="top-menu">
-                    <div class="top-nav">
+                    @*<div class="top-nav">*@
                         <nav class="navbar navbar-default">
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav navbar-left">
@@ -44,7 +44,7 @@
                                 </ul>
                             </div>
                         </nav>
-                    </div>
+                    @*</div>*@
                     <!--//navigation-->
                 </div>
             </div>
@@ -111,22 +111,6 @@
         $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
           " - $" + $( "#slider-range" ).slider( "values", 1 ) );
       });
-    </script>
-    <script>
-            function DropDown(el) {
-            this.dd = el;
-            this.initEvents();
-        }
-        DropDown.prototype = {
-            initEvents: function () {
-                var obj = this;
-
-                obj.dd.on('click', function (event) {
-                    $(this).toggleClass('active');
-                    event.stopPropagation();
-                });
-            }
-        }
     </script>
                 @Scripts.Render("~/bundles/jquery")
                 @Scripts.Render("~/bundles/bootstrap")
