@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BistroDriveWebApp.Models
 {
-    static class DataManager
+    public class DataManager
     {
         static BistroDriveEntities _context;
         public static void Init()

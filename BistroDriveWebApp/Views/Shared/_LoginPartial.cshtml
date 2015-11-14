@@ -1,28 +1,34 @@
 ﻿@using Microsoft.AspNet.Identity
+@using BistroDriveWebApp.Models 
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Привет " + User.Identity.GetUserName() + "!", "Index","Profile", routeValues: null, htmlAttributes: new { title = "Профиль пользоавтеля" })
-        </li>
-        <li>
-         @Html.ActionLink("Заказы", "Order", "Profile", routeValues: null, htmlAttributes: new { title = "Заказы пользователя" })
-        </li>
-        <li>
-            @Html.ActionLink("Настройки", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Настройка данных пользователя" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
-    </ul>
+
+
+               
+                <ul class="dropdown">
+               <li>
+                    <img class ="img-circle" src="@DataManager.User.GetUserById(User.Identity.GetUserId()).Avatar_Url" width="80" height="80" />
+                    @Html.ActionLink(User.Identity.GetUserName(), "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Профиль" })
+                </li>
+                <li>
+                    <em class="icon-user"></em>@Html.ActionLink("Заказы", "Order", "Profile", routeValues: null, htmlAttributes: new { title = "Заказы " })
+                </li>
+                <li>
+                    <em class="icon-user"></em>@Html.ActionLink("Настройки", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Настройки" })
+                </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
+            </ul>
+        
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-     @*   <li>@Html.ActionLink("Регистрация", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+        @*   <li>@Html.ActionLink("Регистрация", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
         <li>@Html.ActionLink("Вход", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "scroll login-top-btn", id = "loginLink" })</li>
     </ul>
 }
