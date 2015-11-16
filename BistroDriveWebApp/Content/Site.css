@@ -2,30 +2,30 @@
 /* font-family: "RobotoSlabRegular"; */
 @font-face {
     font-family: "RobotoSlabRegular";
-    src: url("./fonts/RobotoSlabRegular/RobotoSlabRegular.eot");
-    src: url("./fonts/RobotoSlabRegular/RobotoSlabRegular.eot?#iefix")format("embedded-opentype"),
-    url("./fonts/RobotoSlabRegular/RobotoSlabRegular.woff") format("woff"),
-    url("./fonts/RobotoSlabRegular/RobotoSlabRegular.ttf") format("truetype");
+    src: url("../fonts/RobotoSlabRegular/RobotoSlabRegular.eot");
+    src: url("../fonts/RobotoSlabRegular/RobotoSlabRegular.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/RobotoSlabRegular/RobotoSlabRegular.woff") format("woff"),
+    url("../fonts/RobotoSlabRegular/RobotoSlabRegular.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
 /* font-family: "RobotoSlabLight"; */
 @font-face {
     font-family: "RobotoSlabLight";
-    src: url("./fonts/RobotoSlabLight/RobotoSlabLight.eot");
-    src: url("./fonts/RobotoSlabLight/RobotoSlabLight.eot?#iefix")format("embedded-opentype"),
+    src: url("../fonts/RobotoSlabLight/RobotoSlabLight.eot");
+    src: url("../fonts/RobotoSlabLight/RobotoSlabLight.eot?#iefix")format("embedded-opentype"),
     url("./fonts/RobotoSlabLight/RobotoSlabLight.woff") format("woff"),
-    url("./fonts/RobotoSlabLight/RobotoSlabLight.ttf") format("truetype");
+    url("../fonts/RobotoSlabLight/RobotoSlabLight.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
 /* font-family: "RobotoSlabBold"; */
 @font-face {
     font-family: "RobotoSlabBold";
-    src: url("./fonts/RobotoSlabBold/RobotoSlabBold.eot");
-    src: url("./fonts/RobotoSlabBold/RobotoSlabBold.eot?#iefix")format("embedded-opentype"),
-    url("./fonts/RobotoSlabBold/RobotoSlabBold.woff") format("woff"),
-    url("./fonts/RobotoSlabBold/RobotoSlabBold.ttf") format("truetype");
+    src: url("../fonts/RobotoSlabBold/RobotoSlabBold.eot");
+    src: url("../fonts/RobotoSlabBold/RobotoSlabBold.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/RobotoSlabBold/RobotoSlabBold.woff") format("woff"),
+    url("../fonts/RobotoSlabBold/RobotoSlabBold.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
@@ -42,6 +42,9 @@
   clear: both;
 }
 
+.container-pr {
+background: #F5F6F7;
+}
 .centered {
     text-align: center;
     margin-left:150px;
@@ -393,6 +396,48 @@ label {
     font-size: 1.2em;
 }
 
+.profile-title {
+    margin-top: 1em;
+    margin-bottom: 3em;
+}
+
+.user-description {
+    text-align: justify;
+}
+.cook-icon {
+    text-align: center;
+}
+.ratings {
+    margin-top: 1em;
+}
+.offers {
+    margin-top: 5em;
+}
+.reviews {
+    margin: 5em 0em 5em 0em;
+}
+.reviews-name {
+    font-size: 1.5em;
+    display: inline;
+    float: left;
+    margin-right: 30px;
+}
+.rating-reviews {
+    padding-top: 7px;
+    font-size: 0.75em;
+}
+.reviews-description {
+    text-align: justify;
+    margin-top: 5px;
+    margin-bottom: 3em;
+}
+.reviews-description a {
+    color: #20A8FF;
+}
+.reviews-description a:hover {
+    color: #818181;
+}
+
 /* Effective stylesheet produced by snapshot save */
 .ui-helper-clearfix::before, .ui-helper-clearfix::after { content: ""; display: table; border-collapse: collapse; }
 .ui-helper-clearfix::after { clear: both; }
@@ -437,4 +482,69 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner { border: 
 }
 .dropdown-menu li {
     font-size:20px;
+}
+
+/* Горизонтальный слайдер */
+.horizontalSlider {
+    position:relative;
+    margin:auto;
+    padding-top: 3%;
+}
+.jcarousel {
+    overflow:hidden;
+    margin:auto;
+}
+.jcarousel ul {
+    list-style:none;
+    width:2000em;
+    position:relative;
+}
+.jcarousel ul li {
+    float:left;
+    width:290px !important;
+    min-height:260px;
+    margin-right:20px;
+    text-align:center;
+}
+.sliderControl .control a.jcarousel-control-prev, .sliderControl .control a.jcarousel-control-next {
+    display: block;
+    width: 40px;
+    height: 45px;
+    overflow: hidden;
+    background: url(../images/img-sprite.png) no-repeat -515px -354px;
+    position: absolute;
+    top: 35%;
+    margin-top: 30px;
+    left: -75px;
+
+
+
+    }
+.sliderControl .control a.jcarousel-control-next {
+    background-position:-571px -354px;
+    left:inherit; right:-55px;
+}
+.sliderControl .jcarousel-pagination {
+    width:100%;
+    text-align:center;
+    margin:8% 0;
+}
+.sliderControl .jcarousel-pagination a {
+    display:inline-block;
+    width:60px;
+    height:4px;
+    margin-right:10px;
+    background:#ccc;
+    overflow:hidden;
+    text-indent:-200px;
+}
+.sliderControl .jcarousel-pagination a active{
+}
+.sliderControl .jcarousel-pagination a:hover, .sliderControl .jcarousel-pagination a.active {
+    background:#6f9ccb;
+}
+.jcarousel ul li figure {
+    padding-bottom:16px;
+    display:block;
+    background:url(../images/imgBottom.png) no-repeat center bottom;
 }

@@ -81,12 +81,12 @@ namespace BistroDriveWebApp.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Email или Имя пользователя")]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Display(Name = "Запомнить меня?")]
@@ -98,7 +98,7 @@ namespace BistroDriveWebApp.Models
         [Required]
         [System.Web.Mvc.Remote("IsUserNameAvailable","Account",ErrorMessage ="Данное имя пользователя уже используеться")]
         [StringLength(120, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
-        [Display(Name = "Никнейм")]
+        [Display(Name = "Имя пользователя")]
         public string UserName { get; set; }
 
         [Required]
