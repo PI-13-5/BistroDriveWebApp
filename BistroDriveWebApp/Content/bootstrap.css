@@ -335,7 +335,8 @@ textarea {
 }
 
 a {
-  color: #428bca;
+  /*color: #428bca;*/
+  color:#20a8ff;
   text-decoration: none;
 }
 
@@ -1243,7 +1244,7 @@ pre code {
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1170px;
+    max-width: 1280px;
   }
   .col-lg-1,
   .col-lg-2,
@@ -6813,4 +6814,7 @@ td.visible-print {
   td.hidden-print {
     display: none !important;
   }
+}
+select{
+    border: 2px solid #20a8ff;
 }

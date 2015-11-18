@@ -4,7 +4,7 @@
 }
 <div>
     <div class="row center-text">
-        <div class="container search">
+        <div class="search">
             <h2 class="margin-b-title">Найди себе что-нибудь по вкусу</h2>
             <input type="search" class="search-input" id="search" placeholder="Введите данные для поиска">
             <input class="btn search-btn" type="submit" value="Поиск">
@@ -34,6 +34,7 @@
                     <option value="Сумы">Сумы</option>
                 </select>
             </div>
+            <hr class="block-left-hr">
             <div class="select-menu">Ценовой диапазон</div>
             <p>
                 <label for="amount">Цена:</label>
@@ -44,9 +45,9 @@
             <br>
         </div>
         <br>
-        <span class="question">Если ты знаешь как нам стать лучше, то жми <a href="#">сюда</a></span>
+        <p class="question">Если ты знаешь как нам стать лучше, то <a href="#">жми сюда!</a></p>
     </div>
-        <div class="col-md-9 main-content">
+        <div class="col-md-8 main-content">
             @foreach (var item in Model.DishList)
             {        <article>
         <h2 class="list-title">@Html.ActionLink(item.Name, "dishinfo", "profile", new { id = item.Id_Dish }, null)</h2>
