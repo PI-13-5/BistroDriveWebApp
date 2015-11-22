@@ -45,11 +45,7 @@
 .container-pr {
 background: #F5F6F7;
 }
-.centered {
-    text-align: center;
-    margin-left:150px;
 
-}
 .agree{
     float:left;
 }
@@ -60,6 +56,9 @@ body{
     color: #464553;
     background: #f5f6f7;
     /*background: #e3e4e6;*/
+}
+.header,.footer{
+    background: #e3e4e6;
 }
 h1,h2,h3,h4,h5,h6{
 	margin:0;
@@ -74,11 +73,12 @@ ul,label{
 .row {
     margin: 0;
 }
-.header, .footer {
-    /*background: #e3e4e6;*/
-}
+
 .header {
     height: 195px;
+}
+.header svg{
+    margin-top:5px;
 }
 .top-logo {
     margin-top: 20px;
@@ -96,7 +96,7 @@ ul,label{
 .navbar-default .navbar-nav > li {
     padding-left: 0px;
 }
-.navbar-default .navbar-nav > li:last-child {
+.navbar-default .navbar-nav > li:last-child img{
     margin-top:-10px;
 }
 .navbar-default .navbar-nav > li > a.login-top-btn {
@@ -108,10 +108,9 @@ ul,label{
     color:#fff;
 }
 
-
 .top-menu {
    float: right;
-   margin-top: 85px;
+   margin-top: 50px;
    background: none;
 }
 .top-menu ul {
@@ -130,7 +129,7 @@ a.login-top-btn {
   color: #20a8ff; /* öâåò òåêñòà */
   text-decoration: none; /* óáèðàòü ïîä÷¸ðêèâàíèå ó ññûëîê */
   user-select: none; /* óáèðàòü âûäåëåíèå òåêñòà */
-  background: #e3e4e6; /* ôîí êíîïêè */
+  /*background: #e3e4e6;*/ /* ôîí êíîïêè */
   border: 3px solid #20a8ff;
   border-radius: 8px;
   padding: .1em 0.3em; /* îòñòóï îò òåêñòà */
@@ -138,7 +137,13 @@ a.login-top-btn {
 }
 a.login-top-btn:hover { background: #B6AFB0; } /* ïðè íàâåäåíèè êóðñîðà ìûøêè */
 a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
-
+.validation-summary-errors {
+     margin-right:200px;
+}
+.validation-summary-errors ul{
+    list-style:none;
+   
+}
 
 .login-top-btn {
     display: inline;
@@ -168,13 +173,15 @@ a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
     font-size: 1.5em !important;
     border: 3px solid #20a8ff !important;
     width: 100%;
+    background: inherit;
+
 }
 .btn-submit:hover {
     background: #20a8ff;
     color:#fff;
 }
 .footer {
-    height: 395px;
+    height: 100%;
 }
 .footer-logo {
     margin: 20px 0px 40px 30px;
@@ -211,13 +218,18 @@ a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
 }
 
 /*LEGEND LOGO*/
+.centered-login {
+    text-align: center;
+    margin-left:224px;
+
+}
 .login-form {
-    margin-top: 50px;
+    margin-top: 30px;
     height: 50px;
-    margin-left:170px;
+    margin-left:224px;
 }
 .login-form legend {
-    font:700 13px/normal Montserrat, sans-serif;
+    font-weight:700;
     text-transform:uppercase;
     text-decoration:none;
     text-shadow:none;
@@ -559,4 +571,9 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner { border: 
     padding-bottom:16px;
     display:block;
     background:url(../images/imgBottom.png) no-repeat center bottom;
+}
+
+.control-label {
+    text-align:right;
+    font-weight:bold;
 }

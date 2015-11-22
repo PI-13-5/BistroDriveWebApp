@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - BistroDrive</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/jquery")
+    
      @*@Scripts.Render("~/bundles/modernizr")*@
         <script type="text/javascript">
         var appInsights=window.appInsights||function(config){
@@ -19,7 +19,7 @@
     </script>
     </head>
 <body>
-    <div class="container">
+    @*<div class="container">*@
         @*  @Html.ActionLink("BistroDrive", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
         <div class="row header">
             <div class="col-md-4">
@@ -94,7 +94,8 @@
                     <p class="copyright">BistroDrive @DateTime.Now.Year &copy; Все права защищены </p>
                 </div>
             </footer>
-        </div>
+        @*</div>*@
+    @Scripts.Render("~/bundles/jquery")
     <script>
         $(function() {
             $("#slider-range").slider({

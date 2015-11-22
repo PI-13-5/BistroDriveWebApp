@@ -12,53 +12,55 @@
                 <span><legend>Регистрация аккаунта</legend></span>
             </fieldset>
         </form>
-        <p class="centered">Уже есть аккаунт? Тогда @Html.ActionLink("жми сюда", "Login")</p>
+        <p class="centered-login">Уже есть аккаунт? Тогда @Html.ActionLink("жми сюда", "Login")</p>
     </div>
 </div>
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="col-md-offset-3 col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-1 control-label" })
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Surname, new { @class = "col-md-1 control-label" })
-            @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.UserName, new { @class = "col-md-1 control-label" })
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-1 control-label" })
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-1 control-label" })
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-1 control-label" })
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            <form action="">
-                <input type="checkbox" class="agree" style="opacity:1;"/>
-                <p>
-                    Я прочёл(а) и Согласен(на) с <a href="#">Правилами использования</a>
-                </p>
-            </form>
-        </div>
+<div class="col-md-offset-4 col-md-4">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+     
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new { @class = " control-label" })
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Surname, new { @class = " control-label" })
+                @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserName, new { @class = " control-label" })
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = " control-label" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <form action="">
+                    <input type="checkbox" class="agree" style="opacity:1;" />
+                    <p>
+                        Я прочёл(а) и Согласен(на) с <a href="#">Правилами использования</a>
+                    </p>
+                </form>
+            </div>
             <div class="form-group">
                 <input type="submit" class="btn-submit input-lg" value="Регистрация" />
             </div>
 
-        </div>
-}
+        
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    }
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
