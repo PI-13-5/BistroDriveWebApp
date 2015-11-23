@@ -269,7 +269,7 @@ a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
  
 .login-form fieldset > span:after {
     content:' ';
-    position:absolute;
+    position:absыolute;
     left:10%;
     top:50%;
     width:80%;
@@ -298,17 +298,34 @@ a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
     margin: 0px auto;
     width: 70%;
 }
+input[type="search"] {
+	/*width: 600px;
+	font-size: 13px;
+	padding: 6px 0 4px 10px;
+	border: 1px solid #777777;
+	background: transparent;
+	border-radius: 8px;
+    height: 50px;*/
+    width: 500px;
+    height: 40px;
+    border: 2px solid #959595;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.search-btn{
+   height: 40px;
+   width:140px;
+   line-height:none;
+}
 .center-text {
     text-align: center;
 }
 .margin-b-title {
-    margin-bottom: 45px;
+    margin-bottom: 30px;
     color: #464553;
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 300;
-}
-.search-btn {
-   height: 50px;
 }
 .btn {
   font-size: 2em;
@@ -381,31 +398,14 @@ a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
     margin-top: 1em;
     font-size: 2em;
 }
-input[type="search"] {
-	/*width: 600px;
-	font-size: 13px;
-	padding: 6px 0 4px 10px;
-	border: 1px solid #777777;
-	background: transparent;
-	border-radius: 8px;
-    height: 50px;*/
-    width: 500px;
-    height: 50px;
-    border: 2px solid #959595;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-}
-.search-btn{
-    width:160px;
-}
+
 .select-menu {
     padding-bottom: 1em;
     font-size: 1.5em;
 }
 .question {
-    font-size: 30px;
-    margin-top:85px;
+    font-size: 24px;
+    margin-top:150px;
 }
 .question a{
     text-decoration: underline;
