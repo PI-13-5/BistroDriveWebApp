@@ -6,7 +6,7 @@
 @*<h2>@ViewBag.Title.</h2>*@
 
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-12">
         <form class="login-form" action="">
             <fieldset>
                 <span><legend>Регистрация аккаунта</legend></span>
@@ -15,7 +15,7 @@
         <p class="centered-login">Уже есть аккаунт? Тогда @Html.ActionLink("жми сюда", "Login")</p>
     </div>
 </div>
-<div class="col-md-offset-4 col-md-4">
+<div class="col-md-offset-4 col-md-5">
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
