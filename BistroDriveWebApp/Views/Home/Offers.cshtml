@@ -6,12 +6,12 @@
     <div class="row center-text">
         <div class="search">
             <h2 class="margin-b-title">Найди себе что-нибудь по вкусу</h2>
-            <input type="search" class="search-input" id="search" placeholder="Введите данные для поиска">
+            <input type="search" class="search-input" id="search" placeholder="">
             <input class="btn search-btn" type="submit" value="Поиск">
         </div>
     </div>
     <div class="row content">
-    <div class="col-md-3">
+    <div class="col-md-offset-1 col-md-3">
         <div class="left-sidebar">
             <h2 class="block-title">Категории:</h2>
             <form>
@@ -47,7 +47,7 @@
         <br>
         <p class="question">Если ты знаешь как нам стать лучше, то <a href="#">жми сюда!</a></p>
     </div>
-        <div class="col-md-8 main-content">
+        <div class="col-md-7 main-content">
             @foreach (var item in Model.DishList)
             {        <article>
         <h2 class="list-title">@Html.ActionLink(item.Name, "dishinfo", "profile", new { id = item.Id_Dish }, null)</h2>

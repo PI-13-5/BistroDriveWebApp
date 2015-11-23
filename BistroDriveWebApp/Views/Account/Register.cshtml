@@ -46,19 +46,14 @@
                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
             </div>
             <div class="form-group">
-                <form action="">
-                    <input type="checkbox" class="agree" style="opacity:1;" />
-                    <p>
-                        Я прочёл(а) и Согласен(на) с <a href="#">Правилами использования</a>
-                    </p>
-                </form>
-            </div>
+                
+                <div class="agree"><input type="checkbox" class="agree" id="agree" /><label for="agree"></label></div>
+                     <p class="confirm">Я прочёл(а) и Согласен(на) с <a href="#">Правилами использования</a></p>
+              </div>
             <div class="form-group">
-                <input type="submit" class="btn-submit input-lg" value="Регистрация" />
+             
+                   <input type="submit" class="btn-submit input-lg" value="Регистрация" />
             </div>
-
-        
-
     }
     </div>
     @section Scripts {
