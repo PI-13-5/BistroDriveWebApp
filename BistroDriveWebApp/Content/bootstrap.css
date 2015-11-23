@@ -311,11 +311,11 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #ffffff;*/
 }
 
 input,
@@ -335,7 +335,8 @@ textarea {
 }
 
 a {
-  color: #428bca;
+  /*color: #428bca;*/
+  color:#20a8ff;
   text-decoration: none;
 }
 
@@ -473,7 +474,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
   font-weight: 500;
   line-height: 1.1;
 }
@@ -757,10 +758,12 @@ pre code {
 }
 
 .container {
-  padding-right: 15px;
+  /*padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
-  margin-left: auto;
+  margin-left: auto;*/
+  margin:0 auto;
+  padding:0;
 }
 
 .container:before,
@@ -1243,7 +1246,7 @@ pre code {
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1170px;
+    max-width: 1280px;
   }
   .col-lg-1,
   .col-lg-2,
@@ -6813,4 +6816,7 @@ td.visible-print {
   td.hidden-print {
     display: none !important;
   }
+}
+select{
+    border: 2px solid #20a8ff;
 }
