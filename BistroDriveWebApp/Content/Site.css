@@ -55,9 +55,9 @@ body{
     background: #f5f6f7;
     /*background: #e3e4e6;*/
 }
-.header,.footer{
+/*.header,.footer{
     background: #e3e4e6;
-}
+}*/
 h1,h2,h3,h4,h5,h6{
 	margin:0;
 }
@@ -122,7 +122,7 @@ ul,label{
 .top-menu li {
     display: inline;
     list-style: none;
-    font-size: 20px;
+    font-size: 30px;
     padding: 0px 15px;
 }
 .top-menu a {
@@ -226,18 +226,18 @@ a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
     float:left;
 }
 .centered-error{
-    margin-left: 165px;
+    margin-left: 85px;
 }
 /*LEGEND LOGO*/
 .centered-login {
     text-align: center;
-    margin-left:224px;
+    margin-left:85px;
 
 }
 .login-form {
-    margin-top: 30px;
+    /*margin-top: 30px;*/
     height: 50px;
-    margin-left:224px;
+    margin-left:265px;
 }
 .login-form legend {
     font-weight:700;
@@ -253,7 +253,7 @@ a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
     -moz-transition:all .2s;
     transition:all .2s;
     padding:10px 20px;
-    width: 450px;
+    width: 260px;
     height: auto;
  
  
@@ -261,7 +261,7 @@ a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
  
 .login-form fieldset > span {
     text-align:center;
-    width:100%;
+    width:72%;
     position:relative;
     display:block;
     margin:70px 0;
@@ -298,17 +298,47 @@ a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
     margin: 0px auto;
     width: 70%;
 }
+input[type="search"] {
+	/*width: 600px;
+	font-size: 13px;
+	padding: 6px 0 4px 10px;
+	border: 1px solid #777777;
+	background: transparent;
+	border-radius: 8px;
+    height: 50px;*/
+    width: 500px;
+    height: 40px;
+    border: 2px solid #959595;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.search-btn{
+   height: 40px;
+   width:140px;
+   line-height:0;
+}
 .center-text {
     text-align: center;
 }
-.margin-b-title {
-    margin-bottom: 45px;
+.margin-b-title,.margin-b-review {
+    margin-bottom: 30px;
     color: #464553;
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 300;
 }
-.search-btn {
-   height: 50px;
+.margin-b-review{
+   margin:0 0 60px 30px;
+
+ }
+.username,.username-rev{
+     color: #20A8FF;
+     font-size:16px;
+     margin-bottom: 2em;
+}
+.username-rev{
+    margin-bottom: 1em;
+    width: 30px;
 }
 .btn {
   font-size: 2em;
@@ -381,31 +411,14 @@ a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
     margin-top: 1em;
     font-size: 2em;
 }
-input[type="search"] {
-	/*width: 600px;
-	font-size: 13px;
-	padding: 6px 0 4px 10px;
-	border: 1px solid #777777;
-	background: transparent;
-	border-radius: 8px;
-    height: 50px;*/
-    width: 500px;
-    height: 50px;
-    border: 2px solid #959595;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-}
-.search-btn{
-    width:160px;
-}
+
 .select-menu {
     padding-bottom: 1em;
     font-size: 1.5em;
 }
 .question {
-    font-size: 30px;
-    margin-top:85px;
+    font-size: 24px;
+    margin-top:150px;
 }
 .question a{
     text-decoration: underline;
@@ -457,38 +470,50 @@ label {
 
 .profile-title {
     margin-top: 1em;
-    margin-bottom: 3em;
+    margin-bottom: 2em;
 }
 
 .user-description {
     text-align: justify;
+    font-size:18px;
 }
 .cook-icon {
     text-align: center;
+        width: 138px;
+    height: 192px;
 }
 .ratings {
     margin-top: 1em;
+    display: inline-block;
+}
+.list-inline > li {
+    padding-right:0;
 }
 .offers {
     margin-top: 5em;
 }
+ .offers a {
+         color: #464553;
+         text-decoration:none;
+    }
 .reviews {
-    margin: 5em 0em 5em 0em;
+    margin: 4em 0;
 }
 .reviews-name {
-    font-size: 1.5em;
-    display: inline;
-    float: left;
-    margin-right: 30px;
+    font-size: 24px;
+    width:131px;
+    margin-right:24px;
+    float:left;
 }
 .rating-reviews {
-    padding-top: 7px;
-    font-size: 0.75em;
+    padding-top: 8px;
+    font-size: 1em;
 }
 .reviews-description {
     text-align: justify;
-    margin-top: 5px;
+    /*margin-top: 5px;*/
     margin-bottom: 3em;
+    font-size: 18px;
 }
 .reviews-description a {
     color: #20A8FF;
@@ -555,14 +580,14 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner { border: 
 }
 .jcarousel ul {
     list-style:none;
-    width:2000em;
+    width:250em;
     position:relative;
 }
 .jcarousel ul li {
     float:left;
-    width:290px !important;
+    width:230px !important;
     min-height:260px;
-    margin-right:20px;
+    margin-right:17px;
     text-align:center;
 }
 .sliderControl .control a.jcarousel-control-prev, .sliderControl .control a.jcarousel-control-next {
@@ -570,7 +595,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner { border: 
     width: 40px;
     height: 45px;
     overflow: hidden;
-    background: url(../images/img-sprite.png) no-repeat -515px -354px;
+    background: url(./images/img-sprite.png) no-repeat -515px -354px;
     position: absolute;
     top: 35%;
     margin-top: 30px;

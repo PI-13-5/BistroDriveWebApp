@@ -19,7 +19,7 @@
     </script>
     </head>
 <body>
-    @*<div class="container">*@
+    <div class="container">
         @*  @Html.ActionLink("BistroDrive", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
         <div class="row header">
             <div class="col-md-4">
@@ -79,10 +79,10 @@
                         </div>
                     </div>
                     <div class="col-md-2 social-buttons">
-                        <a href="#"><img src="/images/icons/facebook-48.png" width="48" height="48" alt=""></a>
-                        <a href="#"><img src="/images/icons/twitter-48.png" width="48" height="48" alt=""></a>
-                        <a href="#"><img src="/images/icons/googleplus-48.png" width="48" height="48" alt=""></a>
-                        <a href="#"><img src="/images/icons/vk-48.png" width="48" height="48" alt=""></a>
+                        <a href="#"><img src="/Content/images/icons/facebook-48.png" width="48" height="48" alt=""></a>
+                        <a href="#"><img src="/Content/images/icons/twitter-48.png" width="48" height="48" alt=""></a>
+                        <a href="#"><img src="/Content/images/icons/googleplus-48.png" width="48" height="48" alt=""></a>
+                        <a href="#"><img src="/Content/images/icons/vk-48.png" width="48" height="48" alt=""></a>
                     </div>
                 </div>
 
@@ -90,7 +90,7 @@
                     <p class="copyright">BistroDrive @DateTime.Now.Year &copy; Все права защищены </p>
                 </div>
             </footer>
-        @*</div>*@
+        </div>
     @Scripts.Render("~/bundles/jquery")
     <script>
         $(function() {
@@ -106,7 +106,9 @@
             $("#amount").val("$" + $("#slider-range").slider("values", 0) +" - $" + $("#slider-range").slider("values", 1));
         });
     </script>
-  
+    <script src="~/Scripts/jquery.touchSwipe.min.js"></script>
+    <script src="~/Scripts/app.js"></script>
+    <script src="~/Scripts/jcarousel.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 

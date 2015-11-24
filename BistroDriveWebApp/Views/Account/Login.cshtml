@@ -6,16 +6,16 @@
 
 @*<h2>@ViewBag.Title.</h2>*@
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-12">
         <form class="login-form" action="">
             <fieldset>
                 <span><legend>Вход</legend></span>
             </fieldset>
         </form>
-        <p class="centered-login">Уже есть аккаунт? Тогда @Html.ActionLink("жми сюда", "Login")</p>
+        <p class="centered-login">Уже есть аккаунт? Тогда @Html.ActionLink("жми сюда", "Register")</p>
     </div>
 </div>
-    <div class="col-md-offset-4 col-md-4">
+    <div class="col-md-offset-4 col-md-5">
         
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {

@@ -11,7 +11,7 @@
         <h2 class="profile-title">Профиль пользователя</h2>
         <div class="col-md-3 user-data">
             @*<div><image src="@Html.DisplayFor(model => model.Avatar_Url)" width="200" height="200" /></div>*@
-            <img class="img-responsive cook-icon center-block" src="@Html.DisplayFor(model => model.Avatar_Url)" width="200" height="200" alt="">
+            <img class="img-responsive cook-icon center-block" src="@Html.DisplayFor(model => model.Avatar_Url)" alt="">
             <ul class="list-inline ratings" title="Ratings">
                 <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
                 <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
@@ -22,7 +22,8 @@
             @* <p>Рейтинг:@Html.DisplayFor(model => model.Rating)</p> тут в цикле будем выводить звездочки *@
         </div>
         <div class="col-md-9">
-            <h2 class="margin-b-title">@ViewBag.Title</h2>
+            <h2 class="margin-b-profile">@ViewBag.Title</h2>
+            <p class="username">@Html.DisplayFor(model => model.UserName)</p>
             <p class="user-description">
                 @Html.DisplayFor(model => model.Description)
                 Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности представляет
@@ -33,7 +34,7 @@
     </div>
     <div class="row">
         <div class="offers">
-            <h2 class="margin-b-title">@Html.ActionLink("Список блюд", "Dish", new { id = Model.UserName })</h2>
+            <h2 class="">@Html.ActionLink("Предложения", "Dish", new { id = Model.UserName })</h2>
             <!-- Горизонтальный слайдер -->
             <div class="horizontalSlider">
                 <div class="jcarousel">
@@ -61,10 +62,9 @@
         </div>
     </div>
 
-    <div>
-        @* <h3>@Html.ActionLink("Список блюд", "Dish", new { id = Model.UserName })</h3>*@
-        <br />
-        <div>
+  @*   <div>
+    <h3>@Html.ActionLink("Список блюд", "Dish", new { id = Model.UserName })</h3>
+         <div>
             @foreach (var item in Model.DishList)
             {
                 <h4>@Html.ActionLink(item.Name, "dishinfo", new { id = item.Id_Dish })</h4>
@@ -80,26 +80,26 @@
                     <hr />
             }
         </div>
-    </div>
+    </div>*@
     <div class="row">
         <div class="reviews">
-            <h2 class="margin-b-title">Отзывы</h2>
+            <h2 class="margin-b-review">Отзывы (3)</h2>
             <article>
                 <h3 class="reviews-name">Петров Пётр</h3>
-                <ul class="list-inline rating-reviews" title="Ratings">
+                  <ul class="list-inline rating-reviews" title="Ratings">
                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
                     <li><a href="#"><span class="fa fa-star-o fa-lg"></span></a></li>
                 </ul>
-
+                <p class="username-rev">@Html.DisplayFor(model => model.UserName)</p>
                 <p class="reviews-description">
                     Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки развития. Зачача огранизацииииии, в особеннсти же сложившаяся структура организациии, позволяет оценить значение ситемы обучения кадров, соответствует насущным потребностям. <a href="#">дальше...</a>
                 </p>
             </article>
             <article>
-                <h3 class="reviews-name">Петров Пётр</h3>
+                <h3 class="reviews-name">Петров Пётр</h3>               
                 <ul class="list-inline rating-reviews" title="Ratings">
                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
@@ -107,13 +107,13 @@
                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
                     <li><a href="#"><span class="fa fa-star-o fa-lg"></span></a></li>
                 </ul>
-
+                <p class="username-rev">@Html.DisplayFor(model => model.UserName)</p>
                 <p class="reviews-description">
                     Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки развития. Зачача огранизацииииии, в особеннсти же сложившаяся структура организациии, позволяет оценить значение ситемы обучения кадров, соответствует насущным потребностям. <a href="#">дальше...</a>
                 </p>
             </article>
             <article>
-                <h3 class="reviews-name">Петров Пётр</h3>
+                <h3 class="reviews-name">Петров Пётр</h3>          
                 <ul class="list-inline rating-reviews" title="Ratings">
                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
@@ -121,7 +121,7 @@
                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
                     <li><a href="#"><span class="fa fa-star-o fa-lg"></span></a></li>
                 </ul>
-
+                <p class="username-rev">@Html.DisplayFor(model => model.UserName)</p>
                 <p class="reviews-description">
                     Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки развития. Зачача огранизацииииии, в особеннсти же сложившаяся структура организациии, позволяет оценить значение ситемы обучения кадров, соответствует насущным потребностям. <a href="#">дальше...</a>
                 </p>
@@ -130,7 +130,5 @@
     </div>
 </div>
 
-<script src="~/Scripts/jquery.touchSwipe.min.js"></script>
-<script src="~/Scripts/app.js"></script>
-<script src="~/Scripts/jcarousel.js"></script>
+
     
