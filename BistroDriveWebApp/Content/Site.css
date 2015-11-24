@@ -269,7 +269,7 @@ a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
  
 .login-form fieldset > span:after {
     content:' ';
-    position:absыolute;
+    position:absolute;
     left:10%;
     top:50%;
     width:80%;
@@ -316,16 +316,29 @@ input[type="search"] {
 .search-btn{
    height: 40px;
    width:140px;
-   line-height:none;
+   line-height:0;
 }
 .center-text {
     text-align: center;
 }
-.margin-b-title {
+.margin-b-title,margin-b-review {
     margin-bottom: 30px;
     color: #464553;
     font-size: 36px;
     font-weight: 300;
+}
+.margin-b-review{
+   margin:0 0 60px 30px;
+
+ }
+.username,.username-rev{
+     color: #20A8FF;
+     font-size:16px;
+     margin-bottom: 2em;
+}
+.username-rev{
+    margin-bottom: 1em;
+    width: 30px;
 }
 .btn {
   font-size: 2em;
@@ -457,38 +470,50 @@ label {
 
 .profile-title {
     margin-top: 1em;
-    margin-bottom: 3em;
+    margin-bottom: 2em;
 }
 
 .user-description {
     text-align: justify;
+    font-size:18px;
 }
 .cook-icon {
     text-align: center;
+        width: 138px;
+    height: 192px;
 }
 .ratings {
     margin-top: 1em;
+    display: inline-block;
+}
+.list-inline > li {
+    padding-right:0;
 }
 .offers {
     margin-top: 5em;
 }
+ .offers a {
+         color: #464553;
+         text-decoration:none;
+    }
 .reviews {
-    margin: 5em 0em 5em 0em;
+    margin: 4em 0;
 }
 .reviews-name {
-    font-size: 1.5em;
-    display: inline;
-    float: left;
-    margin-right: 30px;
+    font-size: 24px;
+    width:131px;
+    margin-right:24px;
+    float:left;
 }
 .rating-reviews {
-    padding-top: 7px;
-    font-size: 0.75em;
+    padding-top: 8px;
+    font-size: 1em;
 }
 .reviews-description {
     text-align: justify;
-    margin-top: 5px;
+    /*margin-top: 5px;*/
     margin-bottom: 3em;
+    font-size: 18px;
 }
 .reviews-description a {
     color: #20A8FF;
@@ -555,14 +580,14 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner { border: 
 }
 .jcarousel ul {
     list-style:none;
-    width:2000em;
+    width:250em;
     position:relative;
 }
 .jcarousel ul li {
     float:left;
-    width:290px !important;
+    width:230px !important;
     min-height:260px;
-    margin-right:20px;
+    margin-right:17px;
     text-align:center;
 }
 .sliderControl .control a.jcarousel-control-prev, .sliderControl .control a.jcarousel-control-next {
@@ -570,7 +595,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner { border: 
     width: 40px;
     height: 45px;
     overflow: hidden;
-    background: url(../images/img-sprite.png) no-repeat -515px -354px;
+    background: url(./images/img-sprite.png) no-repeat -515px -354px;
     position: absolute;
     top: 35%;
     margin-top: 30px;

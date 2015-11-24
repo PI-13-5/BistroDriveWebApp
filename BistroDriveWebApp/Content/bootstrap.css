@@ -864,6 +864,9 @@ pre code {
   padding-right: 15px;
   padding-left: 15px;
 }
+.col-md-4 {
+padding-left:0;
+}
 
 .col-xs-1,
 .col-xs-2,
