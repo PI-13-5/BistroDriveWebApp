@@ -454,7 +454,7 @@ input[type="checkbox"]:checked + label {
     float: left;
     margin-left: -20px;
     padding: 0 0 0 30px;
-    background: url('./images/checkboxes.png') no-repeat 0 0;
+    background: url('../images/checkboxes.png') no-repeat 0 0;
 }
 .agree:checked + label {
     background-position: 0 -20px;
@@ -595,7 +595,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner { border: 
     width: 40px;
     height: 45px;
     overflow: hidden;
-    background: url(./images/img-sprite.png) no-repeat -515px -354px;
+    background: url('../images/img-sprite.png') no-repeat -515px -354px;
     position: absolute;
     top: 35%;
     margin-top: 30px;
