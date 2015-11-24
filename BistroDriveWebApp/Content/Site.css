@@ -321,7 +321,7 @@ input[type="search"] {
 .center-text {
     text-align: center;
 }
-.margin-b-title,margin-b-review {
+.margin-b-title,.margin-b-review {
     margin-bottom: 30px;
     color: #464553;
     font-size: 36px;
