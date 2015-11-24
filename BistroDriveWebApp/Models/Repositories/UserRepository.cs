@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BistroDriveWebApp.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +9,23 @@ namespace BistroDriveWebApp.Models
     public class UserRepository
     {
         BistroDriveEntities context;
+        List<aspnetuser> buffer;
+        List<userdescription> desbuffer;
         public UserRepository(BistroDriveEntities _context)
         {
             this.context = _context;
+            buffer = _context.aspnetusers.ToList();
+            desbuffer = _context.userdescriptions.ToList();
         }
-
+        public void RefreshBuffer()
+        {
+            buffer = context.aspnetusers.ToList();
+            desbuffer = context.userdescriptions.ToList();
+        }
+        public aspnetuser GetUserByIdBuffered(string id)
+        {
+            return buffer.SingleOrDefault(u => u.Id == id);
+        }
         public aspnetuser GetUserById(string id)
         {
             return context.aspnetusers.SingleOrDefault(u => u.Id == id);
@@ -42,8 +55,21 @@ namespace BistroDriveWebApp.Models
 
         public string GetUserDescription(string id)
         {
-            var result =  context.userdescriptions.FirstOrDefault(u => u.Id_User == id);
-            if(result == null)
+            var result = context.userdescriptions.FirstOrDefault(u => u.Id_User == id);
+            if (result == null)
+            {
+                return null;
+            }
+            else
+            {
+                return result.Description;
+            }
+        }
+
+        public string GetUserDescriptionBuffered(string id)
+        {
+            var result = desbuffer.FirstOrDefault(u => u.Id_User == id);
+            if (result == null)
             {
                 return null;
             }
@@ -69,6 +95,51 @@ namespace BistroDriveWebApp.Models
             {
                 old.Description = description;
             }
+            context.SaveChanges();
+        }
+
+        public usertoken GetTokenById(int id)
+        {
+            return context.usertokens.FirstOrDefault(t => t.Id_Token == id);
+        }
+
+        public usertoken GetTokenByToken(string token)
+        {
+            //добавить проверку на время и удаление
+            return context.usertokens.FirstOrDefault(t => t.Token == token);
+        }
+
+        public usertoken GenerateToken(string id_user)
+        {
+            var rtoken = Security.GetMd5(id_user + DateTime.Now.ToFileTimeUtc());
+            var token = new usertoken
+            {
+                Id_User = id_user,
+                Expiration = DateTime.Now.AddDays(30),
+                Token = rtoken
+            };
+            context.usertokens.Add(token);
+            context.SaveChanges();
+            return token;
+        }
+
+        public aspnetuser GetUserByToken(string id)
+        {
+            if(id== null)
+            {
+                return null;
+            }
+            var token = GetTokenByToken(id);
+            if (token == null)
+            {
+                return null;
+            }
+            return context.aspnetusers.FirstOrDefault(u => u.Id == token.Id_User);
+        }
+
+        public void DeleteAllUserToken(string id_user)
+        {
+            context.usertokens.RemoveRange(context.usertokens.Where(t => t.Id_User == id_user));
             context.SaveChanges();
         }
 

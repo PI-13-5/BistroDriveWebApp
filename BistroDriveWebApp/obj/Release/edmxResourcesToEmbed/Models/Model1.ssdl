@@ -72,7 +72,9 @@
     </Key>
     <Property Name="Id_Dish" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Id_User" Type="varchar" MaxLength="128" Nullable="false" />
-    <Property Name="Description" Type="longtext" />
+    <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Description" Type="text" />
+    <Property Name="Ingridient" Type="text" />
     <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="PriceWithIngridient" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="ImageUrl" Type="varchar" MaxLength="128" />
@@ -103,7 +105,7 @@
     </Key>
     <Property Name="Id_Order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Id_Cook" Type="varchar" MaxLength="128" Nullable="false" />
-    <Property Name="Id_Customer" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Id_Customer" Type="varchar" MaxLength="128" />
     <Property Name="Id_Status" Type="int" Nullable="false" />
     <Property Name="CreateTime" Type="datetime" Precision="0" Nullable="false" />
     <Property Name="FinishTime" Type="datetime" Precision="0" />
@@ -111,6 +113,14 @@
     <Property Name="Id_PaymentMethod" Type="int" Nullable="false" />
     <Property Name="Id_ContactMethod" Type="int" Nullable="false" />
     <Property Name="Id_Delivery" Type="int" Nullable="false" />
+    <Property Name="id_IngridientsBuyer" Type="int" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Comment" Type="varchar" MaxLength="512" />
+    <Property Name="total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="ordercontactmethod">
     <Key>
@@ -127,6 +137,13 @@
     <Property Name="Id_Delivery" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="orderingridientbuyer">
+    <Key>
+      <PropertyRef Name="Id_IngridientBuyer" />
+    </Key>
+    <Property Name="Id_IngridientBuyer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityType Name="orderpaymentmethod">
     <Key>
@@ -172,6 +189,15 @@
     <Property Name="Id_Description" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Id_User" Type="varchar" MaxLength="128" Nullable="false" />
     <Property Name="Description" Type="text" />
+  </EntityType>
+  <EntityType Name="usertoken">
+    <Key>
+      <PropertyRef Name="Id_Token" />
+    </Key>
+    <Property Name="Id_Token" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_User" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Token" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="Expiration" Type="datetime" Precision="0" />
   </EntityType>
   <Association Name="description_userid_to_aspnetuser_userid">
     <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
@@ -281,11 +307,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Dish_IdUser">
-    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1" />
+  <Association Name="FK_Dish_IdUser_aspnetusers_Id">
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="dish" Type="Self.dish" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="aspnetroles">
+      <Principal Role="aspnetusers">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="dish">
@@ -334,12 +362,12 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Order_IdCook">
-    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1">
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="order" Type="Self.order" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="aspnetroles">
+      <Principal Role="aspnetusers">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="order">
@@ -437,6 +465,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="order_ibfk_1">
+    <End Role="orderingridientbuyer" Type="Self.orderingridientbuyer" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orderingridientbuyer">
+        <PropertyRef Name="Id_IngridientBuyer" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="id_IngridientsBuyer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="usertoken_ibfk_1">
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="usertoken" Type="Self.usertoken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="usertoken">
+        <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="BistroDriveModelStoreContainer">
     <EntitySet Name="aspnetroles" EntityType="Self.aspnetroles" Schema="users" store:Type="Tables" />
     <EntitySet Name="aspnetuserclaims" EntityType="Self.aspnetuserclaims" Schema="users" store:Type="Tables" />
@@ -450,11 +504,13 @@
     <EntitySet Name="order" EntityType="Self.order" Schema="users" store:Type="Tables" />
     <EntitySet Name="ordercontactmethod" EntityType="Self.ordercontactmethod" Schema="users" store:Type="Tables" />
     <EntitySet Name="orderdelivery" EntityType="Self.orderdelivery" Schema="users" store:Type="Tables" />
+    <EntitySet Name="orderingridientbuyer" EntityType="Self.orderingridientbuyer" Schema="users" store:Type="Tables" />
     <EntitySet Name="orderpaymentmethod" EntityType="Self.orderpaymentmethod" Schema="users" store:Type="Tables" />
     <EntitySet Name="orderproduct" EntityType="Self.orderproduct" Schema="users" store:Type="Tables" />
     <EntitySet Name="orderstatus" EntityType="Self.orderstatus" Schema="users" store:Type="Tables" />
     <EntitySet Name="review" EntityType="Self.review" Schema="users" store:Type="Tables" />
     <EntitySet Name="userdescription" EntityType="Self.userdescription" Schema="users" store:Type="Tables" />
+    <EntitySet Name="usertoken" EntityType="Self.usertoken" Schema="users" store:Type="Tables" />
     <AssociationSet Name="description_userid_to_aspnetuser_userid" Association="Self.description_userid_to_aspnetuser_userid">
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="userdescription" EntitySet="userdescription" />
@@ -487,8 +543,8 @@
       <End Role="dishtype" EntitySet="dishtype" />
       <End Role="dish" EntitySet="dish" />
     </AssociationSet>
-    <AssociationSet Name="FK_Dish_IdUser" Association="Self.FK_Dish_IdUser">
-      <End Role="aspnetroles" EntitySet="aspnetroles" />
+    <AssociationSet Name="FK_Dish_IdUser_aspnetusers_Id" Association="Self.FK_Dish_IdUser_aspnetusers_Id">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="dish" EntitySet="dish" />
     </AssociationSet>
     <AssociationSet Name="FK_DishReview_IdDish" Association="Self.FK_DishReview_IdDish">
@@ -504,7 +560,7 @@
       <End Role="order" EntitySet="order" />
     </AssociationSet>
     <AssociationSet Name="FK_Order_IdCook" Association="Self.FK_Order_IdCook">
-      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="order" EntitySet="order" />
     </AssociationSet>
     <AssociationSet Name="FK_Order_IdDelivery" Association="Self.FK_Order_IdDelivery">
@@ -534,6 +590,14 @@
     <AssociationSet Name="FK_Review_IdUser" Association="Self.FK_Review_IdUser">
       <End Role="aspnetroles" EntitySet="aspnetroles" />
       <End Role="review" EntitySet="review" />
+    </AssociationSet>
+    <AssociationSet Name="order_ibfk_1" Association="Self.order_ibfk_1">
+      <End Role="orderingridientbuyer" EntitySet="orderingridientbuyer" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="usertoken_ibfk_1" Association="Self.usertoken_ibfk_1">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="usertoken" EntitySet="usertoken" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

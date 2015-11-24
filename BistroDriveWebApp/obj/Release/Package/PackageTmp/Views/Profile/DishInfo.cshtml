@@ -1,0 +1,86 @@
+﻿@model BistroDriveWebApp.Models.dish
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+        @Html.ActionLink("Профиль пользователя", "Dish", new { id = ViewBag.Username }) |
+        @Html.ActionLink("Список предложений", "Offers","Home")
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*Html.DisplayNameFor(model => model.Name)*@
+            Название
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Тип
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dishtype.Name)
+        </dd>
+        <dt>
+            Изображение
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model=>model.ImageUrl)" width="200" height="200" />
+        </dd>
+
+        <dt>
+            @*Html.DisplayNameFor(model => model.Description)*@
+            Описание
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @*Html.DisplayNameFor(model => model.Price)*@
+            Цена
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @*Html.DisplayNameFor(model => model.PriceWithIngridient)*@
+            Цена с ингридиент.
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceWithIngridient)
+        </dd>
+
+        <dt>
+            @*Html.DisplayNameFor(model => model.Ingridient)*@
+            Ингридиенты
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ingridient)
+        </dd>
+
+
+
+    </dl>
+</div>
+@if (User.Identity.Name != ViewBag.Username)
+{
+@Html.ActionLink("Заказать", "MakeOrder", "order", new { id = Model.Id_Dish }, htmlAttributes: new { @class = "btn btn-success" })
+}
+
+@if (User.Identity.Name == ViewBag.Username)
+{
+<p>
+    <div>
+        @Html.ActionLink("Редактировать", "EditDish", new { id = Model.Id_Dish }) |
+        @Html.ActionLink("Удалить", "DeleteDish", new { id = Model.Id_Dish }, new { onclick = "return confirm('Вы действительно хотите удалить это блюдо?');" })
+    </div>
+</p>
+}
