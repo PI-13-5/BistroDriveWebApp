@@ -5,7 +5,7 @@
 }
 <h2>Список моих заказов</h2>
 
-<h4>Входящии</h4>
+<h4>Входящие</h4>
 <table class="table">
     <tr>
         <th>Дата</th>
@@ -26,8 +26,15 @@
             @Html.DisplayFor(modelItem => item.CreateTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstName) 
-            @Html.DisplayFor(modelItem => item.Surname)
+            @if (item.Id_Customer != null)
+                {
+                @Html.ActionLink((item.FirstName + " " + item.Surname), "index", new { id = item.Id_Customer })
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.Surname)
+            }
         </td>
         <td>@Html.DisplayFor(modelItem => item.Email)
         </td>
@@ -59,7 +66,7 @@
 
 </table>
 
-<h4>Входящии</h4>
+<h4>Иходящие</h4>
 <table class="table">
     <tr>
         <th>Дата</th>
@@ -74,14 +81,14 @@
         <th>Стоимость</th>
         <th></th>
     </tr>
-    @foreach (var item in Model.IncommingOrderList)
+    @foreach (var item in Model.OutcommingOrderList)
     {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CreateTime)
             </td>
             <td>
-                @Html.ActionLink((item.aspnetuser.FristName+" "+item.aspnetuser.Surname),"index", new { id = item.aspnetuser.UserName })
+                @Html.ActionLink((item.aspnetuser.FristName + " " + item.aspnetuser.Surname), "index", new { id = item.aspnetuser.UserName})
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.aspnetuser.Email)

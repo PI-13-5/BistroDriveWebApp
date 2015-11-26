@@ -31,7 +31,7 @@ namespace BistroDriveWebApp.Models
         [Display(Name = "Адрес")]
         public string Address { get; set; }
         
-        [StringLength(1024, ErrorMessage = "{0} must be at least {2} characters long.", MinimumLength = 10)]
+        [StringLength(16384, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 10)]
         [Display(Name = "Обо мне")]
         public string Description { get; set; }
     }
