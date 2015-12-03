@@ -47,6 +47,148 @@ background: #F5F6F7;
 }
 
 
+
+/*LANDING PAGE*/
+@font-face {
+    font-family: "RockwellExtraBold";
+    src: url("../fonts/rockwell_extra_bold.eot");
+    src: url("../fonts/rockwell_extra_bold.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/rockwell-extra-bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+.wrap{
+	 height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+#fullpage {
+	background: #f8f9f9;
+}
+
+.section{
+	height: 100%;
+	width: 100%;
+}
+
+#section1{
+	background: url(../images/firstPage.png);
+	background-size: 65% 65%; 
+	background-position: right ;
+	background-repeat: no-repeat;
+}
+#section2{
+	background: url(../images/secondPage.png);
+	background-size: 100% 90%; 
+	background-position: right ;
+	background-repeat: no-repeat;
+}
+#section3{
+	background: url(../images/thirdPage.png);
+	background-size: 50%; 
+	background-position: right ;
+	background-repeat: no-repeat;
+}
+#section4{
+	background: url(../images/fourthPage.png);
+	background-size: 100% 100%; 
+	background-repeat: no-repeat;
+}
+.mr-10{
+text-indent: 30px;
+line-height: 1.5;}
+.ent-numb{
+	  opacity: 0.8;
+	  width: 100%;
+    border: 2px solid #4A9FD5;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+hgroup{
+	margin-bottom: 50px;
+}
+.ent-numb:hover {
+	opacity: 1;
+}
+
+.btn-submit-land {
+    font-size: 1.5em !important;
+    border: 3px solid #20a8ff !important;
+    width: 100%;
+    background: #20a8ff;
+    color:#fff;
+}
+.chiefhat{
+    margin-top: 50px;
+    background-image:url(../images/chiefhat.png)
+}
+/*.top-menu{
+margin-bottom: 100px;
+}*/
+.login-top-btn{
+	  width: 105px;
+    height: 50px;
+    border: 2px solid #4A9FD5;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.login-top-btn:hover{
+	background: #20a8ff;
+	color: #fff;
+}
+.centered-text{
+	text-align: center;
+    margin-bottom: 50px;
+}
+.script{
+    text-indent: 26px;
+    font-size: 28px;
+}
+.rockwell{
+    font-family: "RockwellExtraBold";
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+/* Style for "Bistro" */
+.bistro {
+    color: #4A9FD5;
+    text-shadow: 0 -2px 7px rgba(0, 0, 0, 0.2);
+}
+/* Style for "Drive" */
+.drive {
+    color: #EC5870;
+    text-shadow: 0 -2px 7px rgba(0, 0, 0, 0.2);
+}
+.norm-weight{
+	font-weight: 400;
+}
+.textlight{
+	font-family: "RobotoSlabLight";
+	color: #4A9FD5;
+    font-size: 18px;
+    font-weight: 300;
+    margin-top: 13px;
+}
+
+.attention{
+    margin: 50px 0 70px 0;
+    font-size: 60px;
+    text-align: center;
+    /*text-indent: 50px;*/
+}
+.lastpage{
+    margin-top: 50px;
+}
+
+
+
 body{
 	margin:0;
 	font-family: "RobotoSlabRegular";
@@ -73,7 +215,7 @@ ul,label{
 }
 
 .header {
-    height: 195px;
+    /*height: 195px;*/
 }
 .header svg{
     height:123px;
@@ -338,7 +480,7 @@ input[type="search"] {
 }
 .username-rev{
     margin-bottom: 1em;
-    width: 30px;
+    width: 150px;
 }
 .btn {
   font-size: 2em;
@@ -442,7 +584,7 @@ input[type="checkbox"] + label {
     float: right;
     margin-left: -20px;
     padding: 0 0 0 30px;
-    background: url('./images/checkboxes.png') no-repeat 0 0;
+    background: url('../images/checkboxes.png') no-repeat 0 0;
 }
 input[type="checkbox"]:checked + label {
     background-position: 0 -20px;
