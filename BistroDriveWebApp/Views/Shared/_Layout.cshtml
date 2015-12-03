@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-offset-1 col-md-7">
                 <div class="top-menu">
-                            <nav class="navbar navbar-default">
+                            <nav class="navbar-default">
                                  <ul class="nav navbar-nav navbar-left">
                                     <li>@Html.ActionLink("Предложения", "Offers", "Home")</li>
                                     <li>@Html.ActionLink("О нас", "About", "Home")</li>
@@ -92,6 +92,12 @@
             </footer>
         </div>
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/carousel")
+    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/touchSwipe")
+    @Scripts.Render("~/bundles/fullpage")
+    @Scripts.Render("~/bundles/easings")
+    @Scripts.Render("~/bundles/slimscroll")
     <script>
         $(function() {
             $("#slider-range").slider({
@@ -106,10 +112,16 @@
             $("#amount").val("$" + $("#slider-range").slider("values", 0) +" - $" + $("#slider-range").slider("values", 1));
         });
     </script>
-    <script src="../Scripts/jquery.touchSwipe.min.js"></script>
+    <script>
+		$(document).ready(function() {
+			$('#fullpage').fullpage();
+		});
+    </script>
+    @*<script src="../Scripts/jquery.touchSwipe.min.js"></script>
     <script src="../Scripts/app.js"></script>
-    <script src="../Scripts/jcarousel.js"></script>
+    <script src="../Scripts/jcarousel.js"></script>*@
     @Scripts.Render("~/bundles/bootstrap")
+
     @RenderSection("scripts", required: false)
 
                

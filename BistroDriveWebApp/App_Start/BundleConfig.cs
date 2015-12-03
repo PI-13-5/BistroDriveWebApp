@@ -23,10 +23,18 @@ namespace BistroDriveWebApp
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
+            bundles.Add(new ScriptBundle("~/bundles/carousel").Include("~/Scripts/jcarousel.js"));
+            
+            bundles.Add(new ScriptBundle("~/bundles/app").Include("~/Scripts/app.js"));
+            bundles.Add(new ScriptBundle("~/bundles/touchSwipe").Include("~/Scripts/jquery.touchSwipe.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/fullpage").Include("~/Scripts/jquery.fullPage.js"));
+            bundles.Add(new ScriptBundle("~/bundles/easings").Include("~/Scripts/jquery.easings.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/slimscroll").Include("~/Scripts/jquery.slimscroll.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome/css/font-awesome.min.css",
+                      "~/Content/jquery.fullPage.css",
                       "~/Content/site.css"));
         }
     }
