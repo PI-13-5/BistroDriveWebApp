@@ -12,7 +12,14 @@ namespace BistroDriveWebApp.Controllers
         const int PageSize = 20;
         public ActionResult Index()
         {
-            return View();
+            if (!Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Offers");
+            }
         }
 
         public ActionResult About()
