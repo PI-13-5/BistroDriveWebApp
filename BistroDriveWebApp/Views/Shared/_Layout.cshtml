@@ -20,11 +20,7 @@
     </head>
 <body>
     <div class="container">
-        @if (Request.Url.PathAndQuery.Equals("/") && !Request.IsAuthenticated)
-        {
-            <div class="row header">Тут будет кастомный хедер для лендинг-пэйдж</div>
-        }
-        else
+        @if (!(Request.Url.PathAndQuery.Equals("/") && !Request.IsAuthenticated))
         {
             @*  @Html.ActionLink("BistroDrive", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             <div class="row header">
@@ -55,11 +51,7 @@
             <div class="body-content cf">
                 @RenderBody()
             </div>
-        @if (Request.Url.PathAndQuery.Equals("/") && !Request.IsAuthenticated)
-        {
-            <div class="row header">Тут будет кастомный футер для лендинг-пэйдж</div>
-        }
-        else
+        @if (!(Request.Url.PathAndQuery.Equals("/") && !Request.IsAuthenticated))
         {
             <footer class="row footer">
                 <div class="row">
