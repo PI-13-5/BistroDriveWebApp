@@ -22,6 +22,18 @@ namespace BistroDriveWebApp.Controllers
             }
         }
 
+        public ActionResult Landing()
+        {
+            if (!Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Offers");
+            }
+        } 
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

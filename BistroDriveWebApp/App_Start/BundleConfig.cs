@@ -37,12 +37,17 @@ namespace BistroDriveWebApp
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/Scripts/app.js"));
 
+            bundles.Add(new StyleBundle("~/Content/landing").Include("~/Content/Landing.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome/css/font-awesome.min.css",
                       "~/Content/jquery.fullPage.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/Landing.less"));
+
+            
+            
         }
     }
 }
