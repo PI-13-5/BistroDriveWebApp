@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="BistroDriveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="aspnetrole">
     <Key>
       <PropertyRef Name="Id" />
@@ -55,13 +55,16 @@
     <Property Name="Address" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
     <Property Name="Avatar_Url" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
     <Property Name="LastOnlineTime" Type="DateTime" />
+    <Property Name="Id_City" Type="Int32" Nullable="false" />
     <NavigationProperty Name="aspnetuserclaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="aspnetusers" ToRole="aspnetuserclaims" />
     <NavigationProperty Name="aspnetuserlogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="aspnetusers" ToRole="aspnetuserlogins" />
+    <NavigationProperty Name="city" Relationship="Self.aspnetusers_ibfk_1" FromRole="aspnetusers" ToRole="city" />
     <NavigationProperty Name="userdescriptions" Relationship="Self.description_userid_to_aspnetuser_userid" FromRole="aspnetusers" ToRole="userdescription" />
     <NavigationProperty Name="dishes" Relationship="Self.FK_Dish_IdUser_aspnetusers_Id" FromRole="aspnetusers" ToRole="dish" />
     <NavigationProperty Name="orders" Relationship="Self.FK_Order_IdCook" FromRole="aspnetusers" ToRole="order" />
     <NavigationProperty Name="usertokens" Relationship="Self.usertoken_ibfk_1" FromRole="aspnetusers" ToRole="usertoken" />
     <NavigationProperty Name="aspnetroles" Relationship="Self.aspnetuserroles" FromRole="aspnetusers" ToRole="aspnetroles" />
+    <Property Name="withTravel" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="chatmessage">
     <Key>
@@ -74,6 +77,15 @@
     <Property Name="CreateTime" Type="DateTime" />
     <NavigationProperty Name="aspnetrole" Relationship="Self.FK_ChatMessage_IdReciver" FromRole="chatmessage" ToRole="aspnetroles" />
     <NavigationProperty Name="aspnetrole1" Relationship="Self.FK_ChatMessage_IdSender" FromRole="chatmessage" ToRole="aspnetroles" />
+  </EntityType>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="id_city" />
+    </Key>
+    <Property Name="id_city" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="aspnetusers" Relationship="Self.aspnetusers_ibfk_1" FromRole="city" ToRole="aspnetusers" />
+    <NavigationProperty Name="orders" Relationship="Models.order_ibfk_2" FromRole="city" ToRole="order" />
   </EntityType>
   <EntityType Name="dish">
     <Key>
@@ -92,6 +104,7 @@
     <NavigationProperty Name="dishtype" Relationship="Self.FK_Dish_IdType" FromRole="dish" ToRole="dishtype" />
     <NavigationProperty Name="dishreviews" Relationship="Self.FK_DishReview_IdDish" FromRole="dish" ToRole="dishreview" />
     <NavigationProperty Name="orderproducts" Relationship="Self.FK_OrderProduct_IdDish" FromRole="dish" ToRole="orderproduct" />
+    <Property Name="CanTeach" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="dishreview">
     <Key>
@@ -144,6 +157,8 @@
     <NavigationProperty Name="orderstatu" Relationship="Self.FK_Order_IdStatus" FromRole="order" ToRole="orderstatus" />
     <NavigationProperty Name="orderproducts" Relationship="Self.FK_OrderProduct_IdOrder" FromRole="order" ToRole="orderproduct" />
     <NavigationProperty Name="orderingridientbuyer" Relationship="Self.order_ibfk_1" FromRole="order" ToRole="orderingridientbuyer" />
+    <Property Name="id_city" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="city" Relationship="Models.order_ibfk_2" FromRole="order" ToRole="city" />
   </EntityType>
   <EntityType Name="ordercontactmethod">
     <Key>
@@ -327,6 +342,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="aspnetusers_ibfk_1">
+    <End Role="city" Type="Self.city" Multiplicity="1" />
+    <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="id_city" />
+      </Principal>
+      <Dependent Role="aspnetusers">
+        <PropertyRef Name="Id_City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="description_userid_to_aspnetuser_userid">
     <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -507,6 +534,7 @@
     <EntitySet Name="aspnetuserlogins" EntityType="Self.aspnetuserlogin" />
     <EntitySet Name="aspnetusers" EntityType="Self.aspnetuser" />
     <EntitySet Name="chatmessages" EntityType="Self.chatmessage" />
+    <EntitySet Name="cities" EntityType="Self.city" />
     <EntitySet Name="dishes" EntityType="Self.dish" />
     <EntitySet Name="dishreviews" EntityType="Self.dishreview" />
     <EntitySet Name="dishtypes" EntityType="Self.dishtype" />
@@ -547,6 +575,10 @@
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="aspnetuserlogins" EntitySet="aspnetuserlogins" />
+    </AssociationSet>
+    <AssociationSet Name="aspnetusers_ibfk_1" Association="Self.aspnetusers_ibfk_1">
+      <End Role="city" EntitySet="cities" />
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
     </AssociationSet>
     <AssociationSet Name="description_userid_to_aspnetuser_userid" Association="Self.description_userid_to_aspnetuser_userid">
       <End Role="aspnetusers" EntitySet="aspnetusers" />
@@ -604,5 +636,21 @@
       <End Role="aspnetroles" EntitySet="aspnetroles" />
       <End Role="aspnetusers" EntitySet="aspnetusers" />
     </AssociationSet>
+    <AssociationSet Name="order_ibfk_2" Association="Models.order_ibfk_2">
+      <End Role="city" EntitySet="cities" />
+      <End Role="order" EntitySet="orders" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="order_ibfk_2">
+    <End Type="Models.city" Role="city" Multiplicity="1" />
+    <End Type="Models.order" Role="order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="id_city" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="id_city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

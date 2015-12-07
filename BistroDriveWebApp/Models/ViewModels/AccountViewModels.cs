@@ -27,13 +27,21 @@ namespace BistroDriveWebApp.Models
         [Display(Name = "Телефон")]
         public string Telphone { get; set; }
 
+        [Required]
+        [Display(Name = "Город")]
+        public int City { get; set; }
+
         [StringLength(64, ErrorMessage = "{0} must be at least {2} characters long.", MinimumLength = 8)]
         [Display(Name = "Адрес")]
         public string Address { get; set; }
-        
+
+        [Display(Name = "Выезжаю надом")]
+        public string WithTravel { get; set; }
+
         [StringLength(16384, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 10)]
         [Display(Name = "Обо мне")]
         public string Description { get; set; }
+        public IEnumerable<city> City_List { set; get; }
     }
     public class ExternalLoginConfirmationViewModel
     {

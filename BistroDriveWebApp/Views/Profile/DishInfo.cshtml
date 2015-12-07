@@ -66,6 +66,20 @@
             @Html.DisplayFor(model => model.Ingridient)
         </dd>
 
+        <dt>
+            Обучаю
+        </dt>
+
+        <dd>
+            @if (Model.CanTeach == true) {
+                @:Да
+             }
+            else
+            {
+                @:Нет
+            }
+        </dd>
+
 
 
     </dl>

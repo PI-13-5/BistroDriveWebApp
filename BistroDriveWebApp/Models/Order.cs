@@ -38,6 +38,7 @@ namespace BistroDriveWebApp.Models
         public string Address { get; set; }
         public string Comment { get; set; }
         public decimal total { get; set; }
+        public int id_city { get; set; }
     
         public virtual aspnetuser aspnetuser { get; set; }
         public virtual ordercontactmethod ordercontactmethod { get; set; }
@@ -47,5 +48,6 @@ namespace BistroDriveWebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orderproduct> orderproducts { get; set; }
         public virtual orderingridientbuyer orderingridientbuyer { get; set; }
+        public virtual city city { get; set; }
     }
 }

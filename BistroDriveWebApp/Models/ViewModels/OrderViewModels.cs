@@ -32,6 +32,10 @@ namespace BistroDriveWebApp.Models
         public string Comment { set; get; }
 
         [Required]
+        [Display(Name = "Город")]
+        public int City { set; get; }
+
+        [Required]
         [Display(Name = "Адрес")]
         public string Address { set; get; }
 
@@ -69,6 +73,8 @@ namespace BistroDriveWebApp.Models
         public decimal DishPrice { set; get; }
         public decimal DishPriceWithIngridient { set; get; }
         public string ImageUrl { set; get; }
+
+        public IEnumerable<city> City_List { set; get; }
 
     }
 }

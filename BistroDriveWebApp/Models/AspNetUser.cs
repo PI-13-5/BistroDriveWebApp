@@ -43,11 +43,14 @@ namespace BistroDriveWebApp.Models
         public string Address { get; set; }
         public string Avatar_Url { get; set; }
         public Nullable<System.DateTime> LastOnlineTime { get; set; }
+        public int Id_City { get; set; }
+        public bool withTravel { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<aspnetuserclaim> aspnetuserclaims { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<aspnetuserlogin> aspnetuserlogins { get; set; }
+        public virtual city city { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<userdescription> userdescriptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

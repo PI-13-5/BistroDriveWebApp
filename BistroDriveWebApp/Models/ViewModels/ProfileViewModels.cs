@@ -27,6 +27,7 @@ namespace BistroDriveWebApp.Models
         public string Firstname { set; get; }
         public string Surname { set; get; }
         public IEnumerable<dish> DishList { set; get; }
+        public bool WithTravel { set; get; }
     }
     public class ProfileViewModel
     {
@@ -61,11 +62,11 @@ namespace BistroDriveWebApp.Models
 
         [Required]
         [Display(Name = "Цена")]
-        [Range(0, (double)decimal.MaxValue, ErrorMessage = "Please enter valid price")]
+        [Range(0, (double)decimal.MaxValue, ErrorMessage = "Введите правильную цену")]
         public decimal Price { set; get; }
 
         [Display(Name = "Цена с ингридиентами")]
-        [Range(0, (double)decimal.MaxValue, ErrorMessage = "Please enter valid price")]
+        [Range(0, (double)decimal.MaxValue, ErrorMessage = "Введите правильную цену")]
         public decimal PriceWithIngridients { set; get; }
 
         [Display(Name = "Фото")]
@@ -74,5 +75,8 @@ namespace BistroDriveWebApp.Models
         [Required]
         [Display(Name = "Тип")]
         public int Id_Type { set; get; }
+        
+        [Display(Name = "Я могу обучить")]
+        public string CanTeach { set; get; }
     }
 }

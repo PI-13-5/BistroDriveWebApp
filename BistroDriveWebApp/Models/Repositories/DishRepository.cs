@@ -73,6 +73,7 @@ namespace BistroDriveWebApp.Models
             item.Price = model.Price;
             item.PriceWithIngridient = model.PriceWithIngridients;
             item.Ingridient = model.Ingridients;
+            item.CanTeach = model.CanTeach != null;
             context.SaveChanges();
         }
 
@@ -101,17 +102,57 @@ namespace BistroDriveWebApp.Models
             return context.dishes.Count();
         }
 
-        public IEnumerable<dish> GetDishList(int page, int pageSize)
+        public IEnumerable<dish> GetDishList(int page, int pageSize, string search = "", int CityId = 0, 
+            string dishinput = "", bool canTeach = false, bool travel = false, int minPrice = 0, int maxPrice = 0)
         {
             var types = context.dishtypes.ToArray();
-            var dishes = context.dishes.OrderByDescending(d=>d.Id_Dish).Skip(page*pageSize).Take(pageSize).ToArray();
+            IEnumerable<dish> dishes = context.dishes.OrderByDescending(d=>d.Id_Dish).Skip(page*pageSize).Take(pageSize);
+            if (search != "")
+            {
+                dishes = dishes.Where(d => d.Name.ToLower().IndexOf(search.ToLower()) != -1);
+            }
+            if(dishinput != "")
+            {
+                //преобразуем строку
+                var dishesArr = dishinput.Split(';');
+                dishes = dishes.Where(d => dishesArr.FirstOrDefault(n=> n == d.dishtype.Id_DishType.ToString()) != null);
+            }
+            if(canTeach == true)
+            {
+                dishes = dishes.Where(d => d.CanTeach == true);
+            }
+            if(travel == true)
+            {
+                dishes = dishes.Where(d => d.aspnetuser.withTravel == true);
+            }
+            if(minPrice != 0 && maxPrice != 0)
+            {
+                //работаем с int а цены в double. Для корректного сравнения
+                minPrice--;
+                maxPrice++;
+                dishes = dishes.Where(d => (d.Price > minPrice && d.Price < maxPrice));
+            }
+            dishes = dishes.ToArray();
             var user = context.aspnetusers.ToArray();
             foreach (var item in dishes)
             {
                 item.dishtype = types.FirstOrDefault(t => t.Id_DishType == item.Id_Type);
                 item.aspnetuser = user.FirstOrDefault(u => u.Id == item.Id_User);
             }
+            if (CityId != 0)
+            {
+                dishes = dishes.Where(d => d.aspnetuser.Id_City == CityId);
+            }
             return dishes;
+        }
+
+        public int GetMaxPrice()
+        {
+            return Convert.ToInt32(context.dishes.Max(d => d.Price));
+        }
+        public int GetMinPrice()
+        {
+            return Convert.ToInt32(context.dishes.Min(d => d.Price));
         }
     }
 }

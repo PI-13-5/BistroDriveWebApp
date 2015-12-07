@@ -670,7 +670,7 @@ input[type="checkbox"] + label {
     float: right;
     margin-left: -20px;
     padding: 0 0 0 30px;
-    background: url('../images/checkboxes.png') no-repeat 0 0;
+    background: url('../content/images/checkboxes.png') no-repeat 0 0;
 }
 input[type="checkbox"]:checked + label {
     background-position: 0 -20px;
@@ -682,7 +682,7 @@ input[type="checkbox"]:checked + label {
     float: left;
     margin-left: -20px;
     padding: 0 0 0 30px;
-    background: url('../images/checkboxes.png') no-repeat 0 0;
+    background: url('../content/images/checkboxes.png') no-repeat 0 0;
 }
 .agree:checked + label {
     background-position: 0 -20px;

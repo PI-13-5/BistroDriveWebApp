@@ -150,6 +150,8 @@ namespace BistroDriveWebApp.Models
             user.Surname = model.Surname;
             user.PhoneNumber = model.Telphone;
             user.Address = model.Address;
+            user.Id_City = model.City;
+            user.withTravel = model.WithTravel != null;
             context.SaveChanges();
             UpdateUserDescription(id, model.Description);
         }

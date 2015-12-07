@@ -27,6 +27,7 @@ namespace BistroDriveWebApp.Models
             order.orderpaymentmethod = DataManager.PaymentMethod.GetPaymentMethodById(order.Id_PaymentMethod);
             order.orderstatu = DataManager.Status.GetOrderStatusById(order.Id_Status);
             order.aspnetuser = DataManager.User.GetUserById(order.Id_Cook);
+            order.city = DataManager.Geolocation.GetCityById(order.id_city);
             return order;
         }
 

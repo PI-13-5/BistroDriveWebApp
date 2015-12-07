@@ -253,3 +253,8 @@ D:\WEB\BistroDrive\landing_test\BistroDriveWebApp\BistroDriveWebApp\bin\Microsof
 D:\WEB\BistroDrive\landing_test\BistroDriveWebApp\BistroDriveWebApp\bin\Microsoft.Scripting.Metadata.dll
 D:\WEB\BistroDrive\landing_test\BistroDriveWebApp\BistroDriveWebApp\bin\dotless.Core.dll
 D:\WEB\BistroDrive\landing_test\BistroDriveWebApp\BistroDriveWebApp\bin\dotless.Core.pdb
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\dotless.Core.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\Microsoft.Dynamic.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\Microsoft.Scripting.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\Microsoft.Scripting.Metadata.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\dotless.Core.pdb

@@ -40,6 +40,7 @@ namespace BistroDriveWebApp.Controllers
             ViewBag.Deliveries = DataManager.Delivery.GetDeliveryMethods();
             ViewBag.Contacts = DataManager.Contact.GetContactMethods();
             ViewBag.IngridientsBuyers = DataManager.IngridientsBuyer.GetIngridientsBuyers();
+            var cities = DataManager.Geolocation.GetAllCities();
             //
             OrderViewModel model = new OrderViewModel
             {
@@ -48,6 +49,7 @@ namespace BistroDriveWebApp.Controllers
                 Phone = user == null ? "" : user.PhoneNumber,
                 FirstName = user == null ? "" : user.FristName,
                 Surname = user == null ? "" : user.Surname,
+                City = user == null ? 0 : user.Id_City,
                 idDish = dish.Id_Dish,
                 CookEmail = cook.Email,
                 CookName = cook.FristName,
@@ -59,7 +61,8 @@ namespace BistroDriveWebApp.Controllers
                 DishPriceWithIngridient = dish.PriceWithIngridient,
                 DishDescription = dish.Description,
                 ImageUrl = dish.ImageUrl,
-                DeadLine = DateTime.Now.AddHours(2)
+                DeadLine = DateTime.Now.AddHours(2),
+                City_List = cities
             };
 
 
@@ -102,7 +105,8 @@ namespace BistroDriveWebApp.Controllers
                 Id_PaymentMethod = model.paymentMethod,
                 Id_Status = 1,// новый
                 Phone = model.Phone,
-                Surname = model.Surname
+                Surname = model.Surname,
+                id_city = model.City
             };
             List<orderproduct> resultProducts = new List<orderproduct>();
             resultProducts.Add(new orderproduct {

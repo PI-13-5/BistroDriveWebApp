@@ -77,7 +77,8 @@ namespace BistroDriveWebApp.Controllers
                 ImageUrl = model.Image_Url,
                 Price = model.Price,
                 PriceWithIngridient = model.PriceWithIngridients,
-                Ingridient = model.Ingridients
+                Ingridient = model.Ingridients,
+                CanTeach = model.CanTeach != null
             };
             //записуем изменения в БД
             DataManager.Dish.AddDish(item);
@@ -147,7 +148,8 @@ namespace BistroDriveWebApp.Controllers
                 Ingridients = item.Ingridient,
                 Name = item.Name,
                 Price = item.Price,
-                PriceWithIngridients = item.PriceWithIngridient
+                PriceWithIngridients = item.PriceWithIngridient,
+                CanTeach = item.CanTeach == false ? null : "true"
             };
 
             return View(model);
@@ -221,7 +223,8 @@ namespace BistroDriveWebApp.Controllers
                 Firstname = user.FristName,
                 Surname = user.Surname,
                 UserName = user.UserName,
-                DishList = dishList
+                DishList = dishList,
+                WithTravel = user.withTravel
             };
             return View(model);
         }

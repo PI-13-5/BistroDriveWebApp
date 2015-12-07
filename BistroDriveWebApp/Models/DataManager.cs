@@ -116,5 +116,18 @@ namespace BistroDriveWebApp.Models
                 return _ingridientsBuyer;
             }
         }
+
+        static GeolocationRepository _geolocation;
+        public static GeolocationRepository Geolocation
+        {
+            get
+            {
+                if (_geolocation == null)
+                {
+                    _geolocation = new GeolocationRepository(_context);
+                }
+                return _geolocation;
+            }
+        }
     }
 }

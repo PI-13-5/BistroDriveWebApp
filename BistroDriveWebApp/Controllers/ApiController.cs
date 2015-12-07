@@ -54,7 +54,8 @@ namespace BistroDriveWebApp.Controllers
             {
                 JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                 JsonRequestBody serJsonDetails = null;
-                try {
+                try
+                {
                     serJsonDetails = (JsonRequestBody)javaScriptSerializer.Deserialize(jsonString, typeof(JsonRequestBody));
                 }
                 catch
@@ -80,7 +81,7 @@ namespace BistroDriveWebApp.Controllers
         //переадресовывает запрос на нужный метод, возвращает - JSON строку
         private async Task<JsonRespondBody> RedirectJsonString(JsonRequestBody json)
         {
-            if(String.Compare(json.Method,"login", true)==0)
+            if (String.Compare(json.Method, "login", true) == 0)
             {
                 return await LoginMethod(json);
             }
@@ -110,6 +111,14 @@ namespace BistroDriveWebApp.Controllers
             {
                 return OrderListMethod(json);
             }
+            else if (String.Compare(json.Method, "getcitylist", true) == 0)
+            {
+                return GetCityMethod(json);
+            }
+            else if (String.Compare(json.Method, "getcategorylist", true) == 0)
+            {
+                return GetCategoryList(json);
+            }
             JsonRespondBody result = new JsonRespondBody { Error = "Invalid method", Status = "error" };
             return result;
         }
@@ -137,7 +146,7 @@ namespace BistroDriveWebApp.Controllers
             DataManager.User.RefreshBuffer();
             IEnumerable<order> ord = DataManager.Order.GetOrdersByUserId(user.Id, incomingOrders);
             List<OrderSerializerBody> orders = new List<OrderSerializerBody>();
-            foreach(var item in ord)
+            foreach (var item in ord)
             {
                 orders.Add(GetOrderInformation(item));
             }
@@ -216,7 +225,7 @@ namespace BistroDriveWebApp.Controllers
             {
                 Comment = o.Comment,
                 Comunication = o.ordercontactmethod.Name,
-                Deadline = o.DeadLine == null? null : ConvertToUnixTime((DateTime)o.DeadLine).ToString(),
+                Deadline = o.DeadLine == null ? null : ConvertToUnixTime((DateTime)o.DeadLine).ToString(),
                 Delivery = o.orderdelivery.Name,
                 FinishTime = o.FinishTime == null ? null : ConvertToUnixTime((DateTime)o.FinishTime).ToString(),
                 Payment = o.orderpaymentmethod.Name,
@@ -241,12 +250,17 @@ namespace BistroDriveWebApp.Controllers
         {
             int Limit = 20;
             int Page = 0;
+            string Search = "";
+            int City = 0;
+            string category = "";
+            int minPrice = 0;
+            int maxPrice = 0;
             aspnetuser user = DataManager.User.GetUserByToken(json.Token);
             if (user == null)
             {
                 return new JsonRespondBody { Error = "Invalid token", Status = "error" };
             }
-            if(json.Parameters.ContainsKey("Limit"))
+            if (json.Parameters.ContainsKey("Limit"))
             {
                 try
                 {
@@ -264,11 +278,51 @@ namespace BistroDriveWebApp.Controllers
                 }
                 catch { }
             }
+            if (json.Parameters.ContainsKey("Search"))
+            {
+                Search = json.Parameters["Search"];
+            }
+            if (json.Parameters.ContainsKey("City"))
+            {
+                try
+                {
+                    City = Convert.ToInt32(json.Parameters["City"]);
+                }
+                catch { }
+            }
+            if (json.Parameters.ContainsKey("Category"))
+            {
+                try
+                {
+                    int b;
+                    if (Int32.TryParse(json.Parameters["Category"], out b))
+                    {
+                        category = json.Parameters["Category"] + ";";
+                    }
+                }
+                catch { }
+            }
+            if (json.Parameters.ContainsKey("MinPrice"))
+            {
+                try
+                {
+                    minPrice = Convert.ToInt32(json.Parameters["MinPrice"]);
+                }
+                catch { }
+            }
+            if (json.Parameters.ContainsKey("MaxPrice"))
+            {
+                try
+                {
+                    maxPrice = Convert.ToInt32(json.Parameters["MaxPrice"]);
+                }
+                catch { }
+            }
             //генерация ответа
             string address = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Authority);
-            IEnumerable<dish> list = DataManager.Dish.GetDishList(Page, Limit);
+            IEnumerable<dish> list = DataManager.Dish.GetDishList(Page, Limit, Search, City, category, false, false, minPrice, maxPrice);
             List<DishSerealizerBody> res = new List<DishSerealizerBody>();
-            foreach(var item in list)
+            foreach (var item in list)
             {
                 res.Add(new DishSerealizerBody
                 {
@@ -301,7 +355,7 @@ namespace BistroDriveWebApp.Controllers
             }
             if (!json.Parameters.ContainsKey("Id_Dish"))
             {
-                 return new JsonRespondBody { Error = "Id_Dish is required", Status = "error" };
+                return new JsonRespondBody { Error = "Id_Dish is required", Status = "error" };
             }
             int dish_id = 0;
             try
@@ -413,6 +467,54 @@ namespace BistroDriveWebApp.Controllers
             return result;
         }
 
+        private JsonRespondBody GetCityMethod(JsonRequestBody json)
+        {
+            aspnetuser user = DataManager.User.GetUserByToken(json.Token);
+            if (user == null)
+            {
+                return new JsonRespondBody { Error = "Invalid token", Status = "error" };
+            }
+
+            Dictionary<string, string> list = new Dictionary<string, string>();
+
+            //генерация ответа
+            var cities = DataManager.Geolocation.GetAllCities();
+            foreach(var item in cities)
+            {
+                list.Add(item.id_city.ToString(), item.name);
+            }
+            JsonRespondBody result = new JsonRespondBody
+            {
+                Result = list,
+                Status = "OK"
+            };
+            return result;
+        }
+
+        private JsonRespondBody GetCategoryList(JsonRequestBody json)
+        {
+            aspnetuser user = DataManager.User.GetUserByToken(json.Token);
+            if (user == null)
+            {
+                return new JsonRespondBody { Error = "Invalid token", Status = "error" };
+            }
+
+            Dictionary<string, string> list = new Dictionary<string, string>();
+
+            //генерация ответа
+            var cities = DataManager.Dish.GetDishTypes();
+            foreach (var item in cities)
+            {
+                list.Add(item.Id_DishType.ToString(), item.Name);
+            }
+            JsonRespondBody result = new JsonRespondBody
+            {
+                Result = list,
+                Status = "OK"
+            };
+            return result;
+        }
+
         private async Task<JsonRespondBody> LoginMethod(JsonRequestBody json)
         {
             if (json.Parameters.ContainsKey("login") == false || json.Parameters.ContainsKey("password") == false)
@@ -494,9 +596,9 @@ namespace BistroDriveWebApp.Controllers
     {
         public string Method { set; get; }
         public string Token { set; get; }
-        public Dictionary<string,string> Parameters { set; get; }
+        public Dictionary<string, string> Parameters { set; get; }
     }
-    
+
     public class JsonRespondBody
     {
         public string Status { set; get; }
@@ -546,7 +648,7 @@ namespace BistroDriveWebApp.Controllers
         public string Status { set; get; }
         public string Comment { set; get; }
         public decimal Total { set; get; }
-        public string FinishTime { set; get; } 
+        public string FinishTime { set; get; }
         public UserSerealizerBody Cook { set; get; }
         public UserSerealizerBody Customer { set; get; }
         public IEnumerable<DishSerealizerBody> OrderList { set; get; }

@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - BistroDrive</title>
     @Styles.Render("~/Content/css")
 
+    @Scripts.Render("~/bundles/jquery")
      @*@Scripts.Render("~/bundles/modernizr")*@
         <script type="text/javascript">
         var appInsights=window.appInsights||function(config){
@@ -97,7 +98,6 @@
             </footer>
         }
         </div>
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/carousel")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/app")
@@ -105,20 +105,6 @@
     @Scripts.Render("~/bundles/fullpage")
     @Scripts.Render("~/bundles/easings")
     @Scripts.Render("~/bundles/slimscroll")
-    <script>
-        $(function() {
-            $("#slider-range").slider({
-                range: true,
-                min: 0,
-                max: 500,
-                values: [10, 300],
-                slide: function (event, ui) {
-                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                }
-            });
-            $("#amount").val("$" + $("#slider-range").slider("values", 0) +" - $" + $("#slider-range").slider("values", 1));
-        });
-    </script>
 
     <script>
 		$(document).ready(function() {

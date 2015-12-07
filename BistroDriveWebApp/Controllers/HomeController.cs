@@ -48,10 +48,11 @@ namespace BistroDriveWebApp.Controllers
             return View();
         }
 
-        public ActionResult Offers(int page=0)
+        public ActionResult Offers(int page=0,string search = "", int CityId = 0,string DishType = "", 
+            string canTeach = null, string travel = null, int minPrice = 0, int maxPrice = 0)
         {
             int dishcount = DataManager.Dish.GetDishCount();
-            if(page > dishcount / PageSize)
+            if (page > dishcount / PageSize)
             {
                 page = dishcount / PageSize - 1;
             }
@@ -59,14 +60,33 @@ namespace BistroDriveWebApp.Controllers
             {
                 page = 0;
             }
-            var dlist = DataManager.Dish.GetDishList(page,PageSize);
+            var dlist = DataManager.Dish.GetDishList(page,PageSize, search, CityId, DishType, canTeach != null, travel != null,minPrice,maxPrice);
+            var cities = DataManager.Geolocation.GetAllCities();
+            int minLimitPrice = DataManager.Dish.GetMinPrice();
+            int maxLimitPrice = DataManager.Dish.GetMaxPrice();
             AllDishListViewModel model = new AllDishListViewModel
             {
                 Page = page,
                 DishList = dlist,
-                PageCount = dishcount/PageSize
+                DishTypes = DataManager.Dish.GetDishTypes(),
+                PageCount = dishcount / PageSize,
+                City_List = cities,
+                CityId = CityId,
+                DishType = DishType,
+                CanTeach = canTeach,
+                Travel = travel,
+                MaxLimitPrice = maxLimitPrice,
+                MinLimitPrice = minLimitPrice,
+                MinPrice = minPrice,
+                MaxPrice = maxPrice
             };
+            ViewBag.search = search;
             return View(model);
+        }
+
+        public ActionResult Users(int page = 0)
+        {
+            return View();
         }
     }
 }

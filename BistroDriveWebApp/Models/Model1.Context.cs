@@ -30,6 +30,7 @@ namespace BistroDriveWebApp.Models
         public virtual DbSet<aspnetuserlogin> aspnetuserlogins { get; set; }
         public virtual DbSet<aspnetuser> aspnetusers { get; set; }
         public virtual DbSet<chatmessage> chatmessages { get; set; }
+        public virtual DbSet<city> cities { get; set; }
         public virtual DbSet<dish> dishes { get; set; }
         public virtual DbSet<dishreview> dishreviews { get; set; }
         public virtual DbSet<dishtype> dishtypes { get; set; }

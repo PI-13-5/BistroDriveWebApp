@@ -57,29 +57,33 @@ namespace BistroDriveWebApp.Controllers
         public ActionResult Index(ManageMessageId? message)
         {   
             ViewBag.StatusMessage =
-                message ==  ManageMessageId.ProfileEditSuccess? "Your profile has been updated."
-                : message == ManageMessageId.AvatarUpdated ? "Your avatar has been changed."
-                : message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                message ==  ManageMessageId.ProfileEditSuccess? "Ваш профиль был обновлён."
+                : message == ManageMessageId.AvatarUpdated ? "Ваша аватарка была измененена."
+                : message == ManageMessageId.ChangePasswordSuccess ? "Ваш пароль был изменён."
+                : message == ManageMessageId.SetPasswordSuccess ? "Ваш пароль был установлен."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.Error ? "Ошибка, попробуйте еще раз."
+                : message == ManageMessageId.AddPhoneSuccess ? "Ваш телефон был добавлен."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Ваш телефон был удалён."
                 : "";
 
             var userId = User.Identity.GetUserId();
             var user = DataManager.User.GetUserById(userId);
             var description = DataManager.User.GetUserDescription(userId);
+            var cities = DataManager.Geolocation.GetAllCities();
             var model = new ProfileSettingsViewModel
             {
                 UserName = user.UserName,
+                City = user.Id_City,
                 Address = user.Address,
                 Email = user.Email,
                 FirstName = user.FristName,
                 Avatar_Url = user.Avatar_Url,
                 Surname = user.Surname,
                 Telphone = user.PhoneNumber,
-                Description = description
+                Description = description,
+                City_List = cities,
+                WithTravel = user.withTravel == true? "true" : null
             };
             return View(model);
         }

@@ -239,6 +239,9 @@
     <Compile Include="Models\chatmessage.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\city.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\dish.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -284,6 +287,7 @@
     <Compile Include="Models\orderstatu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Repositories\GeolocationRepository.cs" />
     <Compile Include="Models\Repositories\IngridientsBuyer.cs" />
     <Compile Include="Models\review.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -319,6 +323,41 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\font-awesome\Font Awesome Icons.jpg" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\checkboxes.png" />
+    <Content Include="Content\images\cherry.png" />
+    <Content Include="Content\images\chiefhat.png" />
+    <Content Include="Content\images\cookies.png" />
+    <Content Include="Content\images\cup.png" />
+    <Content Include="Content\images\eat\1.jpg" />
+    <Content Include="Content\images\eat\10.jpg" />
+    <Content Include="Content\images\eat\2.jpg" />
+    <Content Include="Content\images\eat\3.jpg" />
+    <Content Include="Content\images\eat\4.jpg" />
+    <Content Include="Content\images\eat\5.jpg" />
+    <Content Include="Content\images\eat\6.jpg" />
+    <Content Include="Content\images\eat\7.jpg" />
+    <Content Include="Content\images\eat\8.jpg" />
+    <Content Include="Content\images\eat\9.jpg" />
+    <Content Include="Content\images\firstPage.png" />
+    <Content Include="Content\images\fourthPage.png" />
+    <Content Include="Content\images\icons\facebook-48-black.png" />
+    <Content Include="Content\images\icons\facebook-48.png" />
+    <Content Include="Content\images\icons\googleplus-48-black.png" />
+    <Content Include="Content\images\icons\googleplus-48.png" />
+    <Content Include="Content\images\icons\twitter-48-black.png" />
+    <Content Include="Content\images\icons\twitter-48.png" />
+    <Content Include="Content\images\icons\vk-48-black.png" />
+    <Content Include="Content\images\icons\vk-48.png" />
+    <Content Include="Content\images\img-sprite.png" />
+    <Content Include="Content\images\pears.png" />
+    <Content Include="Content\images\secondPage.png" />
+    <Content Include="Content\images\thirdPage.png" />
+    <Content Include="Content\jquery.fullPage.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -333,9 +372,11 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config" />
+    <Content Include="Content\Landing.less" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -343,14 +384,42 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\Landing.less" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\RobotoSlabBold\RobotoSlabBold.eot" />
+    <Content Include="Content\fonts\RobotoSlabBold\RobotoSlabBold.ttf" />
+    <Content Include="Content\fonts\RobotoSlabBold\RobotoSlabBold.woff" />
+    <Content Include="Content\fonts\RobotoSlabLight\RobotoSlabLight.eot" />
+    <Content Include="Content\fonts\RobotoSlabLight\RobotoSlabLight.ttf" />
+    <Content Include="Content\fonts\RobotoSlabLight\RobotoSlabLight.woff" />
+    <Content Include="Content\fonts\RobotoSlabRegular\RobotoSlabRegular.eot" />
+    <Content Include="Content\fonts\RobotoSlabRegular\RobotoSlabRegular.ttf" />
+    <Content Include="Content\fonts\RobotoSlabRegular\RobotoSlabRegular.woff" />
+    <Content Include="Content\fonts\rockwell-extra-bold.ttf" />
+    <Content Include="Content\fonts\rockwell_extra_bold.eot" />
     <None Include="Properties\PublishProfiles\bistrodrive.pubxml" />
     <None Include="Properties\PublishProfiles\SmarterASP.pubxml" />
     <None Include="Properties\PublishProfiles\SmartWD.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jcarousel.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.easings.min.js" />
+    <Content Include="Scripts\jquery.fullPage.js" />
+    <Content Include="Scripts\jquery.main.js" />
+    <Content Include="Scripts\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\jquery.touchSwipe.min.js" />
+    <Content Include="Scripts\jquery.ui-slider.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
