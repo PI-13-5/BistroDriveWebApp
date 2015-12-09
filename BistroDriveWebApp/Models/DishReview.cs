@@ -20,7 +20,7 @@ namespace BistroDriveWebApp.Models
         public string Description { get; set; }
         public Nullable<int> Mark { get; set; }
     
-        public virtual aspnetrole aspnetrole { get; set; }
+        public virtual aspnetuser aspnetuser { get; set; }
         public virtual dish dish { get; set; }
     }
 }

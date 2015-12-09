@@ -39,6 +39,7 @@ namespace BistroDriveWebApp.Models
         public string Description { set; get; }
         public int  Rating { set; get; }
         public IEnumerable<dish> DishList { set; get;  }
+        public List<review> ReviewList { set; get; }
     }
 
     public class DishViewModel
@@ -78,5 +79,41 @@ namespace BistroDriveWebApp.Models
         
         [Display(Name = "Я могу обучить")]
         public string CanTeach { set; get; }
+    }
+
+    public class DishReviewViewModel
+    {
+        public int ID_Dish { set; get; }
+        public int ID_Review { set; get; }
+        public string DishName { set; get; }
+        public string Image_Url { set; get; }
+
+        [Required]
+        [Display(Name = "Ваш отзыв")]
+        public string Review { set; get; }
+
+        [Required]
+        [Range(1, 5, ErrorMessage = "Оценка должна быть от 1 до 5!")]
+        [Display(Name = "Оценка")]
+        public int Mark { set; get; }
+    }
+
+    public class UserReviewViewModel
+    {
+        public string ID_user{ set; get; }
+        public string UserName { set; get; }
+        public string FirstName { set; get; }
+        public string SurName { set; get; }
+        public int ID_Review { set; get; }
+        public string Avatar { set; get; }
+
+        [Required]
+        [Display(Name = "Ваш отзыв")]
+        public string Review { set; get; }
+
+        [Required]
+        [Range(1, 5, ErrorMessage = "Оценка должна быть от 1 до 5!")]
+        [Display(Name = "Оценка")]
+        public int Mark { set; get; }
     }
 }

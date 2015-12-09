@@ -155,5 +155,100 @@ namespace BistroDriveWebApp.Models
             context.SaveChanges();
             UpdateUserDescription(id, model.Description);
         }
+
+        public IEnumerable<aspnetuser> GetAllUser()
+        {
+            return context.aspnetusers;
+        }
+
+        public IEnumerable<aspnetuser> GetAllUser(int page, int pageSize, ref int usercount, string search = "", int CityId = 0, bool travel = false)
+        {
+            IEnumerable<aspnetuser> users = context.aspnetusers.OrderByDescending(u=>u.Id);
+            if (search != "")
+            {
+                users = users.Where(d => (
+                (d.FristName+" "+d.Surname).ToLower().IndexOf(search.ToLower()) != -1 ||
+                d.UserName.ToLower().IndexOf(search.ToLower()) != -1
+                ));
+            }
+            if (travel == true)
+            {
+                users = users.Where(u => u.withTravel == true);
+            }
+            users = users.ToArray();
+            if (CityId != 0)
+            {
+                users = users.Where(d => d.Id_City == CityId);
+            }
+            usercount = users.Count();
+            users = users.Skip(page * pageSize).Take(pageSize);
+            var descr = context.userdescriptions.ToArray();
+            var cities = context.cities.ToList();
+            foreach (var item in users)
+            {
+                item.userdescriptions.Add(descr.FirstOrDefault(d => d.Id_User == item.Id));
+                item.city = cities.FirstOrDefault(c => c.id_city == item.Id_City);
+            }
+            return users;
+        }
+
+        public void AddUserReview(string id_user, string owner, int mark, string text)
+        {
+            review r = new review
+            {
+                Id_Owner = owner,
+                Id_User = id_user,
+                Mark = mark,
+                Text = text
+            };
+            context.reviews.Add(r);
+            context.SaveChanges();
+            UpdateUserRaiting(r.Id_User);
+        }
+
+        private void UpdateUserRaiting(string Id_User)
+        {
+            var user = context.reviews.Where(rev => rev.Id_User == Id_User);
+            aspnetuser d = GetUserById(Id_User);
+            if (user.Count() != 0)
+            {
+                double average = (double)user.Average(rev => rev.Mark);
+                d.Raiting = Convert.ToInt32(Math.Round(average, 0));
+            }
+            else
+            {
+                d.Raiting = 0;
+            }
+            context.SaveChanges();
+
+        }
+
+        public review GetReviewById(int id)
+        {
+            return context.reviews.FirstOrDefault(r => r.Id_UserReview == id);
+        }
+
+        public void EditUserReview(int id, int mark, string text)
+        {
+            review r = GetReviewById(id);
+            r.Mark = mark;
+            r.Text = text;
+            context.SaveChanges();
+            UpdateUserRaiting(r.Id_User);
+        }
+
+        public void DeleteUserReview(int id)
+        {
+            review r = GetReviewById(id);
+            string user_id = r.Id_User;
+            context.reviews.Remove(r);
+            context.SaveChanges();
+            UpdateUserRaiting(user_id);
+        }
+        
+        public List<review> GetReviewByUserId(string user_id)
+        {
+            return context.reviews.Where(r => r.Id_User == user_id).ToList();
+        }
     }
 }

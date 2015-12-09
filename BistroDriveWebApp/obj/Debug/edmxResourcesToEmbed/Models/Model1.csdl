@@ -1,16 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="aspnetrole">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="chatmessages" Relationship="Self.FK_ChatMessage_IdReciver" FromRole="aspnetroles" ToRole="chatmessage" />
-    <NavigationProperty Name="chatmessages1" Relationship="Self.FK_ChatMessage_IdSender" FromRole="aspnetroles" ToRole="chatmessage" />
-    <NavigationProperty Name="dishreviews" Relationship="Self.FK_DishReview_IdOwner" FromRole="aspnetroles" ToRole="dishreview" />
-    <NavigationProperty Name="reviews" Relationship="Self.FK_Review_IdOwner" FromRole="aspnetroles" ToRole="review" />
-    <NavigationProperty Name="reviews1" Relationship="Self.FK_Review_IdUser" FromRole="aspnetroles" ToRole="review" />
     <NavigationProperty Name="aspnetusers" Relationship="Self.aspnetuserroles" FromRole="aspnetroles" ToRole="aspnetusers" />
   </EntityType>
   <EntityType Name="aspnetuserclaim">
@@ -56,15 +51,21 @@
     <Property Name="Avatar_Url" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
     <Property Name="LastOnlineTime" Type="DateTime" />
     <Property Name="Id_City" Type="Int32" Nullable="false" />
+    <Property Name="withTravel" Type="Boolean" Nullable="false" />
+    <Property Name="Raiting" Type="Int32" />
     <NavigationProperty Name="aspnetuserclaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="aspnetusers" ToRole="aspnetuserclaims" />
     <NavigationProperty Name="aspnetuserlogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="aspnetusers" ToRole="aspnetuserlogins" />
     <NavigationProperty Name="city" Relationship="Self.aspnetusers_ibfk_1" FromRole="aspnetusers" ToRole="city" />
     <NavigationProperty Name="userdescriptions" Relationship="Self.description_userid_to_aspnetuser_userid" FromRole="aspnetusers" ToRole="userdescription" />
+    <NavigationProperty Name="dishreviews" Relationship="Self.dishreview_ibfk_1" FromRole="aspnetusers" ToRole="dishreview" />
+    <NavigationProperty Name="chatmessages" Relationship="Self.FK_ChatMessage_IdReciver" FromRole="aspnetusers" ToRole="chatmessage" />
+    <NavigationProperty Name="chatmessages1" Relationship="Self.FK_ChatMessage_IdSender" FromRole="aspnetusers" ToRole="chatmessage" />
     <NavigationProperty Name="dishes" Relationship="Self.FK_Dish_IdUser_aspnetusers_Id" FromRole="aspnetusers" ToRole="dish" />
     <NavigationProperty Name="orders" Relationship="Self.FK_Order_IdCook" FromRole="aspnetusers" ToRole="order" />
+    <NavigationProperty Name="reviews" Relationship="Self.FK_Review_IdOwner" FromRole="aspnetusers" ToRole="review" />
+    <NavigationProperty Name="reviews1" Relationship="Self.FK_Review_IdUser" FromRole="aspnetusers" ToRole="review" />
     <NavigationProperty Name="usertokens" Relationship="Self.usertoken_ibfk_1" FromRole="aspnetusers" ToRole="usertoken" />
     <NavigationProperty Name="aspnetroles" Relationship="Self.aspnetuserroles" FromRole="aspnetusers" ToRole="aspnetroles" />
-    <Property Name="withTravel" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="chatmessage">
     <Key>
@@ -75,8 +76,8 @@
     <Property Name="Id_Reciver" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Message" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CreateTime" Type="DateTime" />
-    <NavigationProperty Name="aspnetrole" Relationship="Self.FK_ChatMessage_IdReciver" FromRole="chatmessage" ToRole="aspnetroles" />
-    <NavigationProperty Name="aspnetrole1" Relationship="Self.FK_ChatMessage_IdSender" FromRole="chatmessage" ToRole="aspnetroles" />
+    <NavigationProperty Name="aspnetuser" Relationship="Self.FK_ChatMessage_IdReciver" FromRole="chatmessage" ToRole="aspnetusers" />
+    <NavigationProperty Name="aspnetuser1" Relationship="Self.FK_ChatMessage_IdSender" FromRole="chatmessage" ToRole="aspnetusers" />
   </EntityType>
   <EntityType Name="city">
     <Key>
@@ -85,7 +86,7 @@
     <Property Name="id_city" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="aspnetusers" Relationship="Self.aspnetusers_ibfk_1" FromRole="city" ToRole="aspnetusers" />
-    <NavigationProperty Name="orders" Relationship="Models.order_ibfk_2" FromRole="city" ToRole="order" />
+    <NavigationProperty Name="orders" Relationship="Self.order_ibfk_2" FromRole="city" ToRole="order" />
   </EntityType>
   <EntityType Name="dish">
     <Key>
@@ -100,11 +101,12 @@
     <Property Name="PriceWithIngridient" Type="Decimal" Nullable="false" />
     <Property Name="ImageUrl" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
     <Property Name="Id_Type" Type="Int32" Nullable="false" />
+    <Property Name="CanTeach" Type="Boolean" Nullable="false" />
+    <Property Name="Raiting" Type="Int32" />
     <NavigationProperty Name="aspnetuser" Relationship="Self.FK_Dish_IdUser_aspnetusers_Id" FromRole="dish" ToRole="aspnetusers" />
     <NavigationProperty Name="dishtype" Relationship="Self.FK_Dish_IdType" FromRole="dish" ToRole="dishtype" />
     <NavigationProperty Name="dishreviews" Relationship="Self.FK_DishReview_IdDish" FromRole="dish" ToRole="dishreview" />
     <NavigationProperty Name="orderproducts" Relationship="Self.FK_OrderProduct_IdDish" FromRole="dish" ToRole="orderproduct" />
-    <Property Name="CanTeach" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="dishreview">
     <Key>
@@ -115,7 +117,7 @@
     <Property Name="Id_Dish" Type="Int32" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
     <Property Name="Mark" Type="Int32" />
-    <NavigationProperty Name="aspnetrole" Relationship="Self.FK_DishReview_IdOwner" FromRole="dishreview" ToRole="aspnetroles" />
+    <NavigationProperty Name="aspnetuser" Relationship="Self.dishreview_ibfk_1" FromRole="dishreview" ToRole="aspnetusers" />
     <NavigationProperty Name="dish" Relationship="Self.FK_DishReview_IdDish" FromRole="dishreview" ToRole="dish" />
   </EntityType>
   <EntityType Name="dishtype">
@@ -150,15 +152,15 @@
     <Property Name="Address" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Comment" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
     <Property Name="total" Type="Decimal" Nullable="false" />
+    <Property Name="id_city" Type="Int32" Nullable="false" />
     <NavigationProperty Name="aspnetuser" Relationship="Self.FK_Order_IdCook" FromRole="order" ToRole="aspnetusers" />
+    <NavigationProperty Name="city" Relationship="Self.order_ibfk_2" FromRole="order" ToRole="city" />
     <NavigationProperty Name="ordercontactmethod" Relationship="Self.FK_Order_IdContactMethod" FromRole="order" ToRole="ordercontactmethod" />
     <NavigationProperty Name="orderdelivery" Relationship="Self.FK_Order_IdDelivery" FromRole="order" ToRole="orderdelivery" />
     <NavigationProperty Name="orderpaymentmethod" Relationship="Self.FK_Order_IdPaymentMethod" FromRole="order" ToRole="orderpaymentmethod" />
     <NavigationProperty Name="orderstatu" Relationship="Self.FK_Order_IdStatus" FromRole="order" ToRole="orderstatus" />
     <NavigationProperty Name="orderproducts" Relationship="Self.FK_OrderProduct_IdOrder" FromRole="order" ToRole="orderproduct" />
     <NavigationProperty Name="orderingridientbuyer" Relationship="Self.order_ibfk_1" FromRole="order" ToRole="orderingridientbuyer" />
-    <Property Name="id_city" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="city" Relationship="Models.order_ibfk_2" FromRole="order" ToRole="city" />
   </EntityType>
   <EntityType Name="ordercontactmethod">
     <Key>
@@ -225,9 +227,9 @@
     <Property Name="Id_User" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Id_Owner" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Text" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-    <Property Name="Mark" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="aspnetrole" Relationship="Self.FK_Review_IdOwner" FromRole="review" ToRole="aspnetroles" />
-    <NavigationProperty Name="aspnetrole1" Relationship="Self.FK_Review_IdUser" FromRole="review" ToRole="aspnetroles" />
+    <Property Name="Mark" Type="Int32" />
+    <NavigationProperty Name="aspnetuser" Relationship="Self.FK_Review_IdOwner" FromRole="review" ToRole="aspnetusers" />
+    <NavigationProperty Name="aspnetuser1" Relationship="Self.FK_Review_IdUser" FromRole="review" ToRole="aspnetusers" />
   </EntityType>
   <EntityType Name="userdescription">
     <Key>
@@ -248,72 +250,6 @@
     <Property Name="Expiration" Type="DateTime" />
     <NavigationProperty Name="aspnetuser" Relationship="Self.usertoken_ibfk_1" FromRole="usertoken" ToRole="aspnetusers" />
   </EntityType>
-  <Association Name="FK_ChatMessage_IdReciver">
-    <End Role="aspnetroles" Type="Self.aspnetrole" Multiplicity="1" />
-    <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnetroles">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="chatmessage">
-        <PropertyRef Name="Id_Reciver" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ChatMessage_IdSender">
-    <End Role="aspnetroles" Type="Self.aspnetrole" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnetroles">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="chatmessage">
-        <PropertyRef Name="Id_Sender" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DishReview_IdOwner">
-    <End Role="aspnetroles" Type="Self.aspnetrole" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="dishreview" Type="Self.dishreview" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnetroles">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="dishreview">
-        <PropertyRef Name="Id_Owner" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Review_IdOwner">
-    <End Role="aspnetroles" Type="Self.aspnetrole" Multiplicity="1" />
-    <End Role="review" Type="Self.review" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnetroles">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="review">
-        <PropertyRef Name="Id_Owner" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Review_IdUser">
-    <End Role="aspnetroles" Type="Self.aspnetrole" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="review" Type="Self.review" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnetroles">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="review">
-        <PropertyRef Name="Id_User" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -368,6 +304,44 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="dishreview_ibfk_1">
+    <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1" />
+    <End Role="dishreview" Type="Self.dishreview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dishreview">
+        <PropertyRef Name="Id_Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatMessage_IdReciver">
+    <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1" />
+    <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="chatmessage">
+        <PropertyRef Name="Id_Reciver" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatMessage_IdSender">
+    <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="chatmessage">
+        <PropertyRef Name="Id_Sender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Dish_IdUser_aspnetusers_Id">
     <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -396,6 +370,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Review_IdOwner">
+    <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1" />
+    <End Role="review" Type="Self.review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="review">
+        <PropertyRef Name="Id_Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_IdUser">
+    <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="review" Type="Self.review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="review">
+        <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="usertoken_ibfk_1">
     <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -407,6 +407,18 @@
       </Principal>
       <Dependent Role="usertoken">
         <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_ibfk_2">
+    <End Role="city" Type="Self.city" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="id_city" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="id_city" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -548,26 +560,6 @@
     <EntitySet Name="reviews" EntityType="Self.review" />
     <EntitySet Name="userdescriptions" EntityType="Self.userdescription" />
     <EntitySet Name="usertokens" EntityType="Self.usertoken" />
-    <AssociationSet Name="FK_ChatMessage_IdReciver" Association="Self.FK_ChatMessage_IdReciver">
-      <End Role="aspnetroles" EntitySet="aspnetroles" />
-      <End Role="chatmessage" EntitySet="chatmessages" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ChatMessage_IdSender" Association="Self.FK_ChatMessage_IdSender">
-      <End Role="aspnetroles" EntitySet="aspnetroles" />
-      <End Role="chatmessage" EntitySet="chatmessages" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DishReview_IdOwner" Association="Self.FK_DishReview_IdOwner">
-      <End Role="aspnetroles" EntitySet="aspnetroles" />
-      <End Role="dishreview" EntitySet="dishreviews" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Review_IdOwner" Association="Self.FK_Review_IdOwner">
-      <End Role="aspnetroles" EntitySet="aspnetroles" />
-      <End Role="review" EntitySet="reviews" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Review_IdUser" Association="Self.FK_Review_IdUser">
-      <End Role="aspnetroles" EntitySet="aspnetroles" />
-      <End Role="review" EntitySet="reviews" />
-    </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="aspnetuserclaims" EntitySet="aspnetuserclaims" />
@@ -584,6 +576,18 @@
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="userdescription" EntitySet="userdescriptions" />
     </AssociationSet>
+    <AssociationSet Name="dishreview_ibfk_1" Association="Self.dishreview_ibfk_1">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="dishreview" EntitySet="dishreviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatMessage_IdReciver" Association="Self.FK_ChatMessage_IdReciver">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="chatmessage" EntitySet="chatmessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatMessage_IdSender" Association="Self.FK_ChatMessage_IdSender">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="chatmessage" EntitySet="chatmessages" />
+    </AssociationSet>
     <AssociationSet Name="FK_Dish_IdUser_aspnetusers_Id" Association="Self.FK_Dish_IdUser_aspnetusers_Id">
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="dish" EntitySet="dishes" />
@@ -592,9 +596,21 @@
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="order" EntitySet="orders" />
     </AssociationSet>
+    <AssociationSet Name="FK_Review_IdOwner" Association="Self.FK_Review_IdOwner">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="review" EntitySet="reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_IdUser" Association="Self.FK_Review_IdUser">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="review" EntitySet="reviews" />
+    </AssociationSet>
     <AssociationSet Name="usertoken_ibfk_1" Association="Self.usertoken_ibfk_1">
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="usertoken" EntitySet="usertokens" />
+    </AssociationSet>
+    <AssociationSet Name="order_ibfk_2" Association="Self.order_ibfk_2">
+      <End Role="city" EntitySet="cities" />
+      <End Role="order" EntitySet="orders" />
     </AssociationSet>
     <AssociationSet Name="FK_Dish_IdType" Association="Self.FK_Dish_IdType">
       <End Role="dishtype" EntitySet="dishtypes" />
@@ -636,21 +652,5 @@
       <End Role="aspnetroles" EntitySet="aspnetroles" />
       <End Role="aspnetusers" EntitySet="aspnetusers" />
     </AssociationSet>
-    <AssociationSet Name="order_ibfk_2" Association="Models.order_ibfk_2">
-      <End Role="city" EntitySet="cities" />
-      <End Role="order" EntitySet="orders" />
-    </AssociationSet>
   </EntityContainer>
-  <Association Name="order_ibfk_2">
-    <End Type="Models.city" Role="city" Multiplicity="1" />
-    <End Type="Models.order" Role="order" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="city">
-        <PropertyRef Name="id_city" />
-      </Principal>
-      <Dependent Role="order">
-        <PropertyRef Name="id_city" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

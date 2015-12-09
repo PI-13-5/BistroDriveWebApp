@@ -119,7 +119,34 @@ namespace BistroDriveWebApp.Controllers
             {
                 return GetCategoryList(json);
             }
+            else if (String.Compare(json.Method, "getpricelimit", true) == 0)
+            {
+                return GetPriceLimit(json);
+            }
             JsonRespondBody result = new JsonRespondBody { Error = "Invalid method", Status = "error" };
+            return result;
+        }
+
+        private JsonRespondBody GetPriceLimit(JsonRequestBody json)
+        {
+            aspnetuser user = DataManager.User.GetUserByToken(json.Token);
+            if (user == null)
+            {
+                return new JsonRespondBody { Error = "Invalid token", Status = "error" };
+            }
+
+            Dictionary<string, string> list = new Dictionary<string, string>();
+
+            //генерация ответа
+            int minPrice = DataManager.Dish.GetMinPrice();
+            int maxPrice = DataManager.Dish.GetMaxPrice();
+            list.Add("MinPrice", minPrice.ToString());
+            list.Add("MaxPrice", maxPrice.ToString());
+            JsonRespondBody result = new JsonRespondBody
+            {
+                Result = list,
+                Status = "OK"
+            };
             return result;
         }
 
@@ -253,8 +280,8 @@ namespace BistroDriveWebApp.Controllers
             string Search = "";
             int City = 0;
             string category = "";
-            int minPrice = 0;
-            int maxPrice = 0;
+            int minPrice = -1;
+            int maxPrice = -1;
             aspnetuser user = DataManager.User.GetUserByToken(json.Token);
             if (user == null)
             {
@@ -320,7 +347,8 @@ namespace BistroDriveWebApp.Controllers
             }
             //генерация ответа
             string address = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Authority);
-            IEnumerable<dish> list = DataManager.Dish.GetDishList(Page, Limit, Search, City, category, false, false, minPrice, maxPrice);
+            int count = 0;
+            IEnumerable<dish> list = DataManager.Dish.GetDishList(Page, Limit, ref count, Search, City, category, false, false, minPrice, maxPrice);
             List<DishSerealizerBody> res = new List<DishSerealizerBody>();
             foreach (var item in list)
             {

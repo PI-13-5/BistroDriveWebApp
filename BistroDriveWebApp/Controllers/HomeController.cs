@@ -49,18 +49,14 @@ namespace BistroDriveWebApp.Controllers
         }
 
         public ActionResult Offers(int page=0,string search = "", int CityId = 0,string DishType = "", 
-            string canTeach = null, string travel = null, int minPrice = 0, int maxPrice = 0)
+            string canTeach = null, string travel = null, int minPrice = -1, int maxPrice = -1)
         {
-            int dishcount = DataManager.Dish.GetDishCount();
-            if (page > dishcount / PageSize)
-            {
-                page = dishcount / PageSize - 1;
-            }
             if (page < 0)
             {
                 page = 0;
             }
-            var dlist = DataManager.Dish.GetDishList(page,PageSize, search, CityId, DishType, canTeach != null, travel != null,minPrice,maxPrice);
+            int dishcount = 0;
+            var dlist = DataManager.Dish.GetDishList(page,PageSize, ref dishcount, search, CityId, DishType, canTeach != null, travel != null,minPrice,maxPrice);
             var cities = DataManager.Geolocation.GetAllCities();
             int minLimitPrice = DataManager.Dish.GetMinPrice();
             int maxLimitPrice = DataManager.Dish.GetMaxPrice();
@@ -78,15 +74,32 @@ namespace BistroDriveWebApp.Controllers
                 MaxLimitPrice = maxLimitPrice,
                 MinLimitPrice = minLimitPrice,
                 MinPrice = minPrice,
-                MaxPrice = maxPrice
+                MaxPrice = maxPrice,
+                Search = search
             };
-            ViewBag.search = search;
             return View(model);
         }
 
-        public ActionResult Users(int page = 0)
+        public ActionResult Users(int page = 0, string search = "", int CityId = 0, string travel = null)
         {
-            return View();
+            if (page < 0)
+            {
+                page = 0;
+            }
+            int usercount = 0;
+            var users = DataManager.User.GetAllUser(page, PageSize, ref usercount, search, CityId, travel != null);
+            var cities = DataManager.Geolocation.GetAllCities();
+            UserListViewModel model = new UserListViewModel
+            {
+                CityId = CityId,
+                Page = page,
+                PageCount = usercount/PageSize,
+                Travel = travel,
+                City_List = cities,
+                UserList = users,
+                Search = search
+            };
+            return View(model);
         }
     }
 }
