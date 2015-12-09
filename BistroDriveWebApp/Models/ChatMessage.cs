@@ -20,7 +20,7 @@ namespace BistroDriveWebApp.Models
         public string Message { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
     
-        public virtual aspnetrole aspnetrole { get; set; }
-        public virtual aspnetrole aspnetrole1 { get; set; }
+        public virtual aspnetuser aspnetuser { get; set; }
+        public virtual aspnetuser aspnetuser1 { get; set; }
     }
 }

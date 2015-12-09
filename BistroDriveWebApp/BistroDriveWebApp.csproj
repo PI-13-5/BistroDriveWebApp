@@ -345,6 +345,7 @@
     <Content Include="Content\images\eat\9.jpg" />
     <Content Include="Content\images\firstPage.png" />
     <Content Include="Content\images\fourthPage.png" />
+    <Content Include="Content\images\default-avatar.png" />
     <Content Include="Content\images\icons\facebook-48-black.png" />
     <Content Include="Content\images\icons\facebook-48.png" />
     <Content Include="Content\images\icons\googleplus-48-black.png" />
@@ -377,13 +378,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="Content\Landing.less" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff" />
@@ -404,6 +398,13 @@
     <Content Include="Content\fonts\RobotoSlabRegular\RobotoSlabRegular.woff" />
     <Content Include="Content\fonts\rockwell-extra-bold.ttf" />
     <Content Include="Content\fonts\rockwell_extra_bold.eot" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\bistrodrive.pubxml" />
     <None Include="Properties\PublishProfiles\SmarterASP.pubxml" />
     <None Include="Properties\PublishProfiles\SmartWD.pubxml" />
@@ -478,6 +479,12 @@
     <Content Include="Views\Profile\OrderInfo.cshtml" />
     <Content Include="Views\Home\Offers.cshtml" />
     <Content Include="Views\Home\Landing.cshtml" />
+    <Content Include="Views\Home\Users.cshtml" />
+    <Content Include="Views\Profile\AddDishFeedback.cshtml" />
+    <Content Include="Views\Profile\EditDishReview.cshtml" />
+    <Content Include="Views\Profile\_ParticalDishReview.cshtml" />
+    <Content Include="Views\Profile\AddUserReview.cshtml" />
+    <Content Include="Views\Profile\_ParticalUserReview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

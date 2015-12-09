@@ -64,10 +64,11 @@
         <div class="row">
             <div class="col-md-5">
                 <h2>В любом случае тебе к нам!</h2>
-                <form action="">
-                    <input type="text" class="ent-numb input-lg" placeholder="Номер телефона...">
-                    <input type="button" class="btn-submit-land input-lg" value="Зарегистрироваться!">
-                </form>
+                @using (Html.BeginForm("Register", "Account", FormMethod.Get))
+                {
+                    <input type="text" class="ent-numb input-lg" name="phone" placeholder="Номер телефона...">
+                    <input type="submit" class="btn-submit-land input-lg" value="Зарегистрироваться!">
+                }
             </div>
         </div>
 
@@ -140,10 +141,11 @@
             </div>
             <div class="row">
                 <div class="col-md-offset-4 col-md-5">
-                    <form class=lastpage action="">
-                        <input type="text" class="ent-numb input-lg" placeholder="Номер телефона...">
-                        <input type="button" class="btn-submit-land input-lg" value="Зарегистрироваться!">
-                    </form>
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Get, new { @class = "lastpage" }))
+                    {
+                        <input type="text" class="ent-numb input-lg" name="phone" placeholder="Номер телефона...">
+                        <input type="submit" class="btn-submit-land input-lg" value="Зарегистрироваться!">
+                    }
                 </div>
             </div>
         </div>

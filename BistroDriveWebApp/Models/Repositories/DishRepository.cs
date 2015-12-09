@@ -102,11 +102,11 @@ namespace BistroDriveWebApp.Models
             return context.dishes.Count();
         }
 
-        public IEnumerable<dish> GetDishList(int page, int pageSize, string search = "", int CityId = 0, 
-            string dishinput = "", bool canTeach = false, bool travel = false, int minPrice = 0, int maxPrice = 0)
+        public IEnumerable<dish> GetDishList(int page, int pageSize, ref int count, string search = "", int CityId = 0, 
+            string dishinput = "", bool canTeach = false, bool travel = false, int minPrice = -1, int maxPrice = -1)
         {
             var types = context.dishtypes.ToArray();
-            IEnumerable<dish> dishes = context.dishes.OrderByDescending(d=>d.Id_Dish).Skip(page*pageSize).Take(pageSize);
+            IEnumerable<dish> dishes = context.dishes.OrderByDescending(d=>d.Id_Dish);
             if (search != "")
             {
                 dishes = dishes.Where(d => d.Name.ToLower().IndexOf(search.ToLower()) != -1);
@@ -125,7 +125,7 @@ namespace BistroDriveWebApp.Models
             {
                 dishes = dishes.Where(d => d.aspnetuser.withTravel == true);
             }
-            if(minPrice != 0 && maxPrice != 0)
+            if(minPrice != -1 && maxPrice != -1)
             {
                 //работаем с int а цены в double. Для корректного сравнения
                 minPrice--;
@@ -143,7 +143,8 @@ namespace BistroDriveWebApp.Models
             {
                 dishes = dishes.Where(d => d.aspnetuser.Id_City == CityId);
             }
-            return dishes;
+            count = dishes.Count();
+            return dishes.Skip(page * pageSize).Take(pageSize);
         }
 
         public int GetMaxPrice()
@@ -153,6 +154,57 @@ namespace BistroDriveWebApp.Models
         public int GetMinPrice()
         {
             return Convert.ToInt32(context.dishes.Min(d => d.Price));
+        }
+        
+        public void AddDishReview(string owner, int dish_id, int mark, string text)
+        {
+            dishreview dr = new dishreview
+            {
+                Id_Owner = owner,
+                Id_Dish = dish_id,
+                Mark = (int)mark,
+                Description = text
+            };
+            context.dishreviews.Add(dr);
+            context.SaveChanges();
+            double average = (double)context.dishreviews.Where(r=>r.Id_Dish == dish_id).Average(r => r.Mark);
+            dish d = GetDishById(dish_id);
+            d.Raiting = Convert.ToInt32(Math.Round(average, 0));
+            context.SaveChanges();
+        }
+
+        public void EditDishReview(int id_dishrevew, int mark, string text)
+        {
+            var dr = GetDishReviewById(id_dishrevew);
+            dr.Mark = mark;
+            dr.Description = text;
+            context.SaveChanges();
+            double average = (double)context.dishreviews.Where(r => r.Id_Dish == dr.Id_Dish).Average(r => r.Mark);
+            dish d = GetDishById(dr.Id_Dish);
+            d.Raiting = Convert.ToInt32(Math.Round(average, 0));
+            context.SaveChanges();
+        }
+
+        public dishreview GetDishReviewById(int id)
+        {
+            return context.dishreviews.FirstOrDefault(dr => dr.Id_Review == id);
+        }
+
+        public void DeleteDishReview(int id)
+        {
+            var dishreview = GetDishReviewById(id);
+            context.dishreviews.Remove(dishreview);
+            context.SaveChanges();
+        }
+
+        public List<dishreview> GetDishReviewByDishId(int id_dish)
+        {
+            var dish =  context.dishreviews.Where(dr => dr.Id_Dish == id_dish).ToList();
+            foreach(var item in dish)
+            {
+                item.aspnetuser = context.aspnetusers.FirstOrDefault(u=> u.Id == item.Id_Owner);
+            }
+            return dish;
         }
     }
 }

@@ -707,8 +707,9 @@ label {
 }
 .cook-icon {
     text-align: center;
-        width: 138px;
-    height: 192px;
+    /*    width: 138px;
+    height: 192px;*/
+    width: 180px;
 }
 .ratings {
     margin-top: 1em;

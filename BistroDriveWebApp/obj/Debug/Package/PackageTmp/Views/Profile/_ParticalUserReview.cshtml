@@ -1,0 +1,72 @@
+﻿@model BistroDriveWebApp.Models.UserReviewViewModel
+
+@Html.HiddenFor(m => Model.ID_user)
+@Html.HiddenFor(m => Model.Avatar)
+@Html.HiddenFor(m => Model.ID_Review)
+@Html.HiddenFor(m => Model.UserName)
+@Html.HiddenFor(m => Model.FirstName)
+@Html.HiddenFor(m => Model.SurName)
+<h4>@Html.ActionLink(Model.UserName + " (" + Model.FirstName + " " + Model.SurName + ")", "index", "profile", new { id = Model.UserName }, null)</h4>
+@if (Model.Avatar != "" && Model.Avatar != null)
+{
+    <a href="@Url.Action("dishinfo", new { id = Model.Avatar })">
+        <img src="@Model.Avatar" width="200" />
+    </a>
+}
+<hr />
+<div class="form-group">
+    @Html.LabelFor(model => model.Mark, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <ul class="list-inline ratings" title="Ratings">
+            <li><a href=""><span class="fa fa-star-o fa-lg" value="1"></span></a></li>
+            <li><a href=""><span class="fa fa-star-o fa-lg" value="2"></span></a></li>
+            <li><a href=""><span class="fa fa-star-o fa-lg" value="3"></span></a></li>
+            <li><a href=""><span class="fa fa-star-o fa-lg" value="4"></span></a></li>
+            <li><a href=""><span class="fa fa-star-o fa-lg" value="5"></span></a></li>
+        </ul>
+        @Html.HiddenFor(model => model.Mark, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Mark, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-group">
+    @Html.LabelFor(model => model.Review, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextAreaFor(model => model.Review, new { htmlAttributes = new { @class = "form-control" }, rows = "10", cols = "90" })
+        <br />
+        @Html.ValidationMessageFor(model => model.Review, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".ratings li a span").click(function () {
+            var selected = $(this).attr("value");
+            $(".ratings li a span").each(function () {
+                if ($(this).attr("value") <= selected) {
+                    $(this).removeClass("fa-star-o");
+                    $(this).addClass("fa-star");
+                } else {
+                    $(this).removeClass("fa-star");
+                    $(this).addClass("fa-star-o");
+                }
+            });
+            $("#Mark").val(selected);
+            return false;
+        });
+
+        var selected = $("#Mark").val();
+        if (selected >= 1 && selected <= 5) {
+            $(".ratings li a span").each(function () {
+                if ($(this).attr("value") <= selected) {
+                    $(this).removeClass("fa-star-o");
+                    $(this).addClass("fa-star");
+                } else {
+                    $(this).removeClass("fa-star");
+                    $(this).addClass("fa-star-o");
+                }
+            });
+        }
+    });
+</script>

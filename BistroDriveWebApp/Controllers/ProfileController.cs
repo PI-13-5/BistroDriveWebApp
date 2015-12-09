@@ -28,6 +28,7 @@ namespace BistroDriveWebApp.Controllers
 
             var description = DataManager.User.GetUserDescription(userId);
             IEnumerable<dish> dishList = DataManager.Dish.GetDishByUserId(userId, 5);
+            var review = DataManager.User.GetReviewByUserId(userId);
             var model = new ProfileViewModel
             {
                 Id = userId,
@@ -36,8 +37,9 @@ namespace BistroDriveWebApp.Controllers
                 Surname = user.Surname,
                 UserName = user.UserName,
                 Description = description,
-                Rating = 5,
-                DishList = dishList
+                Rating = user.Raiting == null? 0:(int)user.Raiting,
+                DishList = dishList,
+                ReviewList = review
             };
             return View(model);
         }
@@ -120,6 +122,7 @@ namespace BistroDriveWebApp.Controllers
             }
             aspnetuser user = DataManager.User.GetUserById(item.Id_User);
             ViewBag.Username = user.UserName;
+            ViewBag.Review = DataManager.Dish.GetDishReviewByDishId(id);
             return View(item);
         }
 
@@ -325,6 +328,158 @@ namespace BistroDriveWebApp.Controllers
 
             DataManager.Order.CloseOrder(model.Order.Id_Order);
             return RedirectToAction("Order");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult AddDishFeedback(int id)
+        {
+            string user = User.Identity.GetUserId();
+            dish d = DataManager.Dish.GetDishById(id);
+            if(d == null || user == d.Id_User)
+            {
+                return RedirectToAction("index", "profile");
+            }
+            DishReviewViewModel model = new DishReviewViewModel
+            {
+                ID_Dish = d.Id_Dish,
+                DishName = d.Name,
+                Image_Url = d.ImageUrl 
+            };
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddDishFeedback(DishReviewViewModel model)
+        {
+            string user = User.Identity.GetUserId();
+            dish d = DataManager.Dish.GetDishById(model.ID_Dish);
+            if (d == null || user == d.Id_User)
+            {
+                return RedirectToAction("index", "profile");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            DataManager.Dish.AddDishReview(user, model.ID_Dish, model.Mark, model.Review);
+            return RedirectToAction("dishinfo", "profile", new { id = model.ID_Dish });
+        }
+
+        [Authorize]
+        public ActionResult DeleteDishReview(int id)
+        {
+            string user = User.Identity.GetUserId();
+            dishreview review = DataManager.Dish.GetDishReviewById(id);
+            int id_dish = review.Id_Dish;
+            if (review == null || user != review.Id_Owner)
+            {
+                return RedirectToAction("index", "profile");
+            }
+            DataManager.Dish.DeleteDishReview(id);
+            return RedirectToAction("dishinfo", "profile", new { id = id_dish });
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult EditDishReview(int id)
+        {
+            string user = User.Identity.GetUserId();
+            dishreview review = DataManager.Dish.GetDishReviewById(id);
+            if (review == null || user != review.Id_Owner)
+            {
+                return RedirectToAction("index", "profile");
+            }
+            var dish = DataManager.Dish.GetDishById(review.Id_Dish);
+            DishReviewViewModel model = new DishReviewViewModel
+            {
+                ID_Dish = review.Id_Dish,
+                DishName = dish.Name,
+                Image_Url = dish.ImageUrl,
+                ID_Review = review.Id_Review,
+                Mark = (int)review.Mark,
+                Review = review.Description
+            };
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EditDishReview(DishReviewViewModel model)
+        {
+            string user = User.Identity.GetUserId();
+            dishreview review = DataManager.Dish.GetDishReviewById(model.ID_Review);
+            if (review == null || user != review.Id_Owner)
+            {
+                return RedirectToAction("index", "profile");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            DataManager.Dish.EditDishReview(model.ID_Review, model.Mark, model.Review);
+            return RedirectToAction("dishinfo", "profile", new { id = model.ID_Dish });
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult AddUserReview(string id)
+        {
+            string curruser = User.Identity.GetUserId();
+            aspnetuser user = DataManager.User.GetUserByName(id);
+            if (user == null || curruser == user.Id)
+            {
+                return RedirectToAction("index", "profile");
+            }
+
+            UserReviewViewModel model = new UserReviewViewModel
+            {
+                ID_user = user.Id,
+                Avatar = user.Avatar_Url,
+                UserName = user.UserName,
+                FirstName = user.FristName,
+                SurName = user.Surname
+            };
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddUserReview(UserReviewViewModel model)
+        {
+            string curruser = User.Identity.GetUserId();
+            aspnetuser user = DataManager.User.GetUserByName(model.UserName);
+            if (user == null || curruser == user.Id)
+            {
+                return RedirectToAction("index", "profile");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            DataManager.User.AddUserReview(model.ID_user, curruser, model.Mark, model.Review);
+            return RedirectToAction("index", "profile", new { id = model.UserName });
+        }
+
+        [Authorize]
+        public ActionResult DeleteReview(int id)
+        {
+            string user = User.Identity.GetUserId();
+            review r = DataManager.User.GetReviewById(id);
+            if (r == null)
+            {
+                return RedirectToAction("index", "profile");
+            }
+            string userid = r.Id_User;
+            string username = r.aspnetuser1.UserName;
+            if (user != r.Id_Owner)
+            {
+                return RedirectToAction("index", "profile");
+            }
+            DataManager.User.DeleteUserReview(id);
+            return RedirectToAction("index", "profile", new { id = username });
         }
     }
 }

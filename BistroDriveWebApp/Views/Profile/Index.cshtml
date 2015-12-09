@@ -1,7 +1,7 @@
 ﻿@using BistroDriveWebApp.Models
 @model ProfileViewModel
 @{
-    ViewBag.Title = /*@Html.DisplayFor(model=>model.UserName)*/ @Html.DisplayFor(model=>model.Firstname) + " "+@Html.DisplayFor(model=>model.Surname);
+    ViewBag.Title = @Html.DisplayFor(model=>model.Firstname) + " "+@Html.DisplayFor(model=>model.Surname);
 }
 
 
@@ -10,14 +10,21 @@
     <div class="row">
         <h2 class="profile-title">Профиль пользователя</h2>
         <div class="col-md-3 user-data">
-            @*<div><image src="@Html.DisplayFor(model => model.Avatar_Url)" width="200" height="200" /></div>*@
-            <img class="img-responsive cook-icon center-block" src="@Html.DisplayFor(model => model.Avatar_Url)" alt="">
-            <ul class="list-inline ratings" title="Ratings">
-                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                <li><a href="#"><span class="fa fa-star-o fa-lg"></span></a></li>
+            <img class="img-responsive cook-icon center-block" src="@Model.Avatar_Url" alt="">
+            <ul class="list-inline rating-reviews" title="Ratings">
+                @for (int i = 0; i < 5; i++)
+                {
+                    if (i < Model.Rating)
+                    {
+                        @:
+                        <i class="fa fa-star fa-lg"></i>
+                    }
+                    else
+                    {
+                        @:
+                        <i class="fa fa-star-o fa-lg"></i>
+                    }
+                }
             </ul>
             @* <p>Рейтинг:@Html.DisplayFor(model => model.Rating)</p> тут в цикле будем выводить звездочки *@
         </div>
@@ -26,9 +33,6 @@
             <p class="username">@Html.DisplayFor(model => model.UserName)</p>
             <p class="user-description">
                 @Html.DisplayFor(model => model.Description)
-                Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности представляет
-                собой интересный эксперимент проверки развития. Зачача огранизацииииии, в особеннсти же сложившаяся структура организациии,
-                позволяет оценить значение ситемы обучения кадров, соответствует насущным потребностям.
             </p>
         </div>
     </div>
@@ -39,16 +43,15 @@
             <div class="horizontalSlider">
                 <div class="jcarousel">
                     <ul>
-                        <li><figure><img src="~/Content/images/eat/1.jpg" class="img-responsive" alt="" /></figure></li>
-                        <li><figure><img src="~/Content/images/eat/2.jpg" class="img-responsive" alt="" /></figure></li>
-                        <li><figure><img src="~/Content/images/eat/3.jpg" class="img-responsive" alt="" /></figure></li>
-                        <li><figure><img src="~/Content/images/eat/4.jpg" class="img-responsive" alt="" /></figure></li>
-                        <li><figure><img src="~/Content/images/eat/5.jpg" class="img-responsive" alt="" /></figure></li>
-                        <li><figure><img src="~/Content/images/eat/6.jpg" class="img-responsive" alt="" /></figure></li>
-                        <li><figure><img src="~/Content/images/eat/7.jpg" class="img-responsive" alt="" /></figure></li>
-                        <li><figure><img src="~/Content/images/eat/8.jpg" class="img-responsive" alt="" /></figure></li>
-                        <li><figure><img src="~/Content/images/eat/9.jpg" class="img-responsive" alt="" /></figure></li>
-                        <li><figure><img src="~/Content/images/eat/10.jpg" class="img-responsive" alt="" /></figure></li>
+                        @foreach (var item in Model.DishList)
+                        {
+                            <li><figure>
+                                <a href="@Url.Action("dishinfo", new { id = item.Id_Dish })">
+                                    <h3>@item.Name</h3>
+                                    <img class="img-responsive" src="@Html.DisplayFor(Model=>item.ImageUrl)" />
+                                </a>
+                            </figure></li>
+                        }
                     </ul>
                 </div>
                 <div class="sliderControl">
@@ -83,49 +86,45 @@
     </div>*@
     <div class="row">
         <div class="reviews">
-            <h2 class="margin-b-review">Отзывы (3)</h2>
-            <article>
-                <h3 class="reviews-name">Петров Пётр</h3>
-                  <ul class="list-inline rating-reviews" title="Ratings">
-                    <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                    <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                    <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                    <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                    <li><a href="#"><span class="fa fa-star-o fa-lg"></span></a></li>
-                </ul>
-                <p class="username-rev">@Html.DisplayFor(model => model.UserName)</p>
-                <p class="reviews-description">
-                    Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки развития. Зачача огранизацииииии, в особеннсти же сложившаяся структура организациии, позволяет оценить значение ситемы обучения кадров, соответствует насущным потребностям. <a href="#">дальше...</a>
-                </p>
-            </article>
-            <article>
-                <h3 class="reviews-name">Петров Пётр</h3>               
-                <ul class="list-inline rating-reviews" title="Ratings">
-                    <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                    <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                    <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                    <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                    <li><a href="#"><span class="fa fa-star-o fa-lg"></span></a></li>
-                </ul>
-                <p class="username-rev">@Html.DisplayFor(model => model.UserName)</p>
-                <p class="reviews-description">
-                    Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки развития. Зачача огранизацииииии, в особеннсти же сложившаяся структура организациии, позволяет оценить значение ситемы обучения кадров, соответствует насущным потребностям. <a href="#">дальше...</a>
-                </p>
-            </article>
-            <article>
-                <h3 class="reviews-name">Петров Пётр</h3>          
-                <ul class="list-inline rating-reviews" title="Ratings">
-                    <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                    <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                    <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                    <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                    <li><a href="#"><span class="fa fa-star-o fa-lg"></span></a></li>
-                </ul>
-                <p class="username-rev">@Html.DisplayFor(model => model.UserName)</p>
-                <p class="reviews-description">
-                    Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки развития. Зачача огранизацииииии, в особеннсти же сложившаяся структура организациии, позволяет оценить значение ситемы обучения кадров, соответствует насущным потребностям. <a href="#">дальше...</a>
-                </p>
-            </article>
+            <h2 class="margin-b-review">Отзывы (@Model.ReviewList.Count)</h2>
+            @if (User.Identity.Name != Model.UserName)
+            {
+                if (User.Identity.IsAuthenticated == true)
+                {
+                    @Html.ActionLink("Оставить отзыв", "AddUserReview", "profile", new { id = Model.UserName }, htmlAttributes: new { @class = "btn btn-info" })
+                }
+            }
+            @foreach (var item in Model.ReviewList)
+            {
+                <article>
+                    <h3 class="reviews-name">@Html.ActionLink((item.aspnetuser.FristName + " " + item.aspnetuser.Surname), "index", new { id = item.aspnetuser.UserName }) </h3>
+                    <ul class="list-inline rating-reviews" title="Ratings">
+                        @for (int i = 0; i < 5; i++)
+                            {
+                                if (i < item.Mark)
+                                {
+                                @:<i class="fa fa-star fa-lg"></i>
+                                }
+                                else
+                                {
+                                @:<i class="fa fa-star-o fa-lg"></i>
+                                }
+                            }
+                    </ul>
+                    <p class="username-rev">@Html.ActionLink(item.aspnetuser.UserName, "index", new { id = item.aspnetuser.UserName })</p>
+                    <p class="reviews-description">
+                        @item.Text
+                    </p>
+                    @if (item.aspnetuser.UserName == User.Identity.Name)
+                    {
+                    <div>
+                        @Html.ActionLink("Редактировать", "EditReview", new { id = item.Id_UserReview }) |
+                        @Html.ActionLink("Удалить", "DeleteReview", new { id = item.Id_UserReview }, new { onclick = "return confirm('Вы действительно хотите удалить ваш отзыв?');" })
+                    </div>
+                    }
+                    <hr />
+                </article>
+            }
         </div>
     </div>
 </div>
