@@ -209,15 +209,14 @@ namespace BistroDriveWebApp.Models
         private void UpdateUserRaiting(string Id_User)
         {
             var user = context.reviews.Where(rev => rev.Id_User == Id_User);
+            aspnetuser d = GetUserById(Id_User);
             if (user.Count() != 0)
             {
                 double average = (double)user.Average(rev => rev.Mark);
-                aspnetuser d = GetUserById(Id_User);
                 d.Raiting = Convert.ToInt32(Math.Round(average, 0));
             }
             else
             {
-                aspnetuser d = GetUserById(Id_User);
                 d.Raiting = 0;
             }
             context.SaveChanges();

@@ -179,9 +179,22 @@ namespace BistroDriveWebApp.Models
             dr.Mark = mark;
             dr.Description = text;
             context.SaveChanges();
-            double average = (double)context.dishreviews.Where(r => r.Id_Dish == dr.Id_Dish).Average(r => r.Mark);
+            UpdateDishRating(dr);
+        }
+
+        private void UpdateDishRating(dishreview dr)
+        {
+            var dishrev = context.dishreviews.Where(r => r.Id_Dish == dr.Id_Dish);
             dish d = GetDishById(dr.Id_Dish);
-            d.Raiting = Convert.ToInt32(Math.Round(average, 0));
+            if (dishrev.Count() != 0)
+            {
+                double average = (double)dishrev.Average(r => r.Mark);
+                d.Raiting = Convert.ToInt32(Math.Round(average, 0));
+            }
+            else
+            {
+                d.Raiting = 0;
+            }
             context.SaveChanges();
         }
 
