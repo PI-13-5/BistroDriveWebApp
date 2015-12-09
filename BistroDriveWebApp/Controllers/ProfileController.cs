@@ -481,5 +481,53 @@ namespace BistroDriveWebApp.Controllers
             DataManager.User.DeleteUserReview(id);
             return RedirectToAction("index", "profile", new { id = username });
         }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult EditReview(int id)
+        {
+            string user = User.Identity.GetUserId();
+            review r = DataManager.User.GetReviewById(id);
+            if (r == null)
+            {
+                return RedirectToAction("index", "profile");
+            }
+            if (user != r.Id_Owner)
+            {
+                return RedirectToAction("index", "profile");
+            }
+            var rev = DataManager.User.GetReviewById(r.Id_UserReview);
+            var usr = DataManager.User.GetUserById(r.Id_User);
+            UserReviewViewModel model = new UserReviewViewModel
+            {
+                Avatar = usr.Avatar_Url,
+                FirstName = usr.FristName,
+                ID_Review = rev.Id_UserReview,
+                ID_user = usr.Id,
+                Mark = (int)rev.Mark,
+                Review = rev.Text,
+                SurName = usr.Surname,
+                UserName = usr.UserName
+            };
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EditReview(UserReviewViewModel model)
+        {
+            string user = User.Identity.GetUserId();
+            review rev = DataManager.User.GetReviewById(model.ID_Review);
+            if (rev == null || user != rev.Id_Owner)
+            {
+                return RedirectToAction("index", "profile");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            DataManager.User.EditUserReview(model.ID_Review, model.Mark, model.Review);
+            return RedirectToAction("index", "profile", new { id = model.UserName });
+        }
     }
 }
