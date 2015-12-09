@@ -183,9 +183,11 @@ namespace BistroDriveWebApp.Models
             usercount = users.Count();
             users = users.Skip(page * pageSize).Take(pageSize);
             var descr = context.userdescriptions.ToArray();
-            foreach(var item in users)
+            var cities = context.cities.ToList();
+            foreach (var item in users)
             {
                 item.userdescriptions.Add(descr.FirstOrDefault(d => d.Id_User == item.Id));
+                item.city = cities.FirstOrDefault(c => c.id_city == item.Id_City);
             }
             return users;
         }
