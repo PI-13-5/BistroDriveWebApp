@@ -46,7 +46,10 @@
 background: #F5F6F7;
 }
 
-
+/* hover text color in header dropdown */
+.header-dropdown li a:hover, a:active {
+    color: #f5f6f7 !important;
+}
 
 /*LANDING PAGE*/
 @font-face {

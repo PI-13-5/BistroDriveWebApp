@@ -79,14 +79,12 @@
 
     <div class="input-group col-md-8 col-md-offset-1">
         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
-        @Html.TextAreaFor(model => model.Description, new {rows="7", cols="83"} )
+        @Html.TextAreaFor(model => model.Description, new {rows="7", cols="87"} )
         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
     </div>
 
-    <div class="input-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Сохранить" class="btn btn-default" />
-        </div>
+    <div class="input-group col-md-8 col-md-offset-1">
+        <input type="submit" value="Сохранить" class="btn btn-default" />
     </div>
 </div>
 }
