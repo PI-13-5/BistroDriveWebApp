@@ -5,17 +5,24 @@
 
 <div class="col-md-10 col-md-offset-1 well signin settings-form">
     <div class="settings-form-header col-md-10 col-md-offset-1">
-        <h2>@ViewBag.Title.</h2>
+        <h1>@ViewBag.Title.</h1>
         <br /><hr /><br />
-        @Html.ActionLink("Сменить пароль", "Changepassword")
+        
         <p class="text-success">@ViewBag.StatusMessage</p>
 
-        <div><image src="@Html.DisplayFor(model => model.Avatar_Url)" width="200" height="200" /></div>
-        @using (Html.BeginForm("UpdateAvatar", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <input type="file" name="file" />
-            <input type="submit" value="OK" />
-        }
+        <div class="avatar-change">
+            <div class="image"><image src="@Html.DisplayFor(model => model.Avatar_Url)" width="200" height="200" /></div>
+            <div class="upload-input-block form-group">
+            @using (Html.BeginForm("UpdateAvatar", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="file-upload-block"><input type="file" name="file" class="upload" /></div>
+                <input type="submit" value="OK" class="submit-upload" />
+            }
+            </div>
+        </div>
+        <br /><br />
+        @Html.ActionLink("Сменить пароль", "Changepassword", new { @class = "change-password" })
+        <br />
     </div>
 <hr />
 

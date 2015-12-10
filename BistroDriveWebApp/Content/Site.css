@@ -52,6 +52,15 @@ background: #F5F6F7;
     background-color: #078fe6 !important;
 }
 
+img.header-avatar {
+    border: transparent solid 1px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+img.header-avatar:hover {
+    border: lightgray solid 1px;
+}
+
 /*LANDING PAGE*/
 @font-face {
     font-family: "RockwellExtraBold";

@@ -41,4 +41,57 @@
             padding-right: 10px;
         }
     }
+
+    .settings-form-header {
+
+        display: inline-block !important;
+
+        .avatar-change {
+            width: 100%;
+        }
+
+        .image img {
+            border-radius: 5px;
+            border: transparent solid 1px;
+            transition: border-color .3s ease-in-out;
+
+            &:hover {
+                border: #d3d3d3 solid 1px;
+            }
+        }
+
+        .upload-input-block {
+            float: right;
+            margin: -10em 0 0 -5em !important;
+        }
+
+
+        .file-upload-block {
+            position: relative;
+            margin: 10px;
+        }
+
+        .submit-upload {
+              border: 0 none;
+              border-radius: 5px;
+  
+              padding: 7px 14px;
+              margin: 0 10px;
+  
+              cursor: pointer;
+              display: block;
+  
+              font-size: 14px;
+              color: #fff;
+              text-transform: none;
+  
+              transition: all .2s ease-in-out;
+
+              background: #20a8ff;
+
+              &:hover {
+                  background-color: #078fe6;
+              }
+        }
+    }
 }
