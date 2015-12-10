@@ -3,43 +3,48 @@
 @{
     ViewBag.Title = "Мои заказы";
 }
-<h1>Список моих заказов</h1>
-<hr /><br />
 
-<h4>Входящие</h4>
-<table class="table">
-    <tr>
-        <th>Дата</th>
-        <th>Имя</th>
-        <th>Email</th>
-        <th>Телефон</th>
-        <th>Связь</th>
-        <th>Доставка</th>
-        <th>Оплата</th>
-        <th>Окончательная дата</th>
-        <th>Статус</th>
-        <th>Стоимость</th>
-        <th></th>
-    </tr>
-@foreach (var item in Model.IncommingOrderList) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateTime)
-        </td>
-        <td>
-            @if (item.Id_Customer != null)
+<div class="orders-page">
+    <h1>Список моих заказов</h1>
+    <hr /><br />
+
+    <h3 class="text-center">Входящие</h3><br />
+    <table class="table orders-table">
+        <tr>
+            <th>Дата</th>
+            <th>Имя</th>
+            <th>Email</th>
+            <th>Телефон</th>
+            <th>Связь</th>
+            <th>Доставка</th>
+            <th>Оплата</th>
+            <th>Окончательная дата</th>
+            <th>Статус</th>
+            <th>Стоимость</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.IncommingOrderList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateTime)
+                </td>
+                <td>
+                    @if (item.Id_Customer != null)
                 {
-                @Html.ActionLink((item.FirstName + " " + item.Surname), "index", new { id = item.Id_Customer })
-            }
-            else
-            {
-                @Html.DisplayFor(modelItem => item.FirstName)
-                @Html.DisplayFor(modelItem => item.Surname)
-            }
-        </td>
-        <td>@Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>@Html.DisplayFor(modelItem => item.Phone)
+                        @Html.ActionLink((item.FirstName + " " + item.Surname), "index", new { id = item.Id_Customer })
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ordercontactmethod.Name)
@@ -60,65 +65,67 @@
             @Html.DisplayFor(modelItem => item.total)
         </td>
         <td>
-            @Html.ActionLink("Подробно", "OrderInfo", new { id=item.Id_Order })
+            @Html.ActionLink("Подробнее...", "OrderInfo", new { id = item.Id_Order })
         </td>
     </tr>
-}
+        }
 
-</table>
-
-<h4>Иходящие</h4>
-<table class="table">
-    <tr>
-        <th>Дата</th>
-        <th>Имя</th>
-        <th>Email</th>
-        <th>Телефон</th>
-        <th>Связь</th>
-        <th>Доставка</th>
-        <th>Оплата</th>
-        <th>Окончательная дата</th>
-        <th>Статус</th>
-        <th>Стоимость</th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model.OutcommingOrderList)
-    {
+    </table>
+    <br /><br /><br />
+    <h3 class="text-center">Иходящие</h3><br />
+    <table class="table orders-table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateTime)
-            </td>
-            <td>
-                @Html.ActionLink((item.aspnetuser.FristName + " " + item.aspnetuser.Surname), "index", new { id = item.aspnetuser.UserName})
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.aspnetuser.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.aspnetuser.PhoneNumber)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ordercontactmethod.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.orderdelivery.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.orderpaymentmethod.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.DeadLine)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.orderstatu.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.total)
-    </td>
-    <td>
-        @Html.ActionLink("Подробно", "OrderInfo", new { id = item.Id_Order })
-    </td>
-</tr>
-    }
+            <th>Дата</th>
+            <th>Имя</th>
+            <th>Email</th>
+            <th>Телефон</th>
+            <th>Связь</th>
+            <th>Доставка</th>
+            <th>Оплата</th>
+            <th>Окончательная дата</th>
+            <th>Статус</th>
+            <th>Стоимость</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.OutcommingOrderList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateTime)
+                </td>
+                <td>
+                    @Html.ActionLink((item.aspnetuser.FristName + " " + item.aspnetuser.Surname), "index", new { id = item.aspnetuser.UserName })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.aspnetuser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.aspnetuser.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ordercontactmethod.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.orderdelivery.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.orderpaymentmethod.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeadLine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.orderstatu.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total)
+                </td>
+                <td>
+                    @Html.ActionLink("Подробнее...", "OrderInfo", new { id = item.Id_Order })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+    <br /><hr /><br /><br /><br />
+</div>
