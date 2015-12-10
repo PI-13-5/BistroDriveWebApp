@@ -789,6 +789,11 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner { border: 
     background-color: transparent !important;
 }
 
+a:active {
+    color: inherit !important;
+    background-color: transparent !important;
+}
+
 
 @media(max-width:640px) {
     h2 {
