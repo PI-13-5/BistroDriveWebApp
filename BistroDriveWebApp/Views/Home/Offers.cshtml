@@ -54,7 +54,7 @@
             <br>
             <div id="slider-range"> </div>
             <br>
-            <input class="btn search-btn" type="submit" value="Применить" />
+            <input class="btn search-btn" style="margin-left:50px;"type="submit" value="Применить" />
         </div>
         <br>
         <p class="question">Если ты знаешь как нам стать лучше, то <a href="#">жми сюда!</a></p>
@@ -91,7 +91,7 @@
         @:<span> - </span>
         @:<span class="list-type">с выездом на дом</span>
         }
-        <span class="list-data">выложено 15 дней назад</span>
+       @* <span class="list-data">выложено 15 дней назад</span>*@
         <div class="list-text">
             <p>@item.Description @Html.ActionLink("дальше", "dishinfo", "profile", new { id = item.Id_Dish }, new { @class = "list-readmore" })</p>
         </div>
