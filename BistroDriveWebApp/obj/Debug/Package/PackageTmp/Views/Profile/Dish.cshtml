@@ -4,7 +4,12 @@
     + @Html.DisplayFor(model => model.Firstname) + " "
      + @Html.DisplayFor(model => model.Surname) + ")";
 }
-<h2>@ViewBag.Title dish List</h2>
+<h2>@ViewBag.Title
+    @if(Model.WithTravel == true)
+    {
+        @: - выезжаю надом
+    }
+    </h2>
 <p>
 @if (User.Identity.Name == Model.UserName)
 {
@@ -25,15 +30,19 @@
                         <img src="@Html.DisplayFor(Model=>item.ImageUrl)" width="200" height="200" />
                     </a>
                 }
-                <div>Price:
+                <div>Цена:
                     @Html.DisplayFor(modelItem => item.Price)
                 </div>
                 <div>
-                   Price with ingridients:
+                   Цена с ингридиентами:
                     @Html.DisplayFor(modelItem => item.PriceWithIngridient)
                 </div>
                 <p>@Html.DisplayFor(modelItem => item.Description)</p>
-                <p>Ingridients: @Html.DisplayFor(modelItem => item.Ingridient)</p>
+                <p>Ингридиенты: @Html.DisplayFor(modelItem => item.Ingridient)</p>
+                @if(item.CanTeach== true)
+                {
+                    <p>Обучаю</p>
+                }
             </div>
             <hr />
     }

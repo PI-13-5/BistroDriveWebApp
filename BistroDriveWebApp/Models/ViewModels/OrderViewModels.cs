@@ -74,7 +74,5 @@ namespace BistroDriveWebApp.Models
         public decimal DishPriceWithIngridient { set; get; }
         public string ImageUrl { set; get; }
 
-        public IEnumerable<city> City_List { set; get; }
-
     }
 }

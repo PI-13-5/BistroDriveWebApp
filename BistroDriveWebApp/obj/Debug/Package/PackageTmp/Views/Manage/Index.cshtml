@@ -64,12 +64,33 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.City, new SelectList(Model.City_List, "Id_City", "Name"), new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
         </div>
     </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WithTravel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="inline" style="width:31px">
+                    <input type="checkbox" name="WithTravel" id="WithTravel"
+                           @if (Model.WithTravel != null) { @: checked
+                                               } />
+                    <label for="CanTeach"></label>
+                </div>
+                @Html.ValidationMessageFor(model => model.WithTravel, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })

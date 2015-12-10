@@ -7,7 +7,7 @@
     <div class="row center-text">
             <div class="search">
                 <h2 class="margin-b-title">Найди себе что-нибудь по вкусу</h2>
-                <input type="search" name="search" class="search-input" id="search" placeholder="" value="@ViewBag.Search"/>
+                <input type="search" name="search" class="search-input" id="search" placeholder="" value="@Model.Search"/>
                 <input class="btn search-btn" type="submit" value="Поиск"/>
             </div>
     </div>
@@ -18,6 +18,7 @@
             <form>
                 <div class="checkboxes">
                     @Html.HiddenFor(m => m.DishType)
+                    <input type="hidden" name="page" id="page" />
                     @Html.HiddenFor(m => m.MaxPrice)
                     @Html.HiddenFor(m => m.MinPrice)
                     @foreach (var item in Model.DishTypes)
@@ -65,6 +66,14 @@
             }
             @foreach (var item in Model.DishList)
             {        <article>
+            @if (item.ImageUrl != "")
+            {
+                <div style="width:150px; float:left">
+                    <a href="@Url.Action("dishinfo", "profile", new { id = item.Id_Dish })">
+                        <img class="img-responsive" src="@Html.DisplayFor(Model => item.ImageUrl)" />
+                    </a>
+                </div>
+            }
         <h2 class="list-title">@Html.ActionLink(item.Name, "dishinfo", "profile", new { id = item.Id_Dish }, null)</h2>
         <div>@Html.ActionLink(item.aspnetuser.UserName + " (" + item.aspnetuser.FristName + " " + item.aspnetuser.Surname + ")", "index", "profile", new { id = item.aspnetuser.UserName }, null)</div>
         <span class="list-price"><b>приготовлю  
@@ -87,14 +96,20 @@
             <p>@item.Description @Html.ActionLink("дальше", "dishinfo", "profile", new { id = item.Id_Dish }, new { @class = "list-readmore" })</p>
         </div>
         <div class="rating">
-            <i class="fa fa-star fa-lg"></i>
-            <i class="fa fa-star fa-lg"></i>
-            <i class="fa fa-star fa-lg"></i>
-            <i class="fa fa-star fa-lg"></i>
-            <i class="fa fa-star-o fa-lg"></i>
+            @for (int i = 0; i < 5; i++)
+            {
+                if (i < item.Raiting)
+                {
+                    @:<i class="fa fa-star fa-lg"></i>
+                }
+                else
+                {
+                    @:<i class="fa fa-star-o fa-lg"></i>
+                }
+            }
         </div>
         <hr class="list-hr">
-        @if (Model.PageCount > 0)
+        @if (Model.PageCount > 1)
                 {
             <div class="list-pangination text-center">
                 @if (Model.Page != 0)
@@ -110,8 +125,7 @@
             }
                         else
                         {
-                        @Html.ActionLink((i + 1).ToString(), "offers", new { page = i }, htmlAttributes: new
-                       { @*@class = "btn btn-default"*@ })@:
+                        <a href="#" onclick ="selectPage(@i); return false;" >@(i+1)</a>
             }
                     }
                 @if (Model.Page != Model.PageCount - 1)
@@ -152,7 +166,7 @@
             range: true,
             min: @Model.MinLimitPrice,
             max: @Model.MaxLimitPrice,
-            @if(Model.MaxPrice != 0 && Model.MinPrice != 0)
+            @if(Model.MaxPrice != -1 && Model.MinPrice != -1)
             {
                 @:values: [@Model.MinPrice, @Model.MaxPrice],
             }
@@ -168,6 +182,10 @@
     });
 </script>
 <script>
+    function selectPage(page){
+        $("#page").val(page);
+        $("form").submit();
+    };
     $(document).ready(function () {
         var val = $("#DishType").val();
         var checkedDishList = val.split(";");

@@ -1,8 +1,12 @@
 ﻿@model BistroDriveWebApp.Models.dish
+@using BistroDriveWebApp.Models
+@{ 
+    ViewBag.Title = Model.Name;
+}
 
 <div>
     <h4>@Html.DisplayFor(model => model.Name)</h4>
-        @Html.ActionLink("Профиль пользователя", "Dish", new { id = ViewBag.Username }) |
+        @Html.ActionLink("Профиль пользователя", "index", new { id = ViewBag.Username }) |
         @Html.ActionLink("Список предложений", "Offers","Home")
     <hr />
     <dl class="dl-horizontal">
@@ -27,8 +31,28 @@
         </dt>
 
         <dd>
-            <img src="@Html.DisplayFor(model=>model.ImageUrl)" width="200" height="200" />
+            <img src="@Html.DisplayFor(model=>model.ImageUrl)" width="200" />
         </dd>
+
+        <dt>
+            Рейтинг
+        </dt>
+
+        <dd>
+            <div class="rating">
+                @for (int i = 0; i < 5; i++)
+                {
+                    if (i < Model.Raiting)
+                    {
+                        @:<i class="fa fa-star fa-lg"></i>
+                    }
+                    else
+                    {
+                        @:<i class="fa fa-star-o fa-lg"></i>
+                    }
+                }
+                </div>
+            </dd>
 
         <dt>
             @*Html.DisplayNameFor(model => model.Description)*@
@@ -87,6 +111,10 @@
 @if (User.Identity.Name != ViewBag.Username)
 {
 @Html.ActionLink("Заказать", "MakeOrder", "order", new { id = Model.Id_Dish }, htmlAttributes: new { @class = "btn btn-success" })
+    if (User.Identity.IsAuthenticated == true)
+    {
+        @Html.ActionLink("Оставить отзыв", "AddDishFeedback", "profile", new { id = Model.Id_Dish }, htmlAttributes: new { @class = "btn btn-info" })
+    }
 }
 
 @if (User.Identity.Name == ViewBag.Username)
@@ -98,3 +126,50 @@
     </div>
 </p>
 }
+<div>
+    <hr />
+    @if (ViewBag.Review.Count != 0)
+    {
+        <div class="row">
+            <div class="reviews">
+                <h2 class="margin-b-review">Отзывы (@ViewBag.Review.Count)</h2>
+                @foreach (dishreview item in ViewBag.Review)
+                {
+                    <article>
+                        <h3 class="reviews-name">@Html.ActionLink((item.aspnetuser.FristName + " " + item.aspnetuser.Surname), "index", new { id = item.aspnetuser.UserName }) </h3>
+                        <ul class="list-inline rating-reviews" title="Ratings">
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                if (i < item.Mark)
+                                {
+                                    @:
+                                    <i class="fa fa-star fa-lg"></i>
+                                }
+                                else
+                                {
+                                    @:
+                                    <i class="fa fa-star-o fa-lg"></i>
+                                }
+                            }
+                        </ul>
+                        <p class="username-rev">@Html.ActionLink(item.aspnetuser.UserName, "index", new { id = item.aspnetuser.UserName })</p>
+                         <p class="reviews-description">
+                            @item.Description
+                        </p>
+                        @if (item.aspnetuser.UserName == User.Identity.Name)
+                        {
+                        <div>
+                            @Html.ActionLink("Редактировать", "EditDishReview", new { id = item.Id_Review }) |
+                            @Html.ActionLink("Удалить", "DeleteDishReview", new { id = item.Id_Review }, new { onclick = "return confirm('Вы действительно хотите удалить ваш отзыв?');" })
+                        </div>
+                        }
+                    </article>
+                }
+             </div>
+            </div>
+    }
+    else
+    {
+        @:<h2>Отзывов нет</h2>
+    }
+</div>

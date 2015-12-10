@@ -18,9 +18,9 @@ namespace BistroDriveWebApp.Models
         public string Id_User { get; set; }
         public string Id_Owner { get; set; }
         public string Text { get; set; }
-        public string Mark { get; set; }
+        public Nullable<int> Mark { get; set; }
     
-        public virtual aspnetrole aspnetrole { get; set; }
-        public virtual aspnetrole aspnetrole1 { get; set; }
+        public virtual aspnetuser aspnetuser { get; set; }
+        public virtual aspnetuser aspnetuser1 { get; set; }
     }
 }

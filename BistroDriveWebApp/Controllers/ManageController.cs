@@ -115,9 +115,12 @@ namespace BistroDriveWebApp.Controllers
                 string id = User.Identity.GetUserId();
                 // удаление старого аватара с сервера
                 string old = DataManager.User.GetUserAvatar(id);
-                path = Path.Combine(Server.MapPath(old));
-                FileInfo fi = new FileInfo(path);
-                fi.Delete();
+                if (old != "/Content/images/devault-avatar.png")
+                {
+                    path = Path.Combine(Server.MapPath(old));
+                    FileInfo fi = new FileInfo(path);
+                    fi.Delete();
+                }
                 // обновление нового аватара
                 DataManager.User.UpdateUserAvatar(id, "/Uploads/avatars/" + fileName);
                 message = ManageMessageId.AvatarUpdated;
