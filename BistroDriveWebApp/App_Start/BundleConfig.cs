@@ -43,7 +43,8 @@ namespace BistroDriveWebApp
                       "~/Content/site.css",
                       "~/Content/Landing.less",
                       "~/Content/Forms.less",
-                      "~/Content/Orders.less"));
+                      "~/Content/Orders.less",
+                      "~/Content/UsersList.less"));
 
             
             
