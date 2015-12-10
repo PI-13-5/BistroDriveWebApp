@@ -4,7 +4,7 @@
 }
 @using (Html.BeginForm("users", "home", FormMethod.Get))
 {
-    <div>
+    <div class="users-list-page">
         <div class="row center-text">
             <div class="search">
                 <h2 class="margin-b-title">Найди себе что-нибудь по вкусу</h2>
@@ -45,8 +45,9 @@
                 {        <article>
                 @if (item.Avatar_Url != "")
                 {
-                <div style="width:150px; float:left"><a href="@Url.Action("index", "profile", new { id = item.UserName })">
-                        <img class="img-responsive" src="@Html.DisplayFor(Model => item.Avatar_Url)" />
+                <div style="width:150px; float:left" class="user-avatar-block">
+                    <a href="@Url.Action("index", "profile", new { id = item.UserName })" class="link-avatar">
+                        <img class="img-responsive user-avatar" src="@Html.DisplayFor(Model => item.Avatar_Url)" />
                     </a>
                 </div>
                 }
