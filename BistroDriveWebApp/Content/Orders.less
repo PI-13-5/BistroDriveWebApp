@@ -1,31 +1,20 @@
-﻿
-.orders-page {
-
-    table {
-
-        max-width: 120% !important;
-        width: 120% !important;
-
-        margin-left: -7em !important;
-
-        tr:not(:first-child) {
-            transition: .1s background-color ease;
-            cursor: pointer;
-
-            &:hover, a:hover {
-                background-color: #e8e8e8;
-            }
-
-            td {
-                padding-top: 15px;
-                padding-bottom: 15px;
-            }
-        }
-
-        a {
-            &:hover {
-                color: #20a8ff;
-            }
-        }
-    }
+﻿.orders-page table {
+  max-width: 120% !important;
+  width: 120% !important;
+  margin-left: -7em !important;
+}
+.orders-page table tr:not(:first-child) {
+  transition: 0.1s background-color ease;
+  cursor: pointer;
+}
+.orders-page table tr:not(:first-child):hover,
+.orders-page table tr:not(:first-child) a:hover {
+  background-color: #e8e8e8;
+}
+.orders-page table tr:not(:first-child) td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.orders-page table a:hover {
+  color: #20a8ff;
 }
