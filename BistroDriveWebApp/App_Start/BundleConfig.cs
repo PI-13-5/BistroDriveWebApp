@@ -44,7 +44,8 @@ namespace BistroDriveWebApp
                       "~/Content/Landing.less",
                       "~/Content/Forms.less",
                       "~/Content/Orders.less",
-                      "~/Content/UsersList.less"));
+                      "~/Content/UsersList.less",
+                      "~/Content/Dish.less"));
 
             
             

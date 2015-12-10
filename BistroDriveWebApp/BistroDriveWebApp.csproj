@@ -408,6 +408,7 @@
     <Content Include="Content\Forms.less" />
     <Content Include="Content\Orders.less" />
     <Content Include="Content\UsersList.less" />
+    <Content Include="Content\Dish.less" />
     <None Include="Properties\PublishProfiles\bistrodrive.pubxml" />
     <None Include="Properties\PublishProfiles\SmarterASP.pubxml" />
     <None Include="Properties\PublishProfiles\SmartWD.pubxml" />
