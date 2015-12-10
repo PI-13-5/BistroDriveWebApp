@@ -4,17 +4,19 @@
 }
 
 <div class="col-md-10 col-md-offset-1 well signin settings-form">
-<h2>@ViewBag.Title.</h2>
+    <div class="settings-form-header col-md-10 col-md-offset-1">
+        <h2>@ViewBag.Title.</h2>
+        <br /><hr /><br />
+        @Html.ActionLink("Сменить пароль", "Changepassword")
+        <p class="text-success">@ViewBag.StatusMessage</p>
 
-@Html.ActionLink("Сменить пароль", "Changepassword")
-<p class="text-success">@ViewBag.StatusMessage</p>
-
-<div><image src="@Html.DisplayFor(model => model.Avatar_Url)" width="200" height="200" /></div>
-@using (Html.BeginForm("UpdateAvatar", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        <div><image src="@Html.DisplayFor(model => model.Avatar_Url)" width="200" height="200" /></div>
+        @using (Html.BeginForm("UpdateAvatar", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-    <input type="file" name="file" />
-    <input type="submit" value="OK" />
+            <input type="file" name="file" />
+            <input type="submit" value="OK" />
         }
+    </div>
 <hr />
 
 @using (Html.BeginForm())
@@ -54,7 +56,7 @@
         @Html.ValidationMessageFor(model => model.Telphone, "", new { @class = "text-danger" })
     </div>
 
-    <div class="input-group col-md-10 col-md-offset-1">
+    <div class="input-group col-md-10 col-md-offset-1 dropdown-list">
         @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label" })
         @Html.DropDownListFor(model => model.City, new SelectList(Model.City_List, "Id_City", "Name"), new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
