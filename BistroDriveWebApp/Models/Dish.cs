@@ -31,6 +31,7 @@ namespace BistroDriveWebApp.Models
         public string ImageUrl { get; set; }
         public int Id_Type { get; set; }
         public bool CanTeach { get; set; }
+        public Nullable<int> Raiting { get; set; }
     
         public virtual aspnetuser aspnetuser { get; set; }
         public virtual dishtype dishtype { get; set; }

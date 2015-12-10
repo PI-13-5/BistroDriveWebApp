@@ -1,5 +1,7 @@
 ﻿@model BistroDriveWebApp.Models.OrderDitailViewModel
-
+@{
+    ViewBag.Title = "Информация о заказе №"+Model.Order.Id_Order;
+}
 <div class="form-horizontal">
     <h2>Информация о заказе</h2>
 

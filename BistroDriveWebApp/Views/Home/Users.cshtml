@@ -1,0 +1,111 @@
+﻿@model BistroDriveWebApp.Models.UserListViewModel
+@{
+    ViewBag.Title = "Список исполнителей";
+}
+@using (Html.BeginForm("users", "home", FormMethod.Get))
+{
+    <div>
+        <div class="row center-text">
+            <div class="search">
+                <h2 class="margin-b-title">Найди себе что-нибудь по вкусу</h2>
+                <input type="search" name="search" class="search-input" id="search" placeholder="" value="@Model.Search" />
+                <input class="btn search-btn" type="submit" value="Поиск" />
+            </div>
+        </div>
+        <div class="row content">
+            <div class="col-md-4">
+                <div class="left-sidebar">
+                    <h2 class="block-title">Категории:</h2>
+                    <form>
+                        <div class="checkboxes">
+                            <input type="hidden" name="page" id="page" />
+                            <div class="inline">
+                                <label for="Travel">С выездом надом</label><input type="checkbox" name="Travel" id="Travel"
+                                                                                  @if (Model.Travel != null) { @: checked
+                                                                                                                  } /><label for="Travel"></label>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="select-menu">
+                        <span>Город</span>
+                        @Html.DropDownListFor(model => model.CityId, new SelectList(Model.City_List, "Id_City", "Name"), new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <hr class="block-left-hr">
+                    <input class="btn search-btn" type="submit" value="Применить" />
+                </div>
+                <br>
+                <p class="question">Если ты знаешь как нам стать лучше, то <a href="#">жми сюда!</a></p>
+            </div>
+            <div class="col-md-8 main-content">
+                @if (Model.UserList.Count() == 0)
+                {
+                    @:<h2>Нечего не найдено</h2>
+            }
+                @foreach (var item in Model.UserList)
+                {        <article>
+                @if (item.Avatar_Url != "")
+                {
+                <div style="width:150px; float:left"><a href="@Url.Action("index", "profile", new { id = item.UserName })">
+                        <img class="img-responsive" src="@Html.DisplayFor(Model => item.Avatar_Url)" />
+                    </a>
+                </div>
+                }
+                <div>
+                    <h2 class="list-title">@Html.ActionLink(item.UserName + " (" + item.FristName + " " + item.Surname + ")", "index", "profile", new { id = item.UserName }, null)</h2>
+                    <span> Город: </span>
+                    <span class="list-sity">@item.city.name</span>
+                    @if (item.withTravel == true)
+                    {
+                        @:<span> - </span>
+                        @:<span class="list-type">с выездом на дом</span>
+            }
+                    <p>@if (item.userdescriptions.FirstOrDefault() != null) {
+                        @item.userdescriptions.FirstOrDefault().Description;
+                    }</p>
+                    <ul class="list-inline rating-reviews" title="Ratings">
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            if (i < item.Raiting)
+                            {
+                                @:
+                                <i class="fa fa-star fa-lg"></i>
+                            }
+                            else
+                            {
+                                @:
+                                <i class="fa fa-star-o fa-lg"></i>
+                                }
+                            }
+                    </ul>
+                </div>
+                <hr class="list-hr">
+                @if (Model.PageCount > 1)
+                {
+                    <div class="list-pangination text-center">
+                        @for (int i = 0; i < Model.PageCount; i++)
+                        {
+                            if (i == Model.Page)
+                            {
+                                @: @(i + 1)
+            }
+                            else
+                            {
+                                <a href="#" onclick="selectPage(@i); return false;">@(i + 1)</a>
+                            }
+                        }
+                    </div>
+
+                }
+            </article>
+                }
+            </div>
+
+        </div>
+    </div>
+}
+<script>
+    function selectPage(page){
+        $("#page").val(page);
+        $("form").submit();
+    };
+</script>

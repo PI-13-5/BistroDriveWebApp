@@ -1,0 +1,20 @@
+﻿@model BistroDriveWebApp.Models.UserReviewViewModel
+@{
+    ViewBag.Title = "Редактировать отзыв";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Редактировать отзыв</h4>
+        <hr />
+        @Html.Partial("/Views/Profile/_ParticalUserReview.cshtml", Model)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Оставить отзыв" class="btn btn-default" />
+                @Html.ActionLink("Назад", "index", "profile", new { id = Model.UserName }, htmlAttributes: new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

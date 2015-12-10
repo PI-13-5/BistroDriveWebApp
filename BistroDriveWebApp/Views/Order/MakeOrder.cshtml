@@ -1,5 +1,7 @@
 ﻿@model BistroDriveWebApp.Models.OrderViewModel
-
+@{
+    ViewBag.Title = "Оформление заказа";
+}
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -85,7 +87,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.City, new SelectList(Model.City_List, "Id_City", "Name"), new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.City, new SelectList(ViewBag.Cities, "Id_City", "Name"), new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
                     </div>
                 </div>

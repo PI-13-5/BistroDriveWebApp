@@ -161,7 +161,7 @@ namespace BistroDriveWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Surname = model.Surname, FristName = model.FirstName  };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Surname = model.Surname, FristName = model.FirstName, Avatar_Url = "/Content/images/default-avatar.png" };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
