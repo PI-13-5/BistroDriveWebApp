@@ -50,7 +50,7 @@
                 <h2>В любом случае тебе к нам!</h2>
                 @using (Html.BeginForm("Register", "Account", FormMethod.Get))
                 {
-                    <input type="text" class="ent-numb input-lg" name="phone" placeholder="Номер телефона...">
+                    @*<input type="text" class="ent-numb input-lg" name="phone" placeholder="Номер телефона...">*@
                     <input type="submit" class="btn-submit-land input-lg" value="Зарегистрироваться!">
                 }
             </div>
@@ -127,13 +127,13 @@
                 <div class="col-md-offset-4 col-md-5">
                     @using (Html.BeginForm("Register", "Account", FormMethod.Get, new { @class = "lastpage" }))
                     {
-                        <input type="text" class="ent-numb input-lg" name="phone" placeholder="Номер телефона...">
+                        @*<input type="text" class="ent-numb input-lg" name="phone" placeholder="Номер телефона...">*@
                         <input type="submit" class="btn-submit-land input-lg" value="Зарегистрироваться!">
                     }
                 </div>
             </div>
        </div> 
-        <footer class="row footer">
+        <footer class="row landing-footer">
             <div class="row">
                 <div class="row">
                     <a href="/">
