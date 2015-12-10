@@ -35,7 +35,7 @@ namespace BistroDriveWebApp.Models
         [Display(Name = "Адрес")]
         public string Address { get; set; }
 
-        [Display(Name = "Выезжаю надом")]
+        [Display(Name = "Выезжаю на дом")]
         public string WithTravel { get; set; }
 
         [StringLength(16384, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 10)]

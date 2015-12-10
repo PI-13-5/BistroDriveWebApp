@@ -68,11 +68,11 @@
 
     <div class="input-group col-md-10 col-md-offset-1">
         @Html.LabelFor(model => model.WithTravel, htmlAttributes: new { @class = "control-label" })
-        <div class="inline" style="width:31px">
+        <div class="checkbox" style="width:31px">
             <input type="checkbox" name="WithTravel" id="WithTravel"
                     @if (Model.WithTravel != null) { @: checked
                                         } />
-            <label for="CanTeach"></label>
+            <label for="WithTravel"></label>
         </div>
         @Html.ValidationMessageFor(model => model.WithTravel, "", new { @class = "text-danger" })
     </div>
