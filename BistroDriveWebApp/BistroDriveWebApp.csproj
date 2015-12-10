@@ -405,6 +405,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\Forms.less" />
     <None Include="Properties\PublishProfiles\bistrodrive.pubxml" />
     <None Include="Properties\PublishProfiles\SmarterASP.pubxml" />
     <None Include="Properties\PublishProfiles\SmartWD.pubxml" />
