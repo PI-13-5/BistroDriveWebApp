@@ -24,7 +24,7 @@
         @if (!((Request.Url.PathAndQuery.Equals("/") || Request.Url.PathAndQuery.Equals("/Home/Landing")) && !Request.IsAuthenticated))
         {
             @*  @Html.ActionLink("BistroDrive", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
-            <div class="row header">
+            <header class="row header">
                 <div class="col-md-4">
                     <a href="/">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495.425 135.294">
@@ -34,21 +34,22 @@
                         </svg>
                     </a>
                 </div>
-                <div class="col-md-offset-1 col-md-7">
+                <div class="col-md-8">
                     <div class="top-menu">
                                 <nav class="navbar-default">
                                      <ul class="nav navbar-nav navbar-left header-nav-link">
                                         <li>@Html.ActionLink("Предложения", "Offers", "Home")</li>
-                                        <li>@Html.ActionLink("Исполнители", "Users", "Home")</li>
+                                       <li>@Html.ActionLink("Исполнители", "Users", "Home")</li>
                                         <li>@Html.ActionLink("О нас", "About", "Home")</li>
                                         <li>@Html.Partial("_LoginPartial")</li>
                                         @* <li>@Html.ActionLink("Контакты", "Contact", "Home")</li>*@
                                     </ul>
                             </nav>
+                        <div id="header-spacer" class="scroll"></div>
                         <!--//navigation-->
                     </div>
                 </div>
-            </div>
+            </header>
         }
             <div class="body-content cf">
                 @RenderBody()
@@ -113,6 +114,19 @@
 		});
     </script>
 
+    <script>
+    $(document).ready(function () {
+    //Header animation
+    if (!$('header').hasClass('small')) {
+    $(window).scroll(function () {
+    if ($(this).scrollTop() > 10) {
+    $('header, #header-spacer').addClass('scroll');
+    }
+    else {
+    $('header, #header-spacer').removeClass('scroll');    }   });
+    }
+    }
+    </script>
     @RenderSection("scripts", required: false)
         
 </body>

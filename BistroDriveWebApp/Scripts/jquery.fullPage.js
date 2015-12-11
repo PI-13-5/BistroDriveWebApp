@@ -90,7 +90,7 @@
     $.fn.fullpage = function(options) {
 
         // common jQuery objects
-        var $htmlBody = $('html, body');
+        var $htmlBody = $('html, .body-content ');
         var $body = $('.body-content');
 
         var FP = $.fn.fullpage;
@@ -137,7 +137,7 @@
             controlArrowColor: '#fff',
             verticalCentered: true,
             resize: false,
-            sectionsColor : [],
+            sectionsColor : ['#f5f6f7','#fafbfd','#f5f6f7','#f8fcff'],
             paddingTop: 0,
             paddingBottom: 0,
             fixedElements: null,
@@ -179,8 +179,8 @@
 
             if(options.autoScrolling && !options.scrollBar){
                 $htmlBody.css({
-                    'overflow' : 'hidden',
-                    'height' : '100%'
+                    // 'overflow' : 'hidden',
+                    'height' : '800px'
                 });
 
                 FP.setRecordHistory(originals.recordHistory, 'internal');
@@ -386,7 +386,7 @@
             });
 
             var windowsWidth = $window.width();
-            windowsHeight = $window.height();  //updating global var
+           // windowsHeight = $window.height();  //updating global var
 
             //text resizing
             if (options.resize) {
