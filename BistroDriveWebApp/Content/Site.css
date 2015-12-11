@@ -1,4 +1,4 @@
-﻿
+
 /* font-family: "RobotoSlabRegular"; */
 @font-face {
     font-family: "RobotoSlabRegular";
@@ -57,28 +57,33 @@ img.header-avatar {
     transition: border-color 0.3s ease-in-out;
 }
 
+
 img.header-avatar:hover {
     border: lightgray solid 1px;
 }
 
-/*LANDING PAGE*/
-@font-face {
-    font-family: "RockwellExtraBold";
-    src: url("../fonts/rockwell_extra_bold.eot");
-    src: url("../fonts/rockwell_extra_bold.eot?#iefix")format("embedded-opentype"),
-    url("../fonts/rockwell-extra-bold.ttf") format("truetype");
-    font-style: normal;
-    font-weight: normal;
+.landing-header{
+    margin-bottom:50px;
+}
+
+.landing-header svg{
+    height:123px;
+    margin-top:5px;
+    width:320px;
+}
+.landing-footer svg{
+    height:72px;
+    width:285px;
 }
 .wrap{
-	 height: 100%;
+	/*height: 100%;*/
     margin-left: auto;
     margin-right: auto;
-    position: relative;
+     position: relative; 
 }
-/*#fullpage {
+#fullpage {
 	background: #f8f9f9;
-}*/
+}
 
 .section{
 	height: 100%;
@@ -175,8 +180,12 @@ line-height: 1.5;}
     background-image:url(../images/chiefhat.png)
 }
 
+
 .land-menu{
     margin-top:20px;
+}
+header .land-menu{
+    margin-top:56px;
 }
 .land-menu li {
     display: inline;
@@ -249,7 +258,19 @@ a.land-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
 .lastpage{
     margin-top: 50px;
 }
-
+	header.scroll,header.small{height:50px}
+	header.scroll a.logo,header.small a.logo{
+		top:6px;width:32px;margin-left:-16px}
+	header.scroll a.logo img.cm,header.small a.logo img.cm{width:31px;height:35px;margin-left:-15px}
+	header.scroll nav ul,header.small nav ul{top:14px;margin-left:-23%;width:46%}
+	header.scroll nav ul li.link1,header.small nav ul li.link1{right:79%}
+	header.scroll nav ul li.link2,header.small nav ul li.link2{right:58%}
+	header.scroll nav ul li.link3,header.small nav ul li.link3{left:58%}
+	header.scroll nav ul li.link4,header.small nav ul li.link4{left:84%}
+	header.scroll nav ul li a:hover,header.small nav ul li a:hover{color:#BC8339;background:none}
+	header.scroll nav ul li.active a,header.small nav ul li.active a{color:#BC8339}
+	div#header-spacer{transition-property:height;transition-duration:500ms;height:225px}
+	div#header-spacer.scroll,div#header-spacer.small{height:50px}
 
 
 body{
@@ -278,7 +299,7 @@ ul,label{
 }
 
 .header {
-    /*height: 195px;*/
+    height: 200px;
 }
 .header svg{
     height:123px;
@@ -304,7 +325,8 @@ ul,label{
     box-shadow: none;
 }
 .navbar-default .navbar-nav > li {
-    padding-left: 0px;
+    padding-left: 0;
+    padding-right: 0;
 }
 .navbar-default .navbar-nav > li:last-child img{
     margin-top:-10px;
@@ -394,6 +416,7 @@ a.login-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
     color:#fff;
 }
 .footer {
+    margin-top:200px;
     height: 100%;
 }
 .footer-logo {
@@ -618,6 +641,7 @@ a.btn-success:hover {
 }
 .select-menu select {
     float: right;
+    width:182px;
 }
 .list-title {
     color: #20a8ff;
@@ -646,6 +670,7 @@ a.btn-success:hover {
     font-size: 1.5em;
 }
 .rating {
+    clear: both;
     padding: 10px 0;
 }
 .list-pangination {
@@ -656,6 +681,7 @@ a.btn-success:hover {
 .select-menu {
     padding-bottom: 1em;
     font-size: 1.5em;
+  
 }
 .question {
     font-size: 24px;
@@ -702,6 +728,10 @@ input[type="checkbox"]:checked + label {
 }
 
 
+.dish-info-btn{
+    font-size: 1.9em ;
+    margin:10px 10px;
+}
 label {
     font-weight: normal;
 }
