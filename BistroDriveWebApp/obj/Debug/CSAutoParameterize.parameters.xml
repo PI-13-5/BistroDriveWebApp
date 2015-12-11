@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="MyDbContextConnectionString-Web.config Connection String" description="MyDbContextConnectionString Connection String used in web.config by the application to access the database." defaultValue="server=185.14.28.103;UserId=bistrodrive;password=fYkqBrkKe5;database=bistrodrive;CharSet=utf8;Persist Security Info=True" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="D:\\Projects\\BistroDrive\\BistroDriveWebApp\\BistroDriveWebApp\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MyDbContextConnectionString']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="D:\\WEB\\BistroDrive\\final\\BistroDriveWebApp\\BistroDriveWebApp\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MyDbContextConnectionString']/@connectionString" />
   </parameter>
   <parameter name="BistroDriveEntities-Web.config Connection String" description="BistroDriveEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=MySql.Data.MySqlClient;provider connection string=&quot;server=185.14.28.103;user id=bistrodrive;password=fYkqBrkKe5;database=bistrodrive;characterset=utf8;characterset=utf8;persistsecurityinfo=True&quot;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="D:\\Projects\\BistroDrive\\BistroDriveWebApp\\BistroDriveWebApp\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BistroDriveEntities']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="D:\\WEB\\BistroDrive\\final\\BistroDriveWebApp\\BistroDriveWebApp\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BistroDriveEntities']/@connectionString" />
   </parameter>
 </parameters>

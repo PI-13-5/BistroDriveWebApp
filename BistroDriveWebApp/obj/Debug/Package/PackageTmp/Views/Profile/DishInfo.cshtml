@@ -1,13 +1,13 @@
 ﻿@model BistroDriveWebApp.Models.dish
 @using BistroDriveWebApp.Models
-@{ 
+@{
     ViewBag.Title = Model.Name;
 }
 
 <div>
     <h4>@Html.DisplayFor(model => model.Name)</h4>
-        @Html.ActionLink("Профиль пользователя", "index", new { id = ViewBag.Username }) |
-        @Html.ActionLink("Список предложений", "Offers","Home")
+    @Html.ActionLink("Профиль пользователя", "index", new { id = ViewBag.Username }) |
+    @Html.ActionLink("Список предложений", "Offers", "Home")
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -33,13 +33,13 @@
         <dd>
             <img src="@Html.DisplayFor(model=>model.ImageUrl)" width="200" />
         </dd>
+        <div class="rating">
+            <dt>
+                Рейтинг
+            </dt>
 
-        <dt>
-            Рейтинг
-        </dt>
+            <dd>
 
-        <dd>
-            <div class="rating">
                 @for (int i = 0; i < 5; i++)
                 {
                     if (i < Model.Raiting)
@@ -51,58 +51,59 @@
                         @:<i class="fa fa-star-o fa-lg"></i>
                     }
                 }
-                </div>
+
             </dd>
+        </div>
+<dt>
+    @*Html.DisplayNameFor(model => model.Description)*@
+    Описание
+</dt>
 
-        <dt>
-            @*Html.DisplayNameFor(model => model.Description)*@
-            Описание
-        </dt>
+<dd>
+    @Html.DisplayFor(model => model.Description)
+</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+<dt>
+    @*Html.DisplayNameFor(model => model.Price)*@
+    Цена
+</dt>
 
-        <dt>
-            @*Html.DisplayNameFor(model => model.Price)*@
-            Цена
-        </dt>
+<dd>
+    @Html.DisplayFor(model => model.Price)
+</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+<dt>
+    @*Html.DisplayNameFor(model => model.PriceWithIngridient)*@
+    Цена с ингридиент.
+</dt>
 
-        <dt>
-            @*Html.DisplayNameFor(model => model.PriceWithIngridient)*@
-            Цена с ингридиент.
-        </dt>
+<dd>
+    @Html.DisplayFor(model => model.PriceWithIngridient)
+</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PriceWithIngridient)
-        </dd>
+<dt>
+    @*Html.DisplayNameFor(model => model.Ingridient)*@
+    Ингридиенты
+</dt>
 
-        <dt>
-            @*Html.DisplayNameFor(model => model.Ingridient)*@
-            Ингридиенты
-        </dt>
+<dd>
+    @Html.DisplayFor(model => model.Ingridient)
+</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ingridient)
-        </dd>
+<dt>
+    Обучаю
+</dt>
 
-        <dt>
-            Обучаю
-        </dt>
-
-        <dd>
-            @if (Model.CanTeach == true) {
-                @:Да
+<dd>
+    @if (Model.CanTeach == true)
+    {
+        @:Да
              }
             else
             {
-                @:Нет
+        @:Нет
             }
-        </dd>
+</dd>
 
 
 
@@ -110,21 +111,24 @@
 </div>
 @if (User.Identity.Name != ViewBag.Username)
 {
-@Html.ActionLink("Заказать", "MakeOrder", "order", new { id = Model.Id_Dish }, htmlAttributes: new { @class = "btn btn-success" })
     if (User.Identity.IsAuthenticated == true)
     {
-        @Html.ActionLink("Оставить отзыв", "AddDishFeedback", "profile", new { id = Model.Id_Dish }, htmlAttributes: new { @class = "btn btn-info" })
+        @Html.ActionLink("Оставить отзыв", "AddDishFeedback", "profile", new { id = Model.Id_Dish }, htmlAttributes: new { @class = "btn btn-success dish-info-btn" })
     }
+
+    @Html.ActionLink("Заказать", "MakeOrder", "order", new { id = Model.Id_Dish }, htmlAttributes: new { @class = "btn btn-success dish-info-btn" })
+
+
 }
 
 @if (User.Identity.Name == ViewBag.Username)
 {
-<p>
-    <div>
-        @Html.ActionLink("Редактировать", "EditDish", new { id = Model.Id_Dish }) |
-        @Html.ActionLink("Удалить", "DeleteDish", new { id = Model.Id_Dish }, new { onclick = "return confirm('Вы действительно хотите удалить это блюдо?');" })
-    </div>
-</p>
+    <p>
+        <div>
+            @Html.ActionLink("Редактировать", "EditDish", new { id = Model.Id_Dish }) |
+            @Html.ActionLink("Удалить", "DeleteDish", new { id = Model.Id_Dish }, new { onclick = "return confirm('Вы действительно хотите удалить это блюдо?');" })
+        </div>
+    </p>
 }
 <div>
     <hr />
@@ -153,20 +157,20 @@
                             }
                         </ul>
                         <p class="username-rev">@Html.ActionLink(item.aspnetuser.UserName, "index", new { id = item.aspnetuser.UserName })</p>
-                         <p class="reviews-description">
+                        <p class="reviews-description">
                             @item.Description
                         </p>
                         @if (item.aspnetuser.UserName == User.Identity.Name)
                         {
-                        <div>
-                            @Html.ActionLink("Редактировать", "EditDishReview", new { id = item.Id_Review }) |
-                            @Html.ActionLink("Удалить", "DeleteDishReview", new { id = item.Id_Review }, new { onclick = "return confirm('Вы действительно хотите удалить ваш отзыв?');" })
-                        </div>
+                            <div>
+                                @Html.ActionLink("Редактировать", "EditDishReview", new { id = item.Id_Review }) |
+                                @Html.ActionLink("Удалить", "DeleteDishReview", new { id = item.Id_Review }, new { onclick = "return confirm('Вы действительно хотите удалить ваш отзыв?');" })
+                            </div>
                         }
                     </article>
                 }
-             </div>
             </div>
+        </div>
     }
     else
     {

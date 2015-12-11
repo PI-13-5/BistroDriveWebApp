@@ -1,40 +1,60 @@
-﻿@model BistroDriveWebApp.Models.DishListViewModel
-@{
-    ViewBag.Title = @Html.DisplayFor(model => model.UserName) + " ("
-    + @Html.DisplayFor(model => model.Firstname) + " "
-     + @Html.DisplayFor(model => model.Surname) + ")";
-}
-<h2>@ViewBag.Title dish List</h2>
+﻿<div class="col-md-10 col-md-offset-1 user-dish-header text-center">
+    @model BistroDriveWebApp.Models.DishListViewModel
+    @{
+        ViewBag.Title = @Html.DisplayFor(model => model.UserName) + " ("
+        + @Html.DisplayFor(model => model.Firstname) + " "
+         + @Html.DisplayFor(model => model.Surname) + ")";
+    }
+    <h2>
+        @ViewBag.Title
+    @if (Model.WithTravel == true)
+    {
+        @: - выезжаю надом
+    }
+</h2>
 <p>
-@if (User.Identity.Name == Model.UserName)
-{
-    @Html.ActionLink("Добавить блюдо", "AddDish") @:|
+    @if (User.Identity.Name == Model.UserName)
+    {
+        @Html.ActionLink("Добавить блюдо", "AddDish") @:|
 }
 
-    @Html.ActionLink("Вернуться к профилю", "index", new { id = Model.UserName})
+    @Html.ActionLink("Вернуться к профилю", "index", new { id = Model.UserName })
 </p>
-<div>
+</div>
+<div class="col-md-10 col-md-offset-1 user-dish">
     @foreach (var item in Model.DishList)
     {
-        <div>
-            <h4>@Html.ActionLink(item.Name, "dishinfo", new { id = item.Id_Dish })</h4>
+        <div class="dish-main-info">
+            <div class="dish-main-info-text col-md-6">
+                <h4>@Html.ActionLink(item.Name, "dishinfo", new { id = item.Id_Dish })</h4>
                 <div>@Html.DisplayFor(modelItem => item.dishtype.Name)</div>
-                @if (item.ImageUrl != "" && item.ImageUrl != null)
+            </div>
+            @if (item.ImageUrl != "" && item.ImageUrl != null)
                 {
-                    <a href="@Url.Action("dishinfo", new { id = item.Id_Dish })">
-                        <img src="@Html.DisplayFor(Model=>item.ImageUrl)" width="200" height="200" />
-                    </a>
-                }
-                <div>Price:
-                    @Html.DisplayFor(modelItem => item.Price)
+                <a href="@Url.Action("dishinfo", new { id = item.Id_Dish })" class="col-md-4">
+                    <img src="@Html.DisplayFor(Model=>item.ImageUrl)" width="200" height="200" />
+                </a>
+            }
+            <div class="dish-extra-info col-md-10">
+                <div>
+                    Цена:
+                    &#8372;@Html.DisplayFor(modelItem => item.Price)
                 </div>
                 <div>
-                   Price with ingridients:
-                    @Html.DisplayFor(modelItem => item.PriceWithIngridient)
+                    Цена с ингридиентами:
+                    &#8372;@Html.DisplayFor(modelItem => item.PriceWithIngridient)
                 </div>
-                <p>@Html.DisplayFor(modelItem => item.Description)</p>
-                <p>Ingridients: @Html.DisplayFor(modelItem => item.Ingridient)</p>
+                <br />
+                <p>@Html.DisplayFor(modelItem => item.Description)</p><br />
+                <p>Ингридиенты: @Html.DisplayFor(modelItem => item.Ingridient)</p>
+                @if (item.CanTeach == true)
+                {
+                    <p>Обучаю</p>
+                }
             </div>
-            <hr />
+        </div>
+        <br />
+            <hr class="weird-hr"/>
     }
 </div>
+<br /><hr /><br /><br /><br />

@@ -1,63 +1,52 @@
 ﻿@model BistroDriveWebApp.Models.DishViewModel
 
 
-    @Html.AntiForgeryToken()    <div class="form-horizontal">
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id_Dish, new { htmlAttributes = new { @class = "form-control" } })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="input-group col-md-10 col-md-offset-1">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="input-group col-md-10 col-md-offset-1">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id_Type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="input-group col-md-10 col-md-offset-1 dropdown-list">
+            @Html.LabelFor(model => model.Id_Type, htmlAttributes: new { @class = "control-label" })
                 @Html.DropDownListFor(model => model.Id_Type, new SelectList(ViewBag.Types, "Id_DishType", "Name"), new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Id_Type, "", new { @class = "text-danger" })
-            </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ingridients, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="input-group col-md-10 col-md-offset-1">
+            @Html.LabelFor(model => model.Ingridients, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.Ingridients, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Ingridients, "", new { @class = "text-danger" })
-            </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="input-group col-md-10 col-md-offset-1">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-            </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PriceWithIngridients, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="input-group col-md-10 col-md-offset-1">
+            @Html.LabelFor(model => model.PriceWithIngridients, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.PriceWithIngridients, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PriceWithIngridients, "", new { @class = "text-danger" })
-            </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Image_Url, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="input-group col-md-10 col-md-offset-1">
+            @Html.LabelFor(model => model.Image_Url, htmlAttributes: new { @class = "control-label" })
             @Html.HiddenFor(model => model.Image_Url)
-            <div class="col-md-10">
+
                 @if (Model.Image_Url != "" && Model.Image_Url != null)
                 {
                     <img src="@Html.DisplayFor(Model=>Model.Image_Url)" width="300" height="300" />
@@ -67,5 +56,19 @@
                     <p>None</p>
                 }
                 <input id="image" name="image" type="file" value="Edit" />
-            </div>
         </div>
+
+        <div class="input-group col-md-10 col-md-offset-1">
+            @Html.LabelFor(model => model.CanTeach, htmlAttributes: new { @class = "control-label" })
+                <div class="checkbox" style="width:31px">
+                    <input type="checkbox" name="CanTeach" id="CanTeach" 
+                    @if(Model.CanTeach != null){
+                        @:checked
+                    }
+                     />
+                    <label for="CanTeach"></label>
+                </div>
+                    @Html.ValidationMessageFor(model => model.CanTeach, "", new { @class = "text-danger" })
+                </div>
+</div>
+<br /><hr /><br /><br /><br />
