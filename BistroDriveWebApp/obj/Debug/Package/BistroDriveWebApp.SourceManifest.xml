@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\Package\PackageTmp" />
-  <setAcl path="D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
-  <setAcl path="D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
-  <setAcl path="D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\Package\PackageTmp\App_Data" setAclResourceType="Directory" setAclAccess="Write" />
+  <IisApp path="D:\WEB\BistroDrive\final\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\Package\PackageTmp" />
+  <setAcl path="D:\WEB\BistroDrive\final\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="D:\WEB\BistroDrive\final\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <setAcl path="D:\WEB\BistroDrive\final\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\Package\PackageTmp\App_Data" setAclResourceType="Directory" setAclAccess="Write" />
 </sitemanifest>

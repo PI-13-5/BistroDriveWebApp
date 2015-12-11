@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="BistroDriveModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="aspnetroles">
     <Key>
       <PropertyRef Name="Id" />
@@ -55,6 +55,9 @@
     <Property Name="Address" Type="varchar" MaxLength="256" />
     <Property Name="Avatar_Url" Type="varchar" MaxLength="128" />
     <Property Name="LastOnlineTime" Type="datetime" Precision="0" />
+    <Property Name="Id_City" Type="int" Nullable="false" />
+    <Property Name="withTravel" Type="bit" Nullable="false" />
+    <Property Name="Raiting" Type="int" />
   </EntityType>
   <EntityType Name="chatmessage">
     <Key>
@@ -65,6 +68,13 @@
     <Property Name="Id_Reciver" Type="varchar" MaxLength="128" Nullable="false" />
     <Property Name="Message" Type="varchar" MaxLength="256" Nullable="false" />
     <Property Name="CreateTime" Type="datetime" Precision="0" />
+  </EntityType>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="id_city" />
+    </Key>
+    <Property Name="id_city" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="dish">
     <Key>
@@ -79,6 +89,8 @@
     <Property Name="PriceWithIngridient" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="ImageUrl" Type="varchar" MaxLength="128" />
     <Property Name="Id_Type" Type="int" Nullable="false" />
+    <Property Name="CanTeach" Type="bit" Nullable="false" />
+    <Property Name="Raiting" Type="int" />
   </EntityType>
   <EntityType Name="dishreview">
     <Key>
@@ -121,6 +133,7 @@
     <Property Name="Address" Type="varchar" MaxLength="128" Nullable="false" />
     <Property Name="Comment" Type="varchar" MaxLength="512" />
     <Property Name="total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="id_city" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ordercontactmethod">
     <Key>
@@ -180,7 +193,7 @@
     <Property Name="Id_User" Type="varchar" MaxLength="128" Nullable="false" />
     <Property Name="Id_Owner" Type="varchar" MaxLength="128" Nullable="false" />
     <Property Name="Text" Type="longtext" />
-    <Property Name="Mark" Type="char" MaxLength="10" />
+    <Property Name="Mark" Type="int" />
   </EntityType>
   <EntityType Name="userdescription">
     <Key>
@@ -199,6 +212,18 @@
     <Property Name="Token" Type="varchar" MaxLength="32" Nullable="false" />
     <Property Name="Expiration" Type="datetime" Precision="0" />
   </EntityType>
+  <Association Name="aspnetusers_ibfk_1">
+    <End Role="city" Type="Self.city" Multiplicity="1" />
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="id_city" />
+      </Principal>
+      <Dependent Role="aspnetusers">
+        <PropertyRef Name="Id_City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="description_userid_to_aspnetuser_userid">
     <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -213,11 +238,23 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="dishreview_ibfk_1">
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1" />
+    <End Role="dishreview" Type="Self.dishreview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dishreview">
+        <PropertyRef Name="Id_Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ChatMessage_IdReciver">
-    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1" />
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1" />
     <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="aspnetroles">
+      <Principal Role="aspnetusers">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="chatmessage">
@@ -226,12 +263,12 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ChatMessage_IdSender">
-    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1">
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="aspnetroles">
+      <Principal Role="aspnetusers">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="chatmessage">
@@ -335,20 +372,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_DishReview_IdOwner">
-    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="dishreview" Type="Self.dishreview" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnetroles">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="dishreview">
-        <PropertyRef Name="Id_Owner" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Order_IdContactMethod">
     <End Role="ordercontactmethod" Type="Self.ordercontactmethod" Multiplicity="1" />
     <End Role="order" Type="Self.order" Multiplicity="*" />
@@ -440,10 +463,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Review_IdOwner">
-    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1" />
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1" />
     <End Role="review" Type="Self.review" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="aspnetroles">
+      <Principal Role="aspnetusers">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="review">
@@ -452,12 +475,12 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Review_IdUser">
-    <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="1">
+    <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="review" Type="Self.review" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="aspnetroles">
+      <Principal Role="aspnetusers">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="review">
@@ -477,6 +500,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="order_ibfk_2">
+    <End Role="city" Type="Self.city" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="id_city" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="id_city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="usertoken_ibfk_1">
     <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -491,13 +526,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="BistroDriveModelStoreContainer">
+  <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="aspnetroles" EntityType="Self.aspnetroles" Schema="users" store:Type="Tables" />
     <EntitySet Name="aspnetuserclaims" EntityType="Self.aspnetuserclaims" Schema="users" store:Type="Tables" />
     <EntitySet Name="aspnetuserlogins" EntityType="Self.aspnetuserlogins" Schema="users" store:Type="Tables" />
     <EntitySet Name="aspnetuserroles" EntityType="Self.aspnetuserroles" Schema="users" store:Type="Tables" />
     <EntitySet Name="aspnetusers" EntityType="Self.aspnetusers" Schema="users" store:Type="Tables" />
     <EntitySet Name="chatmessage" EntityType="Self.chatmessage" Schema="users" store:Type="Tables" />
+    <EntitySet Name="city" EntityType="Self.city" Schema="users" store:Type="Tables" />
     <EntitySet Name="dish" EntityType="Self.dish" Schema="users" store:Type="Tables" />
     <EntitySet Name="dishreview" EntityType="Self.dishreview" Schema="users" store:Type="Tables" />
     <EntitySet Name="dishtype" EntityType="Self.dishtype" Schema="users" store:Type="Tables" />
@@ -511,16 +547,24 @@
     <EntitySet Name="review" EntityType="Self.review" Schema="users" store:Type="Tables" />
     <EntitySet Name="userdescription" EntityType="Self.userdescription" Schema="users" store:Type="Tables" />
     <EntitySet Name="usertoken" EntityType="Self.usertoken" Schema="users" store:Type="Tables" />
+    <AssociationSet Name="aspnetusers_ibfk_1" Association="Self.aspnetusers_ibfk_1">
+      <End Role="city" EntitySet="city" />
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+    </AssociationSet>
     <AssociationSet Name="description_userid_to_aspnetuser_userid" Association="Self.description_userid_to_aspnetuser_userid">
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="userdescription" EntitySet="userdescription" />
     </AssociationSet>
+    <AssociationSet Name="dishreview_ibfk_1" Association="Self.dishreview_ibfk_1">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="dishreview" EntitySet="dishreview" />
+    </AssociationSet>
     <AssociationSet Name="FK_ChatMessage_IdReciver" Association="Self.FK_ChatMessage_IdReciver">
-      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="chatmessage" EntitySet="chatmessage" />
     </AssociationSet>
     <AssociationSet Name="FK_ChatMessage_IdSender" Association="Self.FK_ChatMessage_IdSender">
-      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="chatmessage" EntitySet="chatmessage" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -549,10 +593,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_DishReview_IdDish" Association="Self.FK_DishReview_IdDish">
       <End Role="dish" EntitySet="dish" />
-      <End Role="dishreview" EntitySet="dishreview" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DishReview_IdOwner" Association="Self.FK_DishReview_IdOwner">
-      <End Role="aspnetroles" EntitySet="aspnetroles" />
       <End Role="dishreview" EntitySet="dishreview" />
     </AssociationSet>
     <AssociationSet Name="FK_Order_IdContactMethod" Association="Self.FK_Order_IdContactMethod">
@@ -584,15 +624,19 @@
       <End Role="orderproduct" EntitySet="orderproduct" />
     </AssociationSet>
     <AssociationSet Name="FK_Review_IdOwner" Association="Self.FK_Review_IdOwner">
-      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="review" EntitySet="review" />
     </AssociationSet>
     <AssociationSet Name="FK_Review_IdUser" Association="Self.FK_Review_IdUser">
-      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="review" EntitySet="review" />
     </AssociationSet>
     <AssociationSet Name="order_ibfk_1" Association="Self.order_ibfk_1">
       <End Role="orderingridientbuyer" EntitySet="orderingridientbuyer" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="order_ibfk_2" Association="Self.order_ibfk_2">
+      <End Role="city" EntitySet="city" />
       <End Role="order" EntitySet="order" />
     </AssociationSet>
     <AssociationSet Name="usertoken_ibfk_1" Association="Self.usertoken_ibfk_1">

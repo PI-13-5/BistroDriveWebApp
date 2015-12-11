@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="BistroDriveModelStoreContainer" CdmEntityContainer="BistroDriveEntities">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="BistroDriveEntities">
     <EntitySetMapping Name="aspnetroles">
-      <EntityTypeMapping TypeName="BistroDriveModel.aspnetrole">
+      <EntityTypeMapping TypeName="Model.aspnetrole">
         <MappingFragment StoreEntitySet="aspnetroles">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -10,7 +10,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="aspnetuserclaims">
-      <EntityTypeMapping TypeName="BistroDriveModel.aspnetuserclaim">
+      <EntityTypeMapping TypeName="Model.aspnetuserclaim">
         <MappingFragment StoreEntitySet="aspnetuserclaims">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -20,7 +20,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="aspnetuserlogins">
-      <EntityTypeMapping TypeName="BistroDriveModel.aspnetuserlogin">
+      <EntityTypeMapping TypeName="Model.aspnetuserlogin">
         <MappingFragment StoreEntitySet="aspnetuserlogins">
           <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
           <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -29,7 +29,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="aspnetusers">
-      <EntityTypeMapping TypeName="BistroDriveModel.aspnetuser">
+      <EntityTypeMapping TypeName="Model.aspnetuser">
         <MappingFragment StoreEntitySet="aspnetusers">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Email" ColumnName="Email" />
@@ -48,11 +48,14 @@
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Avatar_Url" ColumnName="Avatar_Url" />
           <ScalarProperty Name="LastOnlineTime" ColumnName="LastOnlineTime" />
+          <ScalarProperty Name="Id_City" ColumnName="Id_City" />
+          <ScalarProperty Name="withTravel" ColumnName="withTravel" />
+          <ScalarProperty Name="Raiting" ColumnName="Raiting" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="chatmessages">
-      <EntityTypeMapping TypeName="BistroDriveModel.chatmessage">
+      <EntityTypeMapping TypeName="Model.chatmessage">
         <MappingFragment StoreEntitySet="chatmessage">
           <ScalarProperty Name="Id_Message" ColumnName="Id_Message" />
           <ScalarProperty Name="Id_Sender" ColumnName="Id_Sender" />
@@ -62,8 +65,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="cities">
+      <EntityTypeMapping TypeName="Model.city">
+        <MappingFragment StoreEntitySet="city">
+          <ScalarProperty Name="id_city" ColumnName="id_city" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="dishes">
-      <EntityTypeMapping TypeName="BistroDriveModel.dish">
+      <EntityTypeMapping TypeName="Model.dish">
         <MappingFragment StoreEntitySet="dish">
           <ScalarProperty Name="Id_Dish" ColumnName="Id_Dish" />
           <ScalarProperty Name="Id_User" ColumnName="Id_User" />
@@ -74,11 +85,13 @@
           <ScalarProperty Name="PriceWithIngridient" ColumnName="PriceWithIngridient" />
           <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
           <ScalarProperty Name="Id_Type" ColumnName="Id_Type" />
+          <ScalarProperty Name="CanTeach" ColumnName="CanTeach" />
+          <ScalarProperty Name="Raiting" ColumnName="Raiting" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="dishreviews">
-      <EntityTypeMapping TypeName="BistroDriveModel.dishreview">
+      <EntityTypeMapping TypeName="Model.dishreview">
         <MappingFragment StoreEntitySet="dishreview">
           <ScalarProperty Name="Id_Review" ColumnName="Id_Review" />
           <ScalarProperty Name="Id_Owner" ColumnName="Id_Owner" />
@@ -89,7 +102,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="dishtypes">
-      <EntityTypeMapping TypeName="BistroDriveModel.dishtype">
+      <EntityTypeMapping TypeName="Model.dishtype">
         <MappingFragment StoreEntitySet="dishtype">
           <ScalarProperty Name="Id_DishType" ColumnName="Id_DishType" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -99,7 +112,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="orders">
-      <EntityTypeMapping TypeName="BistroDriveModel.order">
+      <EntityTypeMapping TypeName="Model.order">
         <MappingFragment StoreEntitySet="order">
           <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
           <ScalarProperty Name="Id_Cook" ColumnName="Id_Cook" />
@@ -119,11 +132,12 @@
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Comment" ColumnName="Comment" />
           <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="id_city" ColumnName="id_city" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ordercontactmethods">
-      <EntityTypeMapping TypeName="BistroDriveModel.ordercontactmethod">
+      <EntityTypeMapping TypeName="Model.ordercontactmethod">
         <MappingFragment StoreEntitySet="ordercontactmethod">
           <ScalarProperty Name="Id_ContactMethod" ColumnName="Id_ContactMethod" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -132,7 +146,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="orderdeliveries">
-      <EntityTypeMapping TypeName="BistroDriveModel.orderdelivery">
+      <EntityTypeMapping TypeName="Model.orderdelivery">
         <MappingFragment StoreEntitySet="orderdelivery">
           <ScalarProperty Name="Id_Delivery" ColumnName="Id_Delivery" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -141,7 +155,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="orderingridientbuyers">
-      <EntityTypeMapping TypeName="BistroDriveModel.orderingridientbuyer">
+      <EntityTypeMapping TypeName="Model.orderingridientbuyer">
         <MappingFragment StoreEntitySet="orderingridientbuyer">
           <ScalarProperty Name="Id_IngridientBuyer" ColumnName="Id_IngridientBuyer" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -149,7 +163,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="orderpaymentmethods">
-      <EntityTypeMapping TypeName="BistroDriveModel.orderpaymentmethod">
+      <EntityTypeMapping TypeName="Model.orderpaymentmethod">
         <MappingFragment StoreEntitySet="orderpaymentmethod">
           <ScalarProperty Name="Id_PaymentMethod" ColumnName="Id_PaymentMethod" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -159,7 +173,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="orderproducts">
-      <EntityTypeMapping TypeName="BistroDriveModel.orderproduct">
+      <EntityTypeMapping TypeName="Model.orderproduct">
         <MappingFragment StoreEntitySet="orderproduct">
           <ScalarProperty Name="Id_Product" ColumnName="Id_Product" />
           <ScalarProperty Name="Id_Dish" ColumnName="Id_Dish" />
@@ -170,7 +184,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="orderstatus">
-      <EntityTypeMapping TypeName="BistroDriveModel.orderstatu">
+      <EntityTypeMapping TypeName="Model.orderstatu">
         <MappingFragment StoreEntitySet="orderstatus">
           <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -179,7 +193,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="reviews">
-      <EntityTypeMapping TypeName="BistroDriveModel.review">
+      <EntityTypeMapping TypeName="Model.review">
         <MappingFragment StoreEntitySet="review">
           <ScalarProperty Name="Id_UserReview" ColumnName="Id_UserReview" />
           <ScalarProperty Name="Id_User" ColumnName="Id_User" />
@@ -190,7 +204,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="userdescriptions">
-      <EntityTypeMapping TypeName="BistroDriveModel.userdescription">
+      <EntityTypeMapping TypeName="Model.userdescription">
         <MappingFragment StoreEntitySet="userdescription">
           <ScalarProperty Name="Id_Description" ColumnName="Id_Description" />
           <ScalarProperty Name="Id_User" ColumnName="Id_User" />
@@ -199,7 +213,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="usertokens">
-      <EntityTypeMapping TypeName="BistroDriveModel.usertoken">
+      <EntityTypeMapping TypeName="Model.usertoken">
         <MappingFragment StoreEntitySet="usertoken">
           <ScalarProperty Name="Id_Token" ColumnName="Id_Token" />
           <ScalarProperty Name="Id_User" ColumnName="Id_User" />
@@ -208,7 +222,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="aspnetuserroles" TypeName="BistroDriveModel.aspnetuserroles" StoreEntitySet="aspnetuserroles">
+    <AssociationSetMapping Name="aspnetuserroles" TypeName="Model.aspnetuserroles" StoreEntitySet="aspnetuserroles">
       <EndProperty Name="aspnetroles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>

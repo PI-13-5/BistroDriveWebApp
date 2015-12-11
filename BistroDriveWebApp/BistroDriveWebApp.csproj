@@ -333,6 +333,7 @@
     <Content Include="Content\images\chiefhat.png" />
     <Content Include="Content\images\cookies.png" />
     <Content Include="Content\images\cup.png" />
+    <Content Include="Content\images\default-dish.png" />
     <Content Include="Content\images\eat\1.jpg" />
     <Content Include="Content\images\eat\10.jpg" />
     <Content Include="Content\images\eat\2.jpg" />

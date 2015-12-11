@@ -1,37 +1,133 @@
 ﻿@using BistroDriveWebApp.Models
 @model ProfileViewModel
 @{
-    ViewBag.Title = @Html.DisplayFor(model=>model.UserName) + " ("
-    +@Html.DisplayFor(model=>model.Firstname) + " "
-    +@Html.DisplayFor(model=>model.Surname) + ")";
+    ViewBag.Title = @Html.DisplayFor(model=>model.Firstname) + " "+@Html.DisplayFor(model=>model.Surname);
 }
 
-<h2>@ViewBag.Title</h2>
 
-<div>
-    <div>
-        <div><image src="@Html.DisplayFor(model => model.Avatar_Url)" width="200" height="200" /></div>
-        <p>Рейтинг:@Html.DisplayFor(model => model.Rating)</p> @*тут в цикле будем выводить звездочки *@
-        <p>@Html.DisplayFor(model => model.Description)</p>
-        <div>
-            <h3>@Html.ActionLink("Список блюд", "Dish", new { id = Model.UserName })</h3>
-            <br />
-            <div>
-                @foreach (var item in Model.DishList)
+@*<h2>@ViewBag.Title</h2>*@
+<div class="container-pr">
+    <div class="row">
+        <h2 class="profile-title">Профиль пользователя</h2>
+        <div class="col-md-3 user-data">
+            <img class="img-responsive cook-icon center-block" src="@Model.Avatar_Url" alt="">
+            <ul class="list-inline rating-reviews" title="Ratings">
+                @for (int i = 0; i < 5; i++)
                 {
-                    <h4>@Html.ActionLink(item.Name, "dishinfo", new { id = item.Id_Dish })</h4>
-                    <p>@item.dishtype.Name</p>
-                    if (item.ImageUrl != "" && item.ImageUrl != null)
+                    if (i < Model.Rating)
                     {
-                        <a href="@Url.Action("dishinfo", new { id = item.Id_Dish })">
-                            <img src="@Html.DisplayFor(Model=>item.ImageUrl)" width="100" height="100" />
-                        </a>
+                        @:
+                        <i class="fa fa-star fa-lg"></i>
                     }
-                    <h5>Цена: @item.Price</h5>
+                    else
+                    {
+                        @:
+                        <i class="fa fa-star-o fa-lg"></i>
+                    }
+                }
+            </ul>
+            @* <p>Рейтинг:@Html.DisplayFor(model => model.Rating)</p> тут в цикле будем выводить звездочки *@
+        </div>
+        <div class="col-md-9">
+            <h2 class="margin-b-profile">@ViewBag.Title</h2>
+            <p class="username">@Html.DisplayFor(model => model.UserName)</p>
+            <p class="user-description">
+                @Html.DisplayFor(model => model.Description)
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offers">
+            <h2 class="">@Html.ActionLink("Предложения", "Dish", new { id = Model.UserName })</h2>
+            <!-- Горизонтальный слайдер -->
+            <div class="horizontalSlider">
+                <div class="jcarousel">
+                    <ul>
+                        @foreach (var item in Model.DishList)
+                        {
+                            <li><figure>
+                                <a href="@Url.Action("dishinfo", new { id = item.Id_Dish })">
+                                    <h3>@item.Name</h3>
+                                    <img class="img-responsive" src="@Html.DisplayFor(Model=>item.ImageUrl)" />
+                                </a>
+                            </figure></li>
+                        }
+                    </ul>
+                </div>
+                <div class="sliderControl">
+                    <div class="control">
+                        <a href="#" class="jcarousel-control-prev"></a>
+                        <a href="#" class="jcarousel-control-next"></a>
+                    </div>
+                </div>
+            </div>
+            <!-- //Горизонтальный слайдер -->
+        </div>
+    </div>
+
+  @*   <div>
+    <h3>@Html.ActionLink("Список блюд", "Dish", new { id = Model.UserName })</h3>
+         <div>
+            @foreach (var item in Model.DishList)
+            {
+                <h4>@Html.ActionLink(item.Name, "dishinfo", new { id = item.Id_Dish })</h4>
+                    <p>@item.dishtype.Name</p>
+                if (item.ImageUrl != "" && item.ImageUrl != null)
+                {
+                    <a href="@Url.Action("dishinfo", new { id = item.Id_Dish })">
+                        <img src="@Html.DisplayFor(Model=>item.ImageUrl)" width="100" height="100" />
+                    </a>
+                }
+                <h5>Цена: @item.Price</h5>
                     <h5>Цена с ингридиентами: @item.PriceWithIngridient</h5>
                     <hr />
+            }
+        </div>
+    </div>*@
+    <div class="row">
+        <div class="reviews">
+            <h2 class="margin-b-review">Отзывы (@Model.ReviewList.Count)</h2>
+            @if (User.Identity.Name != Model.UserName)
+            {
+                if (User.Identity.IsAuthenticated == true)
+                {
+                    @Html.ActionLink("Оставить отзыв", "AddUserReview", "profile", new { id = Model.UserName }, htmlAttributes: new { @class = "btn btn-info" })
                 }
-            </div>
+            }
+            @foreach (var item in Model.ReviewList)
+            {
+                <article>
+                    <h3 class="reviews-name">@Html.ActionLink((item.aspnetuser.FristName + " " + item.aspnetuser.Surname), "index", new { id = item.aspnetuser.UserName }) </h3>
+                    <ul class="list-inline rating-reviews" title="Ratings">
+                        @for (int i = 0; i < 5; i++)
+                            {
+                                if (i < item.Mark)
+                                {
+                                @:<i class="fa fa-star fa-lg"></i>
+                                }
+                                else
+                                {
+                                @:<i class="fa fa-star-o fa-lg"></i>
+                                }
+                            }
+                    </ul>
+                    <p class="username-rev">@Html.ActionLink(item.aspnetuser.UserName, "index", new { id = item.aspnetuser.UserName })</p>
+                    <p class="reviews-description">
+                        @item.Text
+                    </p>
+                    @if (item.aspnetuser.UserName == User.Identity.Name)
+                    {
+                    <div>
+                        @Html.ActionLink("Редактировать", "EditReview", new { id = item.Id_UserReview }) |
+                        @Html.ActionLink("Удалить", "DeleteReview", new { id = item.Id_UserReview }, new { onclick = "return confirm('Вы действительно хотите удалить ваш отзыв?');" })
+                    </div>
+                    }
+                    <hr />
+                </article>
+            }
         </div>
     </div>
 </div>
+
+
+    
