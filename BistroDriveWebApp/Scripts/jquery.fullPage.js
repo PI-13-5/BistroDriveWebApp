@@ -137,7 +137,7 @@
             controlArrowColor: '#fff',
             verticalCentered: true,
             resize: false,
-            sectionsColor : ['#f5f6f7','#fafbfd','#f5f6f7','#f8fcff'],
+            sectionsColor : ['#f5f6f7'],
             paddingTop: 0,
             paddingBottom: 0,
             fixedElements: null,
