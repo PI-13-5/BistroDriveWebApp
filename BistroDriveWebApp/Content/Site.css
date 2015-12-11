@@ -256,6 +256,7 @@ a.land-top-btn:active { background: #e3e4e6; } /* ïðè íàæàòèè */
     /*text-indent: 50px;*/
 }
 .lastpage{
+    margin-left:35px;
     margin-top: 50px;
 }
 	header.scroll,header.small{height:50px}
