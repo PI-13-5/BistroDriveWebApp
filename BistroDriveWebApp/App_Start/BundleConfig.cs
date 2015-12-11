@@ -24,7 +24,7 @@ namespace BistroDriveWebApp
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
-<<<<<<< HEAD
+
             bundles.Add(new ScriptBundle("~/bundles/carousel").Include("~/Scripts/jcarousel.js"));
             
             bundles.Add(new ScriptBundle("~/bundles/app").Include("~/Scripts/app.js"));
@@ -32,20 +32,7 @@ namespace BistroDriveWebApp
             bundles.Add(new ScriptBundle("~/bundles/fullpage").Include("~/Scripts/jquery.fullPage.js"));
             bundles.Add(new ScriptBundle("~/bundles/easings").Include("~/Scripts/jquery.easings.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/slimscroll").Include("~/Scripts/jquery.slimscroll.min.js"));
-=======
-                      
-            bundles.Add(new ScriptBundle("~/bundles/carousel").Include(
-                     "~/Scripts/jcarousel.js"));
-                      
-            bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                      "~/Scripts/app.js"));
->>>>>>> eb1756853a963706f4ba4a955a6e5a1c5d05b025
 
-            bundles.Add(new ScriptBundle("~/bundles/carousel").Include(
-                        "~/Scripts/jcarousel.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                        "~/Scripts/app.js"));
 
             bundles.Add(new StyleBundle("~/Content/landing").Include("~/Content/Landing.css"));
 
@@ -54,7 +41,11 @@ namespace BistroDriveWebApp
                       "~/Content/font-awesome/css/font-awesome.min.css",
                       "~/Content/jquery.fullPage.css",
                       "~/Content/site.css",
-                      "~/Content/Landing.less"));
+                      "~/Content/Landing.less",
+                      "~/Content/Forms.less",
+                      "~/Content/Orders.less",
+                      "~/Content/UsersList.less",
+                      "~/Content/Dish.less"));
 
             
             
