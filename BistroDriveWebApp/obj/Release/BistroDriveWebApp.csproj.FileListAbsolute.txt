@@ -82,3 +82,8 @@ D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\MySql.Data.dll
 D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\MySql.Data.Entity.EF6.dll
 D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\MySql.Web.dll
 D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\obj\Release\BistroDriveWebApp.csprojResolveAssemblyReference.cache
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\dotless.Core.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\Microsoft.Dynamic.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\Microsoft.Scripting.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\Microsoft.Scripting.Metadata.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\dotless.Core.pdb

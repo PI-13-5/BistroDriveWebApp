@@ -4,15 +4,19 @@
     ViewBag.Title = "Добавить блюдо";
 }
 
-<h2>Добавить блюдо</h2>
-
-@using (Html.BeginForm("AddDish", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.Partial("/Views/Profile/_DishPartial.cshtml",Model)
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Добавить" class="btn btn-info" />
-            @Html.ActionLink("Отмена", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
-        </div>
+<br /><br /><br /><br />
+<div class="col-md-10 col-md-offset-1 well signin settings-form">
+    <div class="settings-form-header col-md-10 col-md-offset-1">
+        <h2 class="text-center">Добавить блюдо</h2><hr />
     </div>
-}
+        @using (Html.BeginForm("AddDish", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.Partial("/Views/Profile/_DishPartial.cshtml", Model)
+            <div class="input-group col-md-10 col-md-offset-1">
+                <input type="submit" value="Добавить" class="btn btn-info btn-submit-dish"/>
+                @Html.ActionLink("Отмена", "Index", null, htmlAttributes: new { @class = "btn btn-info" })
+            </div>
+        }
+    
+</div>
+<br /><br /><hr /><br /><br /><br />

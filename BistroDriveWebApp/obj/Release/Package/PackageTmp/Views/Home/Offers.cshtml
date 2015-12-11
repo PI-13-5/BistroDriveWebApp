@@ -2,120 +2,218 @@
 @{
     ViewBag.Title = "Список предложений";
 }
+@using (Html.BeginForm("offers", "home", FormMethod.Get)){
 <div>
     <div class="row center-text">
-        <div class="container search">
-            <h2 class="margin-b-title">Найди себе что-нибудь по вкусу</h2>
-            <input type="search" class="search-input" id="search" placeholder="Введите данные для поиска">
-            <input class="btn search-btn" type="submit" value="Поиск">
-        </div>
+            <div class="search">
+                <h2 class="margin-b-title">Найди себе что-нибудь по вкусу</h2>
+                <input type="search" name="search" class="search-input" id="search" placeholder="" value="@Model.Search"/>
+                <input class="btn search-btn" type="submit" value="Поиск"/>
+            </div>
     </div>
     <div class="row content">
-        <div class="col-md-3">
-            <div class="left-sidebar">
-                <h2 class="block-title">Категории:</h2>
-                <form>
-                    <div class="checkboxes">
-                        <div class="inline"><label for="check1">Первые блюда</label><input type="checkbox" id="check1" /><label for="check1"></label></div>
-                        <div class="inline"><label for="check2">Вторые блюда</label><input type="checkbox" id="check2" /><label for="check2"></label></div>
-                        <div class="inline"><label for="check3">Закуски</label><input type="checkbox" id="check3" /><label for="check3"></label></div>
-                        <div class="inline"><label for="check4">Салаты</label><input type="checkbox" id="check4" /><label for="check4"></label></div>
-                        <hr class="block-left-hr">
-                        <div class="inline"><label for="check5">С выездом надом</label><input type="checkbox" id="check5" /><label for="check5"></label></div>
-                        <div class="inline"><label for="check6">С обучением</label><input type="checkbox" id="check6" /><label for="check6"></label></div>
-                    </div>
-                </form>
-                <div class="select-menu">
-                    <span>Город</span>
-                    <select name="sity">
-                        <option value="Харьков">Харьков</option>
-                        <option value="Киев">Киев</option>
-                        <option value="Полтава">Полтава</option>
-                        <option value="Сумы">Сумы</option>
-                    </select>
-                </div>
-                <div class="select-menu">Ценовой диапазон</div>
-                <p>
-                    <label for="amount">Цена:</label>
-                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                </p>
-                <br>
-                <div id="slider-range"> </div>
-                <br>
-            </div>
-            <br>
-            <span class="question">Если ты знаешь как нам стать лучше, то жми <a href="#">сюда</a></span>
-        </div>
-        @foreach (var item in Model.DishList)
-        {
-            <div class="col-md-8 main-content">
-                <article>
-                    <h2 class="list-title">@Html.ActionLink(item.Name, "dishinfo", "profile", new { id = item.Id_Dish }, null)</h2>
-
-                    @* <div>@Html.ActionLink(item.aspnetuser.UserName + " (" + item.aspnetuser.FristName + " " + item.aspnetuser.Surname + ")", "index", "profile", new { id = item.aspnetuser.UserName }, null)</div>*@
-                    <span class="list-price"><b>приготовлю  </b>@item.Price</span>
-                    <span> - </span>
-                    <span class="list-menu">Первые блюда</span>
-                    <span> - </span>
-                    <span class="list-sity">Харьков</span>
-                    <span> - </span>
-                    <span class="list-type">с выездом на дом</span>
-                    <span class="list-data">выложено 15 дней назад</span>
-                    <div class="list-text">
-                    <p>@item.Description @Html.ActionLink("дальше", "dishinfo", "profile", new { id = item.Id_Dish }, new { @class = "list-readmore" })</p>
-                    </div>
-                    <div class="rating">
-                        <i class="fa fa-star fa-lg"></i>
-                        <i class="fa fa-star fa-lg"></i>
-                        <i class="fa fa-star fa-lg"></i>
-                        <i class="fa fa-star fa-lg"></i>
-                        <i class="fa fa-star-o fa-lg"></i>
-                    </div>
-                   <hr class="list-hr">
-                              @if (Model.PageCount > 0)
+    <div class="col-md-4">
+        <div class="left-sidebar">
+            <h2 class="block-title">Категории:</h2>
+            <form>
+                <div class="checkboxes">
+                    @Html.HiddenFor(m => m.DishType)
+                    <input type="hidden" name="page" id="page" />
+                    @Html.HiddenFor(m => m.MaxPrice)
+                    @Html.HiddenFor(m => m.MinPrice)
+                    @foreach (var item in Model.DishTypes)
                     {
-                        <div class="list-pangination text-center">
-                            @if (Model.Page != 0)
-                            {
-                                @*@Html.ActionLink("Первая", "offers", new { page = 0 }, htmlAttributes: new
-                    { @class = "btn btn-default" })*@
-                            }
-                            @for (int i = 0; i < Model.PageCount; i++)
-                            {
-                                if (i == Model.Page)
-                                {
-                                    @: @(i + 1)
-            }
-                                else
-                                {
-                                    @Html.ActionLink((i + 1).ToString(), "offers", new { page = i }, htmlAttributes: new
-                       { @*@class = "btn btn-default"*@ })@:
-            }
-                            }
-                            @if (Model.Page != Model.PageCount - 1)
-                            {
-                                @*   @Html.ActionLink("Последняя", "offers", new { page = Model.PageCount - 1 }, htmlAttributes: new
-                    { @class = "btn btn-default" })*@
-                            }
+                        <div class="inline">
+                            <label for="dish_type_@item.Id_DishType">@item.Name</label>
+                            <input type="checkbox" id="dish_type_@item.Id_DishType" class="dish_type" value="@item.Id_DishType" />
+                            <label for="dish_type_@item.Id_DishType"></label>
                         </div>
-
                     }
-                </article>
-                    @*<div>
-                        @if (item.ImageUrl != "" && item.ImageUrl != null)
-                {
-                            <a href="@Url.Action("DishInfo", "Profile", new { id = item.Id_Dish })">
-                                <img src="@Html.DisplayFor(Model => item.ImageUrl)" width="100" height="100" />
-                            </a>
-                        }
-                    </div>
-                    <div>
-                            <p>Цена: </p>
-                        <p>Цена с ингридиентами: @item.PriceWithIngridient</p>
-                    </div>
-                    <p>Описание: @item.Description</p>*@
+                            <hr class="block-left-hr">
+                            <div class="inline"><label for="Travel">С выездом надом</label><input type="checkbox" name="Travel" id="Travel" 
+                                @if(Model.Travel != null){
+                                    @:checked
+                                }/><label for="Travel"></label></div>
+                            <div class="inline"><label for="canTeach">С обучением</label><input type="checkbox" name="canTeach" id="canTeach" 
+                                @if(Model.CanTeach != null){
+                                    @:checked
+                                }/><label for="canTeach"></label></div>
+
+                </div>
+            </form>
+            <div class="select-menu">
+                <span>Город</span>
+                @Html.DropDownListFor(model => model.CityId, new SelectList(Model.City_List, "Id_City", "Name"), new { htmlAttributes = new { @class = "form-control" } })
             </div>
+            <hr class="block-left-hr">
+            <div class="select-menu">Ценовой диапазон</div>
+            <p>
+                <label for="amount">Цена:</label>
+                <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <br>
+            <div id="slider-range"> </div>
+            <br>
+            <input class="btn search-btn" style="margin-left:55px;"type="submit" value="Применить" />
+        </div>
+        <br>
+        <p class="question">Если ты знаешь как нам стать лучше, то <a href="#">жми сюда!</a></p>
+    </div>
+        <div class="col-md-8 main-content">
+            @if(Model.DishList.Count() == 0)
+            {
+                @:<h2>Ничего не найдено</h2>
+            }
+            @foreach (var item in Model.DishList)
+            {        <article>
+
+      
+                         <div>
+                             <h2 class="list-title">@Html.ActionLink(item.Name, "dishinfo", "profile", new { id = item.Id_Dish }, null)</h2>
+                           
+                         </div>
+                                        <span class="list-price">
+                                 <b>
+                                     приготовлю
+                                     @if (item.CanTeach == true)
+                                     {
+                                         @: и обучу
+            }
+                                 </b>@item.Price
+                             </span>
+                             <span> - </span>
+                             <span class="list-menu">@item.dishtype.Name</span>
+                             <span> - </span>
+                             <span class="list-sity">@item.aspnetuser.city.name</span>
+                             @if (item.aspnetuser.withTravel == true)
+                             {
+                                 @:<span> - </span>
+                                 @:<span class="list-type">с выездом на дом</span>
         }
-            
+                         
+@if (item.ImageUrl != "")
+{
+    <div style="width:150px; float:left; margin-right:10px;">
+        <a href="@Url.Action("dishinfo", "profile", new { id = item.Id_Dish })">
+            <img class="img-responsive" src="@Html.DisplayFor(Model => item.ImageUrl)" />
+        </a>
+    </div>
+}
+       @* <span class="list-data">выложено 15 дней назад</span>*@
+        <div class="list-text">
+            <p>@item.Description @Html.ActionLink("дальше", "dishinfo", "profile", new { id = item.Id_Dish }, new { @class = "list-readmore" })</p>
+        </div>
+            <div style="clear:both;">@Html.ActionLink(item.aspnetuser.UserName + " (" + item.aspnetuser.FristName + " " + item.aspnetuser.Surname + ")", "index", "profile", new { id = item.aspnetuser.UserName }, null)</div>
+        <div class="rating">
+        
+            @for (int i = 0; i < 5; i++)
+            {
+                if (i < item.Raiting)
+                {
+                    @:<i class="fa fa-star fa-lg"></i>
+                }
+                else
+                {
+                    @:<i class="fa fa-star-o fa-lg"></i>
+                }
+            }
+        </div>
+        <hr class="list-hr">
+        @if (Model.PageCount > 1)
+                {
+            <div class="list-pangination text-center">
+                @if (Model.Page != 0)
+                    {
+                    @*@Html.ActionLink("Первая", "offers", new { page = 0 }, htmlAttributes: new
+                    { @class = "btn btn-default" })*@
+                }
+                @for (int i = 0; i < Model.PageCount; i++)
+                    {
+                        if (i == Model.Page)
+                        {
+                        @: @(i + 1)
+            }
+                        else
+                        {
+                        <a href="#" onclick ="selectPage(@i); return false;" >@(i+1)</a>
+            }
+                    }
+                @if (Model.Page != Model.PageCount - 1)
+                    {
+                    @*   @Html.ActionLink("Последняя", "offers", new { page = Model.PageCount - 1 }, htmlAttributes: new
+                    { @class = "btn btn-default" })*@
+                }
+            </div>
+
+        }
+    </article>
+
+
+
+        @**<div>
+                    @if (item.ImageUrl != "" && item.ImageUrl != null)
+            {
+                        <a href="@Url.Action("DishInfo", "Profile", new { id = item.Id_Dish })">
+                            <img src="@Html.DisplayFor(Model => item.ImageUrl)" width="100" height="100" />
+                        </a>
+                    }
+                </div>
+                <div>
+                        <p>Цена: </p>
+                    <p>Цена с ингридиентами: @item.PriceWithIngridient</p>
+                </div>
+                <p>Описание: @item.Description</p>
+        </div>*@
+            }
+        </div>
+
     </div>
 </div>
+}
+<script>
+    $(function() {
+        $("#slider-range").slider({
+            range: true,
+            min: @Model.MinLimitPrice,
+            max: @Model.MaxLimitPrice,
+            @if(Model.MaxPrice != -1 && Model.MinPrice != -1)
+            {
+                @:values: [@Model.MinPrice, @Model.MaxPrice],
+            }
+            else
+            {
+                @:values: [@Model.MinLimitPrice, @Model.MaxLimitPrice],
+            }
+            slide: function (event, ui) {
+                $("#amount").val(ui.values[0] + " грн."+ " - " + ui.values[1] + " грн.");
+            }
+        });
+        $("#amount").val($("#slider-range").slider("values", 0) +" грн." + " - " + $("#slider-range").slider("values", 1) + " грн.");
+    });
+</script>
+<script>
+    function selectPage(page){
+        $("#page").val(page);
+        $("form").submit();
+    };
+    $(document).ready(function () {
+        var val = $("#DishType").val();
+        var checkedDishList = val.split(";");
+        $(".dish_type");
+        checkedDishList.forEach(function (item) {
+            if (item != "") {
+                $("#dish_type_" + item).attr('checked', true);
+            }
+        });
+    });
+    $("form").submit(function () {
+        var hidden = $("#DishType");
+        var dishTypesOut = "";
+        $(".dish_type:checked").each(function (entry) {
+            dishTypesOut += $(this).val()+";";
+        });
+        hidden.val(dishTypesOut);
+        $("#MinPrice").val($("#slider-range").slider("values", 0));
+        $("#MaxPrice").val($("#slider-range").slider("values", 1));
+    });
+</script>

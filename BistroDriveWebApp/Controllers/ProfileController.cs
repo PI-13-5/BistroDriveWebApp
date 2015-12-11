@@ -68,6 +68,10 @@ namespace BistroDriveWebApp.Controllers
                 string fileName = SaveFile(image, "/Uploads/dish");
                 model.Image_Url = "/Uploads/dish/" + fileName;
             }
+            else
+            {
+                model.Image_Url = "/Content/images/default-dish.png";
+            }
             string idUser = User.Identity.GetUserId();
             // формируем новые данные
             dish item = new dish
@@ -199,7 +203,7 @@ namespace BistroDriveWebApp.Controllers
             var fileName = Security.GetMd5(User.Identity.GetUserId() + DateTime.Now.ToFileTimeUtc()) + fileType;
             var path = Path.Combine(Server.MapPath(folder), fileName);
             file.SaveAs(path);
-            if (old_file != null)
+            if (old_file != null && old_file != "/Content/images/default-dish.png")
             {
                 path = Server.MapPath(old_file);
                 FileInfo fi = new FileInfo(path);
