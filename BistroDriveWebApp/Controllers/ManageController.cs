@@ -115,7 +115,7 @@ namespace BistroDriveWebApp.Controllers
                 string id = User.Identity.GetUserId();
                 // удаление старого аватара с сервера
                 string old = DataManager.User.GetUserAvatar(id);
-                if (old != "/Content/images/devault-avatar.png")
+                if (String.Compare(old,"/Content/images/default-avatar.png", true) == 0)
                 {
                     path = Path.Combine(Server.MapPath(old));
                     FileInfo fi = new FileInfo(path);
