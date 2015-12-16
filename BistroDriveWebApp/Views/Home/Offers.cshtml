@@ -95,7 +95,7 @@
 {
     <div style="width:150px; float:left; margin-right:10px;">
         <a href="@Url.Action("dishinfo", "profile", new { id = item.Id_Dish })">
-            <img class="img-responsive" src="@Html.DisplayFor(Model => item.ImageUrl)" />
+            <img class="img-responsive" src="@Html.DisplayFor(Model => item.ImageUrl)?width=150" />
         </a>
     </div>
 }

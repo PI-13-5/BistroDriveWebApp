@@ -10,7 +10,7 @@
     <div class="row">
         <h2 class="profile-title">Профиль пользователя</h2>
         <div class="col-md-3 user-data">
-            <img class="img-responsive cook-icon center-block" src="@Model.Avatar_Url" alt="">
+            <img class="img-responsive cook-icon center-block" src="@Model.Avatar_Url?width=300" alt="">
             <ul class="list-inline rating-reviews" title="Ratings">
                 @for (int i = 0; i < 5; i++)
                 {
@@ -48,7 +48,7 @@
                             <li><figure>
                                 <a href="@Url.Action("dishinfo", new { id = item.Id_Dish })">
                                     <h3>@item.Name</h3>
-                                    <img class="img-responsive" src="@Html.DisplayFor(Model=>item.ImageUrl)" />
+                                    <img class="img-responsive" src="@Html.DisplayFor(Model=>item.ImageUrl)?width=300" />
                                 </a>
                             </figure></li>
                         }

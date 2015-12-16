@@ -47,7 +47,7 @@
                 {
                 <div style="width:150px; float:left" class="user-avatar-block">
                     <a href="@Url.Action("index", "profile", new { id = item.UserName })" class="link-avatar">
-                        <img class="img-responsive user-avatar" src="@Html.DisplayFor(Model => item.Avatar_Url)" />
+                        <img class="img-responsive user-avatar" src="@Html.DisplayFor(Model => item.Avatar_Url)?width=150" />
                     </a>
                 </div>
                 }

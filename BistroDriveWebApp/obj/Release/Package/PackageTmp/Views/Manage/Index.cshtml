@@ -11,7 +11,7 @@
         <p class="text-success">@ViewBag.StatusMessage</p>
 
         <div class="avatar-change">
-            <div class="image"><image src="@Html.DisplayFor(model => model.Avatar_Url)" width="200" height="200" /></div>
+            <div class="image"><image src="@Html.DisplayFor(model => model.Avatar_Url)?width=200" width="200" /></div>
             <div class="upload-input-block form-group">
             @using (Html.BeginForm("UpdateAvatar", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {

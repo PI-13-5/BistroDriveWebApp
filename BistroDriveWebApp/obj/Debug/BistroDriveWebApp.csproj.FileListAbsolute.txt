@@ -438,3 +438,11 @@ D:\WEB\BistroDrive\final\BistroDriveWebApp\BistroDriveWebApp\bin\WebMatrix.Data.
 D:\WEB\BistroDrive\final\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\BistroDriveWebApp.csprojResolveAssemblyReference.cache
 D:\WEB\BistroDrive\final\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\BistroDriveWebApp.dll
 D:\WEB\BistroDrive\final\BistroDriveWebApp\BistroDriveWebApp\obj\Debug\BistroDriveWebApp.pdb
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\ImageResizer.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\ImageResizer.xml
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\ImageResizer.Plugins.DiskCache.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\ImageResizer.Plugins.PrettyGifs.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\ImageResizer.Plugins.SimpleFilters.dll
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\ImageResizer.Plugins.DiskCache.xml
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\ImageResizer.Plugins.PrettyGifs.xml
+D:\Projects\BistroDrive\BistroDriveWebApp\BistroDriveWebApp\bin\ImageResizer.Plugins.SimpleFilters.xml

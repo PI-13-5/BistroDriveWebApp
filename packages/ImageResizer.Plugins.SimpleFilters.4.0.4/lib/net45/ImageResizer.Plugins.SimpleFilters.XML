@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ImageResizer.Plugins.SimpleFilters</name>
+    </assembly>
+    <members>
+        <member name="T:ImageResizer.Plugins.SimpleFilters.SimpleFilters">
+            <summary>
+            This plugin provides grayscale, sepia, brightness, saturation, contrast, inversion, and alpha filtering options. It also includes beta support for rounded corners.
+            </summary>
+        </member>
+        <member name="M:ImageResizer.Plugins.SimpleFilters.SimpleFilters.Install(ImageResizer.Configuration.Config)">
+            <summary>
+            Adds the plugin to the given configuration container
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ImageResizer.Plugins.SimpleFilters.SimpleFilters.Uninstall(ImageResizer.Configuration.Config)">
+            <summary>
+            Removes the plugin from the given configuration container
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ImageResizer.Plugins.SimpleFilters.SimpleFilters.GetSupportedQuerystringKeys">
+            <summary>
+            Returns the querystrings command keys supported by this plugin. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ImageResizer.Plugins.SimpleFilters.SimpleFilters.PreRenderImage(ImageResizer.Resizing.ImageState)">
+            <summary>
+            Supporting rounded corners.
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ImageResizer.Plugins.SimpleFilters.SimpleFilters.Grayscale(System.Drawing.Color)">
+            <summary>
+            Not yet implemented
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ImageResizer.Plugins.SimpleFilters.SimpleFilters.Saturation(System.Single)">
+            <summary>
+            Saturation is between -1 and infinity
+            </summary>
+            <param name="saturation"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
