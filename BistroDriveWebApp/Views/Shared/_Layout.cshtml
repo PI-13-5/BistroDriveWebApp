@@ -87,10 +87,10 @@
                         </div>
                     </div>
                     <div class="col-md-2 social-buttons">
-                        <a href="#"><img src="../../images/icons/facebook-48.png" width="48" height="48" alt=""></a>
-                        <a href="#"><img src="../../images/icons/twitter-48.png" width="48" height="48" alt=""></a>
-                        <a href="#"><img src="../../images/icons/googleplus-48.png" width="48" height="48" alt=""></a>
-                        <a href="#"><img src="../../images/icons/vk-48.png" width="48" height="48" alt=""></a>
+                        <a href="#"><img src="/content/images/icons/facebook-48.png" width="48" height="48" alt=""></a>
+                        <a href="#"><img src="/content/images/icons/twitter-48.png" width="48" height="48" alt=""></a>
+                        <a href="#"><img src="/content/images/icons/googleplus-48.png" width="48" height="48" alt=""></a>
+                        <a href="#"><img src="/content/images/icons/vk-48.png" width="48" height="48" alt=""></a>
                     </div>
                 </div>
 
@@ -115,17 +115,19 @@
     </script>
 
     <script>
-    $(document).ready(function () {
-    //Header animation
-    if (!$('header').hasClass('small')) {
-    $(window).scroll(function () {
-    if ($(this).scrollTop() > 10) {
-    $('header, #header-spacer').addClass('scroll');
-    }
-    else {
-    $('header, #header-spacer').removeClass('scroll');    }   });
-    }
-    }
+        $(document).ready(function () {
+            //Header animation
+            if (!$('header').hasClass('small')) {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 10) {
+                        $('header, #header-spacer').addClass('scroll');
+                    }
+                    else {
+                        $('header, #header-spacer').removeClass('scroll');
+                    }
+                });
+            }
+        });
     </script>
     @RenderSection("scripts", required: false)
         

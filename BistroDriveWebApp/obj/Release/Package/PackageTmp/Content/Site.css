@@ -2,30 +2,30 @@
 /* font-family: "RobotoSlabRegular"; */
 @font-face {
     font-family: "RobotoSlabRegular";
-    src: url("../fonts/RobotoSlabRegular/RobotoSlabRegular.eot");
-    src: url("../fonts/RobotoSlabRegular/RobotoSlabRegular.eot?#iefix")format("embedded-opentype"),
-    url("../fonts/RobotoSlabRegular/RobotoSlabRegular.woff") format("woff"),
-    url("../fonts/RobotoSlabRegular/RobotoSlabRegular.ttf") format("truetype");
+    src: url("../content/fonts/RobotoSlabRegular/RobotoSlabRegular.eot");
+    src: url("../content/fonts/RobotoSlabRegular/RobotoSlabRegular.eot?#iefix")format("embedded-opentype"),
+    url("../content/fonts/RobotoSlabRegular/RobotoSlabRegular.woff") format("woff"),
+    url("../content/fonts/RobotoSlabRegular/RobotoSlabRegular.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
 /* font-family: "RobotoSlabLight"; */
 @font-face {
     font-family: "RobotoSlabLight";
-    src: url("../fonts/RobotoSlabLight/RobotoSlabLight.eot");
-    src: url("../fonts/RobotoSlabLight/RobotoSlabLight.eot?#iefix")format("embedded-opentype"),
-    url("./fonts/RobotoSlabLight/RobotoSlabLight.woff") format("woff"),
-    url("../fonts/RobotoSlabLight/RobotoSlabLight.ttf") format("truetype");
+    src: url("../content/fonts/RobotoSlabLight/RobotoSlabLight.eot");
+    src: url("../content/fonts/RobotoSlabLight/RobotoSlabLight.eot?#iefix")format("embedded-opentype"),
+    url("./content/fonts/RobotoSlabLight/RobotoSlabLight.woff") format("woff"),
+    url("../content/fonts/RobotoSlabLight/RobotoSlabLight.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
 /* font-family: "RobotoSlabBold"; */
 @font-face {
     font-family: "RobotoSlabBold";
-    src: url("../fonts/RobotoSlabBold/RobotoSlabBold.eot");
-    src: url("../fonts/RobotoSlabBold/RobotoSlabBold.eot?#iefix")format("embedded-opentype"),
-    url("../fonts/RobotoSlabBold/RobotoSlabBold.woff") format("woff"),
-    url("../fonts/RobotoSlabBold/RobotoSlabBold.ttf") format("truetype");
+    src: url("../content/fonts/RobotoSlabBold/RobotoSlabBold.eot");
+    src: url("../content/fonts/RobotoSlabBold/RobotoSlabBold.eot?#iefix")format("embedded-opentype"),
+    url("../content/fonts/RobotoSlabBold/RobotoSlabBold.woff") format("woff"),
+    url("../content/fonts/RobotoSlabBold/RobotoSlabBold.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
@@ -91,25 +91,25 @@ img.header-avatar:hover {
 }
 
 #section1{
-	background: url(./images/firstPage.png);
+	background: url(./content/images/firstPage.png);
 	background-size: 65% 65%; 
 	background-position:  right ;
 	background-repeat: no-repeat;
 }
 #section2{
-	background: url(./images/secondPage.png);
+	background: url(./content/images/secondPage.png);
 	background-size: 100% 90%; 
 	background-position: top right ;
 	background-repeat: no-repeat;
 }
 #section3{
-	background: url(./images/thirdPage.png);
+	background: url(./content/images/thirdPage.png);
 	background-size: 50%; 
 	background-position:  right ;
 	background-repeat: no-repeat;
 }
 #section4{
-	background: url(./images/fourthPage.png);
+	background: url(./content/images/fourthPage.png);
 	background-size: 100% 100%; 
 	background-repeat: no-repeat;
 
@@ -177,7 +177,7 @@ line-height: 1.5;}
 }
 .chiefhat{
     /*margin-top: 50px;*/
-    background-image:url(../images/chiefhat.png)
+    background-image:url(../content/images/chiefhat.png)
 }
 
 
@@ -880,7 +880,7 @@ a:active {
     width: 40px;
     height: 45px;
     overflow: hidden;
-    background: url('../images/img-sprite.png') no-repeat -515px -354px;
+    background: url('../content/images/img-sprite.png') no-repeat -515px -354px;
     position: absolute;
     top: 35%;
     margin-top: 30px;
@@ -915,7 +915,7 @@ a:active {
 .jcarousel ul li figure {
     padding-bottom:16px;
     display:block;
-    background:url(../images/imgBottom.png) no-repeat center bottom;
+    background:url(../content/images/imgBottom.png) no-repeat center bottom;
 }
 
 .control-label {
