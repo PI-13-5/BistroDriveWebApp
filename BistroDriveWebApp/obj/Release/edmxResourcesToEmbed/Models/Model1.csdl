@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="bistrodriveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="aspnetrole">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="chatmessages" Relationship="Self.FK_ChatMessage_IdReciver" FromRole="aspnetroles" ToRole="chatmessage" />
+    <NavigationProperty Name="chatmessages1" Relationship="Self.FK_ChatMessage_IdSender" FromRole="aspnetroles" ToRole="chatmessage" />
     <NavigationProperty Name="aspnetusers" Relationship="Self.aspnetuserroles" FromRole="aspnetroles" ToRole="aspnetusers" />
   </EntityType>
   <EntityType Name="aspnetuserclaim">
@@ -57,10 +59,8 @@
     <NavigationProperty Name="aspnetuserlogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="aspnetusers" ToRole="aspnetuserlogins" />
     <NavigationProperty Name="city" Relationship="Self.aspnetusers_ibfk_1" FromRole="aspnetusers" ToRole="city" />
     <NavigationProperty Name="userdescriptions" Relationship="Self.description_userid_to_aspnetuser_userid" FromRole="aspnetusers" ToRole="userdescription" />
-    <NavigationProperty Name="dishreviews" Relationship="Self.dishreview_ibfk_1" FromRole="aspnetusers" ToRole="dishreview" />
-    <NavigationProperty Name="chatmessages" Relationship="Self.FK_ChatMessage_IdReciver" FromRole="aspnetusers" ToRole="chatmessage" />
-    <NavigationProperty Name="chatmessages1" Relationship="Self.FK_ChatMessage_IdSender" FromRole="aspnetusers" ToRole="chatmessage" />
     <NavigationProperty Name="dishes" Relationship="Self.FK_Dish_IdUser_aspnetusers_Id" FromRole="aspnetusers" ToRole="dish" />
+    <NavigationProperty Name="dishreviews" Relationship="Self.FK_DishReview_IdOwner" FromRole="aspnetusers" ToRole="dishreview" />
     <NavigationProperty Name="orders" Relationship="Self.FK_Order_IdCook" FromRole="aspnetusers" ToRole="order" />
     <NavigationProperty Name="reviews" Relationship="Self.FK_Review_IdOwner" FromRole="aspnetusers" ToRole="review" />
     <NavigationProperty Name="reviews1" Relationship="Self.FK_Review_IdUser" FromRole="aspnetusers" ToRole="review" />
@@ -76,8 +76,8 @@
     <Property Name="Id_Reciver" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Message" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CreateTime" Type="DateTime" />
-    <NavigationProperty Name="aspnetuser" Relationship="Self.FK_ChatMessage_IdReciver" FromRole="chatmessage" ToRole="aspnetusers" />
-    <NavigationProperty Name="aspnetuser1" Relationship="Self.FK_ChatMessage_IdSender" FromRole="chatmessage" ToRole="aspnetusers" />
+    <NavigationProperty Name="aspnetrole" Relationship="Self.FK_ChatMessage_IdReciver" FromRole="chatmessage" ToRole="aspnetroles" />
+    <NavigationProperty Name="aspnetrole1" Relationship="Self.FK_ChatMessage_IdSender" FromRole="chatmessage" ToRole="aspnetroles" />
   </EntityType>
   <EntityType Name="city">
     <Key>
@@ -117,7 +117,7 @@
     <Property Name="Id_Dish" Type="Int32" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
     <Property Name="Mark" Type="Int32" />
-    <NavigationProperty Name="aspnetuser" Relationship="Self.dishreview_ibfk_1" FromRole="dishreview" ToRole="aspnetusers" />
+    <NavigationProperty Name="aspnetuser" Relationship="Self.FK_DishReview_IdOwner" FromRole="dishreview" ToRole="aspnetusers" />
     <NavigationProperty Name="dish" Relationship="Self.FK_DishReview_IdDish" FromRole="dishreview" ToRole="dish" />
   </EntityType>
   <EntityType Name="dishtype">
@@ -250,6 +250,32 @@
     <Property Name="Expiration" Type="DateTime" />
     <NavigationProperty Name="aspnetuser" Relationship="Self.usertoken_ibfk_1" FromRole="usertoken" ToRole="aspnetusers" />
   </EntityType>
+  <Association Name="FK_ChatMessage_IdReciver">
+    <End Role="aspnetroles" Type="Self.aspnetrole" Multiplicity="1" />
+    <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetroles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="chatmessage">
+        <PropertyRef Name="Id_Reciver" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatMessage_IdSender">
+    <End Role="aspnetroles" Type="Self.aspnetrole" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetroles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="chatmessage">
+        <PropertyRef Name="Id_Sender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -304,44 +330,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="dishreview_ibfk_1">
-    <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1" />
-    <End Role="dishreview" Type="Self.dishreview" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnetusers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="dishreview">
-        <PropertyRef Name="Id_Owner" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ChatMessage_IdReciver">
-    <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1" />
-    <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnetusers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="chatmessage">
-        <PropertyRef Name="Id_Reciver" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ChatMessage_IdSender">
-    <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="chatmessage" Type="Self.chatmessage" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnetusers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="chatmessage">
-        <PropertyRef Name="Id_Sender" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Dish_IdUser_aspnetusers_Id">
     <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -353,6 +341,20 @@
       </Principal>
       <Dependent Role="dish">
         <PropertyRef Name="Id_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DishReview_IdOwner">
+    <End Role="aspnetusers" Type="Self.aspnetuser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="dishreview" Type="Self.dishreview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnetusers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dishreview">
+        <PropertyRef Name="Id_Owner" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -560,6 +562,14 @@
     <EntitySet Name="reviews" EntityType="Self.review" />
     <EntitySet Name="userdescriptions" EntityType="Self.userdescription" />
     <EntitySet Name="usertokens" EntityType="Self.usertoken" />
+    <AssociationSet Name="FK_ChatMessage_IdReciver" Association="Self.FK_ChatMessage_IdReciver">
+      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="chatmessage" EntitySet="chatmessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatMessage_IdSender" Association="Self.FK_ChatMessage_IdSender">
+      <End Role="aspnetroles" EntitySet="aspnetroles" />
+      <End Role="chatmessage" EntitySet="chatmessages" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="aspnetuserclaims" EntitySet="aspnetuserclaims" />
@@ -576,21 +586,13 @@
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="userdescription" EntitySet="userdescriptions" />
     </AssociationSet>
-    <AssociationSet Name="dishreview_ibfk_1" Association="Self.dishreview_ibfk_1">
-      <End Role="aspnetusers" EntitySet="aspnetusers" />
-      <End Role="dishreview" EntitySet="dishreviews" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ChatMessage_IdReciver" Association="Self.FK_ChatMessage_IdReciver">
-      <End Role="aspnetusers" EntitySet="aspnetusers" />
-      <End Role="chatmessage" EntitySet="chatmessages" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ChatMessage_IdSender" Association="Self.FK_ChatMessage_IdSender">
-      <End Role="aspnetusers" EntitySet="aspnetusers" />
-      <End Role="chatmessage" EntitySet="chatmessages" />
-    </AssociationSet>
     <AssociationSet Name="FK_Dish_IdUser_aspnetusers_Id" Association="Self.FK_Dish_IdUser_aspnetusers_Id">
       <End Role="aspnetusers" EntitySet="aspnetusers" />
       <End Role="dish" EntitySet="dishes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DishReview_IdOwner" Association="Self.FK_DishReview_IdOwner">
+      <End Role="aspnetusers" EntitySet="aspnetusers" />
+      <End Role="dishreview" EntitySet="dishreviews" />
     </AssociationSet>
     <AssociationSet Name="FK_Order_IdCook" Association="Self.FK_Order_IdCook">
       <End Role="aspnetusers" EntitySet="aspnetusers" />

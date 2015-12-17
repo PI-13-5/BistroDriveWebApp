@@ -17,12 +17,18 @@ namespace BistroDriveWebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public aspnetrole()
         {
+            this.chatmessages = new HashSet<chatmessage>();
+            this.chatmessages1 = new HashSet<chatmessage>();
             this.aspnetusers = new HashSet<aspnetuser>();
         }
     
         public string Id { get; set; }
         public string Name { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<chatmessage> chatmessages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<chatmessage> chatmessages1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<aspnetuser> aspnetusers { get; set; }
     }

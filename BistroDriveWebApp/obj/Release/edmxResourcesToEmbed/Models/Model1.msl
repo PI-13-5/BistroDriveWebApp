@@ -1,4 +1,234 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="BistroDriveEntities" />
+  <EntityContainerMapping StorageEntityContainer="bistrodriveModelStoreContainer" CdmEntityContainer="BistroDriveEntities">
+    <EntitySetMapping Name="aspnetroles">
+      <EntityTypeMapping TypeName="bistrodriveModel.aspnetrole">
+        <MappingFragment StoreEntitySet="aspnetroles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnetuserclaims">
+      <EntityTypeMapping TypeName="bistrodriveModel.aspnetuserclaim">
+        <MappingFragment StoreEntitySet="aspnetuserclaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnetuserlogins">
+      <EntityTypeMapping TypeName="bistrodriveModel.aspnetuserlogin">
+        <MappingFragment StoreEntitySet="aspnetuserlogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnetusers">
+      <EntityTypeMapping TypeName="bistrodriveModel.aspnetuser">
+        <MappingFragment StoreEntitySet="aspnetusers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FristName" ColumnName="FristName" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Avatar_Url" ColumnName="Avatar_Url" />
+          <ScalarProperty Name="LastOnlineTime" ColumnName="LastOnlineTime" />
+          <ScalarProperty Name="Id_City" ColumnName="Id_City" />
+          <ScalarProperty Name="withTravel" ColumnName="withTravel" />
+          <ScalarProperty Name="Raiting" ColumnName="Raiting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chatmessages">
+      <EntityTypeMapping TypeName="bistrodriveModel.chatmessage">
+        <MappingFragment StoreEntitySet="chatmessage">
+          <ScalarProperty Name="Id_Message" ColumnName="Id_Message" />
+          <ScalarProperty Name="Id_Sender" ColumnName="Id_Sender" />
+          <ScalarProperty Name="Id_Reciver" ColumnName="Id_Reciver" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cities">
+      <EntityTypeMapping TypeName="bistrodriveModel.city">
+        <MappingFragment StoreEntitySet="city">
+          <ScalarProperty Name="id_city" ColumnName="id_city" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dishes">
+      <EntityTypeMapping TypeName="bistrodriveModel.dish">
+        <MappingFragment StoreEntitySet="dish">
+          <ScalarProperty Name="Id_Dish" ColumnName="Id_Dish" />
+          <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Ingridient" ColumnName="Ingridient" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="PriceWithIngridient" ColumnName="PriceWithIngridient" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Id_Type" ColumnName="Id_Type" />
+          <ScalarProperty Name="CanTeach" ColumnName="CanTeach" />
+          <ScalarProperty Name="Raiting" ColumnName="Raiting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dishreviews">
+      <EntityTypeMapping TypeName="bistrodriveModel.dishreview">
+        <MappingFragment StoreEntitySet="dishreview">
+          <ScalarProperty Name="Id_Review" ColumnName="Id_Review" />
+          <ScalarProperty Name="Id_Owner" ColumnName="Id_Owner" />
+          <ScalarProperty Name="Id_Dish" ColumnName="Id_Dish" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dishtypes">
+      <EntityTypeMapping TypeName="bistrodriveModel.dishtype">
+        <MappingFragment StoreEntitySet="dishtype">
+          <ScalarProperty Name="Id_DishType" ColumnName="Id_DishType" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Descritpion" ColumnName="Descritpion" />
+          <ScalarProperty Name="Image_URL" ColumnName="Image_URL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="bistrodriveModel.order">
+        <MappingFragment StoreEntitySet="order">
+          <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
+          <ScalarProperty Name="Id_Cook" ColumnName="Id_Cook" />
+          <ScalarProperty Name="Id_Customer" ColumnName="Id_Customer" />
+          <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+          <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
+          <ScalarProperty Name="Id_PaymentMethod" ColumnName="Id_PaymentMethod" />
+          <ScalarProperty Name="Id_ContactMethod" ColumnName="Id_ContactMethod" />
+          <ScalarProperty Name="Id_Delivery" ColumnName="Id_Delivery" />
+          <ScalarProperty Name="id_IngridientsBuyer" ColumnName="id_IngridientsBuyer" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="id_city" ColumnName="id_city" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ordercontactmethods">
+      <EntityTypeMapping TypeName="bistrodriveModel.ordercontactmethod">
+        <MappingFragment StoreEntitySet="ordercontactmethod">
+          <ScalarProperty Name="Id_ContactMethod" ColumnName="Id_ContactMethod" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orderdeliveries">
+      <EntityTypeMapping TypeName="bistrodriveModel.orderdelivery">
+        <MappingFragment StoreEntitySet="orderdelivery">
+          <ScalarProperty Name="Id_Delivery" ColumnName="Id_Delivery" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orderingridientbuyers">
+      <EntityTypeMapping TypeName="bistrodriveModel.orderingridientbuyer">
+        <MappingFragment StoreEntitySet="orderingridientbuyer">
+          <ScalarProperty Name="Id_IngridientBuyer" ColumnName="Id_IngridientBuyer" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orderpaymentmethods">
+      <EntityTypeMapping TypeName="bistrodriveModel.orderpaymentmethod">
+        <MappingFragment StoreEntitySet="orderpaymentmethod">
+          <ScalarProperty Name="Id_PaymentMethod" ColumnName="Id_PaymentMethod" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PaymentProvider" ColumnName="PaymentProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orderproducts">
+      <EntityTypeMapping TypeName="bistrodriveModel.orderproduct">
+        <MappingFragment StoreEntitySet="orderproduct">
+          <ScalarProperty Name="Id_Product" ColumnName="Id_Product" />
+          <ScalarProperty Name="Id_Dish" ColumnName="Id_Dish" />
+          <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="PriceWithIngridients" ColumnName="PriceWithIngridients" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orderstatus">
+      <EntityTypeMapping TypeName="bistrodriveModel.orderstatu">
+        <MappingFragment StoreEntitySet="orderstatus">
+          <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reviews">
+      <EntityTypeMapping TypeName="bistrodriveModel.review">
+        <MappingFragment StoreEntitySet="review">
+          <ScalarProperty Name="Id_UserReview" ColumnName="Id_UserReview" />
+          <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+          <ScalarProperty Name="Id_Owner" ColumnName="Id_Owner" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userdescriptions">
+      <EntityTypeMapping TypeName="bistrodriveModel.userdescription">
+        <MappingFragment StoreEntitySet="userdescription">
+          <ScalarProperty Name="Id_Description" ColumnName="Id_Description" />
+          <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usertokens">
+      <EntityTypeMapping TypeName="bistrodriveModel.usertoken">
+        <MappingFragment StoreEntitySet="usertoken">
+          <ScalarProperty Name="Id_Token" ColumnName="Id_Token" />
+          <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="Expiration" ColumnName="Expiration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="aspnetuserroles" TypeName="bistrodriveModel.aspnetuserroles" StoreEntitySet="aspnetuserroles">
+      <EndProperty Name="aspnetroles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="aspnetusers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
 </Mapping>

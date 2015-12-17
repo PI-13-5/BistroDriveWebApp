@@ -25,6 +25,10 @@ namespace BistroDriveWebApp.Models
 
         public bool isCorrectServer(string server)
         {
+            if (buffer == null)
+            {
+                FillBuffer();
+            }
             string s = buffer.FirstOrDefault(serv => String.Compare(serv, server, true) == 0);
             return s != null;
         }
