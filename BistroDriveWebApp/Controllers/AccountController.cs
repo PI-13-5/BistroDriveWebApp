@@ -498,5 +498,13 @@ namespace BistroDriveWebApp.Controllers
             var result = DataManager.User.GetUserByName(username) == null;
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        [AllowAnonymous]
+        public JsonResult IsCorrectEmail(string email)
+        {
+            String server = email.Substring(email.IndexOf('@') + 1);
+            var result = DataManager.EmailServers.isCorrectServer(server);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

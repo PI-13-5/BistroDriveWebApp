@@ -112,6 +112,7 @@ namespace BistroDriveWebApp.Models
 
         [Required]
         [EmailAddress]
+        [System.Web.Mvc.Remote("IsCorrectEmail", "Account", ErrorMessage = "Неизвестный Email Сервер")]
         [Display(Name = "Email:")]
         public string Email { get; set; }
 

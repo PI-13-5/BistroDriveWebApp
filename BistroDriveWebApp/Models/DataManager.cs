@@ -13,6 +13,19 @@ namespace BistroDriveWebApp.Models
             _context = new BistroDriveEntities();
         }
 
+        static EmailServersRepository _emailservers;
+        public static EmailServersRepository EmailServers
+        {
+            get
+            {
+                if (_user == null)
+                {
+                    _emailservers = new EmailServersRepository(_context);
+                }
+                return _emailservers;
+            }
+        }
+
         static UserRepository _user;
         public static UserRepository User
         {

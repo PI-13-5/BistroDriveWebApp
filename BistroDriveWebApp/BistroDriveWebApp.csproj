@@ -303,6 +303,7 @@
     <Compile Include="Models\orderstatu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Repositories\EmailServers.cs" />
     <Compile Include="Models\Repositories\GeolocationRepository.cs" />
     <Compile Include="Models\Repositories\IngridientsBuyer.cs" />
     <Compile Include="Models\review.cs">
