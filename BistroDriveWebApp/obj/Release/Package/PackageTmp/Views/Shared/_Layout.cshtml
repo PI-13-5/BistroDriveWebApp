@@ -106,7 +106,8 @@
     @Scripts.Render("~/bundles/touchSwipe")
     @Scripts.Render("~/bundles/fullpage")
     @Scripts.Render("~/bundles/easings")
-    @Scripts.Render("~/bundles/slimscroll")
+    @Scripts.Render("~/bundles/slimscroll")    
+    @Scripts.Render("~/bundles/lightbox")
 
     <script>
 		$(document).ready(function() {
@@ -115,7 +116,7 @@
     </script>
 
     <script>
-        $(document).ready(function () {
+      /*  $(document).ready(function () {
             //Header animation
             if (!$('header').hasClass('small')) {
                 $(window).scroll(function () {
@@ -127,7 +128,7 @@
                     }
                 });
             }
-        });
+        });*/
     </script>
     @RenderSection("scripts", required: false)
         

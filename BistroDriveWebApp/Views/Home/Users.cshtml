@@ -1,6 +1,7 @@
 ﻿@model BistroDriveWebApp.Models.UserListViewModel
 @{
     ViewBag.Title = "Список исполнителей";
+    int unum = 0;
 }
 @using (Html.BeginForm("users", "home", FormMethod.Get))
 {
@@ -43,10 +44,13 @@
             }
                 @foreach (var item in Model.UserList)
                 {        <article>
+                @{
+                    unum++;
+                }
                 @if (item.Avatar_Url != "")
                 {
                 <div style="width:150px; float:left" class="user-avatar-block">
-                    <a href="@Url.Action("index", "profile", new { id = item.UserName })" class="link-avatar">
+                    <a href="@Html.DisplayFor(Model => item.Avatar_Url)" data-lightbox="@unum" class="nivoZoom">
                         <img class="img-responsive user-avatar" src="@Html.DisplayFor(Model => item.Avatar_Url)?width=150" />
                     </a>
                 </div>

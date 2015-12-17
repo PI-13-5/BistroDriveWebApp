@@ -347,6 +347,7 @@
     <Content Include="Content\images\checkboxes.png" />
     <Content Include="Content\images\cherry.png" />
     <Content Include="Content\images\chiefhat.png" />
+    <Content Include="Content\images\close.png" />
     <Content Include="Content\images\cookies.png" />
     <Content Include="Content\images\cup.png" />
     <Content Include="Content\images\eat\1.jpg" />
@@ -371,10 +372,15 @@
     <Content Include="Content\images\icons\vk-48-black.png" />
     <Content Include="Content\images\icons\vk-48.png" />
     <Content Include="Content\images\img-sprite.png" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\next.png" />
     <Content Include="Content\images\pears.png" />
+    <Content Include="Content\images\prev.png" />
     <Content Include="Content\images\secondPage.png" />
     <Content Include="Content\images\thirdPage.png" />
+    <Content Include="Content\images\zoom.png" />
     <Content Include="Content\jquery.fullPage.css" />
+    <Content Include="Content\lightbox.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -445,6 +451,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lightbox.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

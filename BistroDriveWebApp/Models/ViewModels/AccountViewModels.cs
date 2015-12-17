@@ -105,6 +105,7 @@ namespace BistroDriveWebApp.Models
     {
         [Required]
         [System.Web.Mvc.Remote("IsUserNameAvailable","Account",ErrorMessage ="Данное имя пользователя уже используеться")]
+        [RegularExpression(@"^([A-Za-z0-9_]+)$", ErrorMessage = "Имя пользователя может содержать только символы, цифры и знаки подчёркивания.")]
         [StringLength(120, ErrorMessage = "{0} должно иметь не менее {2} символов", MinimumLength = 4)]
         [Display(Name = "Имя пользователя:")]
         public string UserName { get; set; }
