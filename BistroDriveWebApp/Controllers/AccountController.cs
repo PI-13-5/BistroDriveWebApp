@@ -147,9 +147,14 @@ namespace BistroDriveWebApp.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(string name="", string email="")
         {
-            return View();
+            RegisterViewModel model = new RegisterViewModel
+            {
+                Email = email,
+                FirstName = name
+            };
+            return View(model);
         }
 
         //

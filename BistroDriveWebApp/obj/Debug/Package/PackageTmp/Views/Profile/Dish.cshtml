@@ -32,7 +32,7 @@
             @if (item.ImageUrl != "" && item.ImageUrl != null)
                 {
                 <a href="@Url.Action("dishinfo", new { id = item.Id_Dish })" class="col-md-4">
-                    <img src="@Html.DisplayFor(Model=>item.ImageUrl)" width="200" height="200" />
+                    <img src="@Html.DisplayFor(Model=>item.ImageUrl)?width=200" width="200" />
                 </a>
             }
             <div class="dish-extra-info col-md-10">

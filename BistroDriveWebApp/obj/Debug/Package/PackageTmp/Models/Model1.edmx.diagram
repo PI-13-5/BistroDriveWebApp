@@ -4,49 +4,49 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5f0a9e5fbe474876851cbd4e07de78e7" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.aspnetrole" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.aspnetuserclaim" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.aspnetuserlogin" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.aspnetuser" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.chatmessage" Width="1.5" PointX="5.25" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.city" Width="1.5" PointX="0.75" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.dish" Width="1.5" PointX="5.25" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.dishreview" Width="1.5" PointX="7.5" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.dishtype" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.order" Width="1.5" PointX="10.25" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ordercontactmethod" Width="1.5" PointX="8" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.orderdelivery" Width="1.5" PointX="8" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.orderingridientbuyer" Width="1.5" PointX="8" PointY="20.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.orderpaymentmethod" Width="1.5" PointX="8" PointY="23.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.orderproduct" Width="1.5" PointX="12.5" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.orderstatu" Width="1.5" PointX="8" PointY="25.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.review" Width="1.5" PointX="5.25" PointY="32.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.userdescription" Width="1.5" PointX="5.25" PointY="36" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.usertoken" Width="1.5" PointX="5.25" PointY="38.5" IsExpanded="true" />
-        <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.aspnetusers_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.description_userid_to_aspnetuser_userid" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.dishreview_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_ChatMessage_IdReciver" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_ChatMessage_IdSender" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Dish_IdUser_aspnetusers_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Order_IdCook" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Review_IdOwner" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Review_IdUser" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.usertoken_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.order_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Dish_IdType" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_DishReview_IdDish" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_OrderProduct_IdDish" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Order_IdContactMethod" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Order_IdDelivery" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Order_IdPaymentMethod" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Order_IdStatus" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_OrderProduct_IdOrder" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.order_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.aspnetuserroles" ManuallyRouted="false" />
+      <Diagram DiagramId="933fd286d57346cd8e13aab57157e3bf" Name="Diagram1">
+        <EntityTypeShape EntityType="bistrodriveModel.aspnetrole" Width="1.5" PointX="0.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.aspnetuserclaim" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.aspnetuserlogin" Width="1.5" PointX="8.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.aspnetuser" Width="1.5" PointX="6" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.chatmessage" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.city" Width="1.5" PointX="3.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.dish" Width="1.5" PointX="8.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.dishreview" Width="1.5" PointX="13.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.dishtype" Width="1.5" PointX="6" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.order" Width="1.5" PointX="11.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.ordercontactmethod" Width="1.5" PointX="9" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.orderdelivery" Width="1.5" PointX="9" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.orderingridientbuyer" Width="1.5" PointX="9" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.orderpaymentmethod" Width="1.5" PointX="9" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.orderproduct" Width="1.5" PointX="16.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.orderstatu" Width="1.5" PointX="9" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.review" Width="1.5" PointX="8.25" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.userdescription" Width="1.5" PointX="8.25" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bistrodriveModel.usertoken" Width="1.5" PointX="8.25" PointY="33" IsExpanded="true" />
+        <AssociationConnector Association="bistrodriveModel.FK_ChatMessage_IdReciver" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_ChatMessage_IdSender" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.aspnetusers_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.description_userid_to_aspnetuser_userid" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_Dish_IdUser_aspnetusers_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_DishReview_IdOwner" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_Order_IdCook" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_Review_IdOwner" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_Review_IdUser" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.usertoken_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.order_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_Dish_IdType" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_DishReview_IdDish" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_OrderProduct_IdDish" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_Order_IdContactMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_Order_IdDelivery" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_Order_IdPaymentMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_Order_IdStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.FK_OrderProduct_IdOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.order_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="bistrodriveModel.aspnetuserroles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

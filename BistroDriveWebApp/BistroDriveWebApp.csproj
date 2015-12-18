@@ -514,6 +514,7 @@
     <Content Include="Views\Profile\AddUserReview.cshtml" />
     <Content Include="Views\Profile\_ParticalUserReview.cshtml" />
     <Content Include="Views\Profile\EditReview.cshtml" />
+    <Content Include="Uploads\bistrodrive.apk" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

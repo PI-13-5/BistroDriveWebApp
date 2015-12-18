@@ -49,7 +49,7 @@
 
                 @if (Model.Image_Url != "" && Model.Image_Url != null)
                 {
-                    <img src="@Html.DisplayFor(Model=>Model.Image_Url)" width="300" height="300" />
+                    <img src="@Html.DisplayFor(Model=>Model.Image_Url)?width=300" width="300" height="300" />
                 }
                 else
                 {
