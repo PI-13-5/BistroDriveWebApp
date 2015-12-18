@@ -6,14 +6,14 @@
 @using (Html.BeginForm("users", "home", FormMethod.Get))
 {
     <div class="users-list-page">
-        <div class="row center-text">
+        <div class="center-text">
             <div class="search">
                 <h2 class="margin-b-title">Найди себе что-нибудь по вкусу</h2>
                 <input type="search" name="search" class="search-input" id="search" placeholder="" value="@Model.Search" />
                 <input class="btn search-btn" type="submit" value="Поиск" />
             </div>
         </div>
-        <div class="row content">
+        <div class="content">
             <div class="col-md-4">
                 <div class="left-sidebar">
                     <h2 class="block-title">Категории:</h2>
@@ -32,7 +32,7 @@
                         @Html.DropDownListFor(model => model.CityId, new SelectList(Model.City_List, "Id_City", "Name"), new { htmlAttributes = new { @class = "form-control" } })
                     </div>
                     <hr class="block-left-hr">
-                    <input class="btn search-btn" type="submit" value="Применить" />
+                    <input class="btn search-btn" style="margin-left:40px;"type="submit" value="Применить" />
                 </div>
                 <br>
                 <p class="question">Если ты знаешь как нам стать лучше, то <a href="#">жми сюда!</a></p>
