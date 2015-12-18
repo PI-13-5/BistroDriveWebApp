@@ -33,6 +33,9 @@ namespace BistroDriveWebApp
             bundles.Add(new ScriptBundle("~/bundles/easings").Include("~/Scripts/jquery.easings.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/slimscroll").Include("~/Scripts/jquery.slimscroll.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/lightbox").Include("~/Scripts/lightbox.js"));
+            bundles.Add(new ScriptBundle("~/bundles/landing").Include("~/Scripts/wow.js",
+                "~/Scripts/smooth-scroll.js",
+                "~/Scripts/main.js"));
 
 
             bundles.Add(new StyleBundle("~/Content/landing").Include("~/Content/Landing.css"));
@@ -42,12 +45,14 @@ namespace BistroDriveWebApp
                       "~/Content/font-awesome/css/font-awesome.min.css",
                       "~/Content/jquery.fullPage.css",
                       "~/Content/lightbox.css",
-                      "~/Content/site.css",
                       "~/Content/Landing.less",
                       "~/Content/Forms.less",
                       "~/Content/Orders.less",
                       "~/Content/UsersList.less",
-                      "~/Content/Dish.less"));
+                      "~/Content/Dish.less",
+                      "~/Content/site.css",
+                       "~/Content/animate.css",
+                       "~/Content/landingpage.css"));
 
             
             

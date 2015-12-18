@@ -326,6 +326,7 @@ ul,label{
     box-shadow: none;
 }
 .navbar-default .navbar-nav > li {
+    margin:0;
     padding-left: 0;
     padding-right: 0;
 }
@@ -344,7 +345,7 @@ ul,label{
 
 .top-menu {
    float: right;
-   margin-top: 50px;
+   margin-top: 57px;
    background: none;
 }
 .top-menu ul {
@@ -352,7 +353,7 @@ ul,label{
 .top-menu li {
     display: inline;
     list-style: none;
-    font-size: 30px;
+    font-size: 25px;
     padding: 0px 15px;
 }
 
@@ -559,7 +560,7 @@ input[type="search"]:focus, input[type="search"]:hover {
 }
 .search-btn{
    height: 40px;
-   width:140px;
+   width:165px;
    line-height: 0;
    font-size: 2.5rem !important;
    transition: .2s all ease-in-out;
